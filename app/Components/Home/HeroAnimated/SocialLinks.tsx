@@ -121,7 +121,7 @@ const socialLinks = [
 
 const SocialLinks = () => {
   return (
-    <div className="absolute top-[50%] right-5 flex flex-col gap-4">
+    <div className="absolute top-[50%] right-5 md:flex flex-col gap-4 hidden ">
       {socialLinks.map((link, i) => (
         <motion.a
           key={link.name}

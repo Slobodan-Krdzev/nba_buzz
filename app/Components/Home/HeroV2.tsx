@@ -60,7 +60,7 @@ const HeroSection = () => {
         className={`z-10 transition-all duration-1000 ease-in-out 
     ${
       shrinkToTop
-        ? "scale-[0.7] translate-y-[-80vw] md:translate-y-[-45vw] lg:translate-y-[-20vw]"
+        ? "scale-[0.7] translate-y-[-40vh] md:translate-y-[-45vw] lg:translate-y-[-20vw]"
         : "translate-y-[-10vh] md:translate-y-[-15vh] lg:translate-y-[-20vh]"
     }`}
       >
@@ -118,7 +118,7 @@ const HeroSection = () => {
         {/* bg-[linear-gradient(to_right,_#D3CBB8,_#6D6027)] */}
 
         <div
-          className="h-[85vh]  bg-[linear-gradient(to_right,_#ffd452,_#544a7d)]
+          className="h-[85dvh]  bg-[linear-gradient(to_right,_#ffd452,_#544a7d)]
              bg-[length:200%_200%]
              animate-gradientMove flex items-center justify-center "
         >

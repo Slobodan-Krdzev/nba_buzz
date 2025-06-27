@@ -31,13 +31,13 @@ const categories: ShopByCategory[] = [
 
 const ShopBy = () => {
   return (
-    <section className="px-4 py-[6dvh]  w-[90%] lg:w-[80%] m-auto ">
+    <section className="px-4 py-[6dvh] w-[95%] lg:w-[80%] m-auto ">
       <SectionTitle title="Shop By" color="white"/>
       <div className="hidden lg:grid grid-cols-1 md:grid-cols-3 items-center gap-6">
         {categories.map((category, idx: number) => (
           <Link href={category.href}
             key={category.name}
-            className={`relative group overflow-hidden rounded-md shadow-lg hover:scale-105 transition ease-in-out ${idx === 1 ? "max-h-[650px]" : 'max-h-[600px]'}`}
+            className={`relative group overflow-hidden rounded-md hover:scale-105 transition ease-in-out ${idx === 1 ? "max-h-[650px]" : 'max-h-[600px]'} shadow-custom-white-light`}
           >
             <Image
               src={category.image}
