@@ -17,6 +17,9 @@ export default {
         dark: "#0b0d0c",
         titles: "#373737",
       },
+      boxShadow: {
+        'custom-green': '0px 0px 50.73px 0px #fff', // same as #45880078
+      },
     },
   },
   plugins: [],

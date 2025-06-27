@@ -7,3 +7,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root{
+  overflow-x: hidden;
+
+}
+
+body{
+  overflow-x: hidden;
+  padding-top: 74px;
+
+}
