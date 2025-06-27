@@ -8,7 +8,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-[90%] md:w-full max-w-sm mx-auto p-6 shadow-xl border-[0.5px] border-[#d1d5db80] rounded-lg">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-titles w-[90%] md:w-full max-w-sm mx-auto p-6 shadow-xl border-[0.5px] border-[#d1d5db80] rounded-lg">
       <h2 className="text-3xl font-bold mb-6">Login</h2>
       <FormInput label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <div className="flex justify-between items-center">

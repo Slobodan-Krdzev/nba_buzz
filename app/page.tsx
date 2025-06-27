@@ -1,15 +1,17 @@
 // import JerseyListingTest from "./Components/JerseyListingTest";
 
 // import ProductCard from "./Components/Common/ProductCard";
+import HeroV2 from "./Components/Home/HeroV2";
 import PremiumQualitySection from "./Components/Home/PremiumQualitySection/PremiumQualitySection";
-import ShopBy from "./Components/Home/ShopBy/ShopBy";
 import StandOutSection from "./Components/Home/StandOut/StandOutSection";
 import NewsletterSection from "./Components/Newsletter/Newsletter";
 
 export default function Home() {
   return (
     <>
-      <video
+
+    <HeroV2 />
+      {/* <video
         className="w-full h-full"
         preload="none"
         muted
@@ -25,13 +27,14 @@ export default function Home() {
           label="English"
         />
         Your browser does not support the video tag.
-      </video>
+      </video> */}
 
       {/* </div> */}
-      <ShopBy />
+      {/* <ShopBy /> */}
       {/* <ProductCard /> */}
-      <StandOutSection />
       <PremiumQualitySection />
+
+      <StandOutSection />
       <NewsletterSection />
       {/* <JerseyListingTest /> */}
     </>

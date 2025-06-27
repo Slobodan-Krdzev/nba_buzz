@@ -22,7 +22,7 @@ const RegisterFrom = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="w-full max-w-sm mx-auto p-6 shadow-xl border-[0.5px] border-[#d1d5db80] rounded-lg"
+      className="w-[90%] md:w-full max-w-sm mx-auto lg:mr-5 p-6 shadow-xl border-[0.5px] border-[#d1d5db80] rounded-lg text-titles"
     >
       <h2 className="text-3xl font-bold mb-6">Sign up</h2>
       {Object.entries(formData).map(([key, value], index) => (

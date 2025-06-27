@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white flex items-center justify-between px-4 py-3 border-b shadow-custom-green z-10">
+    <header className="fixed top-0 left-0 right-0 bg-white flex items-center justify-between px-4 py-3 shadow-custom-green z-20 text-titles">
       {/* Logo */}
       <Link href={"/"} className="flex items-center gap-2">
         <Image
@@ -20,7 +20,7 @@ const Navbar = () => {
           width={50}
           height={120}
         />
-        <span className="font-bold">NBABUZZ.MK</span>
+        {/* <span className="font-bold">NBABUZZ.MK</span> */}
       </Link>
 
       {/* Desktop nav */}

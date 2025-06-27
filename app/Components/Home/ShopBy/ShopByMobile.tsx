@@ -28,7 +28,7 @@ export default function ShopByMobile({ categories }: ShopByMobileProps) {
       >
         {categories.map((cat) => (
           <SwiperSlide key={cat.name}>
-            <div className="relative group overflow-hidden shadow-2xl hover:scale-105 transition ease-in-out">
+            <div className="relative group overflow-hidden shadow-2xl hover:scale-105 transition ease-in-out rounded-md">
               <Image
                 src={cat.image}
                 alt={cat.name}
@@ -36,10 +36,9 @@ export default function ShopByMobile({ categories }: ShopByMobileProps) {
                 height={200}
                 className="w-full h-full object-cover max-h-[480px]"
               />
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-                <Link
-                  href={cat.href}
-                  className="text-white text-lg font-semibold"
+              <div className="absolute bottom-[10%] right[0%] border-2 p-4 rotate-90">
+                <Link                  href={cat.href}
+                  className="text-titles text-lg font-semibold"
                 >
                   {cat.name} →
                 </Link>

@@ -11,7 +11,7 @@ const StandOutSection = () => {
           alt="Unique T-shirt Display"
           width={8000}
           height={8000}
-          className="w-full h-auto object-cover max-h-[100dvh]"
+          className="w-full h-auto object-cover max-h-[100dvh] shadow-2xl"
         />
         <div className="absolute top-0 right-0 left-0 bottom-0 bg-black/15"></div>
       </div>
@@ -29,7 +29,9 @@ const StandOutSection = () => {
           our commitment to originality and quality, ensuring that every product
           stands out with its own distinct style.
         </p>
-        <button className="bg-accent text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition">
+        <button className="bg-[linear-gradient(to_right,_#ffd452,_#544a7d)]
+             bg-[length:200%_200%]
+             animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition">
           All Products
         </button>
       </div>

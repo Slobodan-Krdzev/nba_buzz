@@ -29,7 +29,7 @@ export default function NewsletterSection() {
           />
           <button
             type="submit"
-            className="bg-white text-black font-semibold px-4 py-2 rounded-r hover:bg-gray-200 transition"
+            className="bg-white text-black font-semibold px-4 py-2 rounded-r hover:bg-accentLight transition"
           >
             Subscribe
           </button>
