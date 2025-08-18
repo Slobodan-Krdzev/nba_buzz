@@ -5,6 +5,7 @@ const StandOutSection = () => {
   return (
     <section className="flex flex-col lg:flex-row items-center justify-between  gap-10 bg-white">
       {/* Left - Image */}
+      
       <div className="w-full lg:w-1/2 relative">
         <Image
           src="/common/standOut1.jpg" 

@@ -14,7 +14,12 @@
 }
 
 body{
-  overflow-x: hidden;
-  padding-top: 74px;
+  /* overflow-x: hidden; */
+  /* padding-top: 74px; */
 
+}
+
+
+.swiper-slide:last-child {
+  margin-right: 2.5rem !important; /* 10 in Tailwind scale */
 }

@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Menu, Search, ShoppingCart, User, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, ShoppingCart, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,11 +9,30 @@ const navItems = ["Products", "Our Story"];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showTitle, setShowTitle] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show the title after scrolling 100px (adjust as needed)
+      if (window.scrollY > 100) {
+        setShowTitle(true);
+      } else {
+        setShowTitle(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white flex items-center justify-between px-4 py-3 shadow-custom-green z-20 text-titles">
+    <header
+      className={`fixed z-[9999] top-0 left-0 right-0  flex items-center justify-between px-4 py-3  text-titles ${
+        showTitle ? "bg-white shadow-custom-green" : "bg-transparent"
+      }`}
+    >
       {/* Logo */}
-      <Link href={"/"} className="flex items-center gap-2">
+      <Link href={"/"} className="flex items-center gap-2 basis-2/12">
         <Image
           src={"/common/nbaBuzzLogo.png"}
           alt="Logo"
@@ -23,15 +42,32 @@ const Navbar = () => {
         {/* <span className="font-bold">NBABUZZ.MK</span> */}
       </Link>
 
+      {showTitle && (
+        <AnimatePresence mode="wait">
+          <div className="relative inline-block basis-8/12">
+            <motion.h1
+              key={"title"}
+              initial={{ x: 0, y: -2, opacity: 0 }}
+              animate={{ x: 0, y: 0, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-2xl font-bold text-center text-accent relative z-10"
+            >
+              NBABUZZ.mk
+            </motion.h1>
+          </div>
+        </AnimatePresence>
+      )}
+
       {/* Desktop nav */}
-      <nav className="hidden md:flex items-center gap-6">
+      <nav className=" hidden md:flex items-center gap-6 basis-2/12 justify-end">
         {navItems.map((item) => (
           <span key={item} className="font-medium cursor-pointer">
             {item}
           </span>
         ))}
         <div className="flex gap-4 items-center">
-          <Search className="w-5 h-5 cursor-pointer" />
+          {/* <Search className="w-5 h-5 cursor-pointer" /> */}
           <ShoppingCart className="w-5 h-5 cursor-pointer" fill="black" />
 
           <Link href={"/login"}>
@@ -52,7 +88,7 @@ const Navbar = () => {
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ duration: 0.3 }}
-          className="fixed top-0 right-0 w-full h-full bg-white z-50 p-6 flex flex-col"
+          className="border-2 fixed top-0 right-0 w-full h-full bg-white z-50 p-6 flex flex-col"
         >
           <div className="flex justify-between mb-8">
             <Link href={"/"} className="flex items-center gap-2">
@@ -73,7 +109,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <span key={item}>{item}</span>
             ))}
-            <span>🔍 Search</span>
+            {/* <span>🔍 Search</span> */}
             <span>🛒 Cart</span>
             <span>👤 Account</span>
           </div>

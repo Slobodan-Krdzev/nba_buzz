@@ -9,7 +9,7 @@ import SocialLinks from "./HeroAnimated/SocialLinks";
 
 type FromDirection = "left" | "right" | "top";
 
-const slogans: { text: string; from: FromDirection }[] = [
+export const slogans: { text: string; from: FromDirection }[] = [
   { text: "Basketball Apparell.", from: "left" },
   { text: "Unmatched Style.", from: "right" },
   { text: "NBABUZZ.MK", from: "top" },
@@ -55,12 +55,12 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="shadow-xl h-[calc(120dvh-74px)] w-full relative bg-inherit text-titles flex flex-col items-center justify-center overflow-hidden px-4">
+    <div className=" shadow-xl h-[calc(120dvh)] w-full relative bg-inherit text-titles flex flex-col items-center justify-center overflow-hidden px-4">
       <div
-        className={`z-10 transition-all duration-1000 ease-in-out 
+        className={`z-[99] transition-all duration-1000 ease-in-out 
     ${
       shrinkToTop
-        ? "scale-[0.7] translate-y-[-40vh] md:translate-y-[-45vw] lg:translate-y-[-20vw]"
+        ? "scale-[0.7] translate-y-[-40vh] md:translate-y-[-45vw] lg:translate-y-[-22.5vw]"
         : "translate-y-[-10vh] md:translate-y-[-15vh] lg:translate-y-[-20vh]"
     }`}
       >
@@ -70,9 +70,9 @@ const HeroSection = () => {
               key={slogans[currentSlogan].text}
               initial={enterFrom[slogans[currentSlogan].from]}
               animate={{ x: 0, y: 0, opacity: 1 }}
-              exit={{ opacity: 0 }}
+              exit={{ opacity: 0, animationDuration: 2 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold text-center text-accent relative z-10"
+              className="text-5xl md:text-8xl font-bold text-center text-accent relative z-10"
             >
               {slogans[currentSlogan].text}
             </motion.h1>
@@ -91,7 +91,7 @@ const HeroSection = () => {
             animate="visible"
             variants={subtitleVariants}
             transition={{ duration: 1.2 }}
-            className="text-xl md:text-2xl mt-3 lg:mt-6 text-center"
+            className="text-xl md:text-2xl mt-2 text-center"
           >
             For those who want to stand out.
           </motion.h2>
@@ -118,7 +118,7 @@ const HeroSection = () => {
         {/* bg-[linear-gradient(to_right,_#D3CBB8,_#6D6027)] */}
 
         <div
-          className="h-[85dvh]  bg-[linear-gradient(to_right,_#ffd452,_#544a7d)]
+          className="h-[95dvh]  bg-[linear-gradient(to_right,_#ffd452,_#544a7d)]
              bg-[length:200%_200%]
              animate-gradientMove flex items-center justify-center "
         >
