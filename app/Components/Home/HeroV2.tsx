@@ -1,5 +1,3 @@
-// components/HeroSection.tsx
-
 "use client";
 
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
@@ -19,9 +17,28 @@ const HeroSection = () => {
   const [currentSlogan, setCurrentSlogan] = useState(0);
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [shrinkToTop, setShrinkToTop] = useState(false);
+  const [playAnimation, setPlayAnimation] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
+    // Check if animation has already played this session
+    const hasPlayed = sessionStorage.getItem("heroAnimationPlayed");
+
+    if (!hasPlayed) {
+      setPlayAnimation(true);
+      sessionStorage.setItem("heroAnimationPlayed", "true");
+    } else {
+      // Skip straight to final state
+      setCurrentSlogan(slogans.length - 1);
+      setShowSubtitle(true);
+      setShrinkToTop(true);
+      controls.start({ opacity: 1, y: 0 });
+    }
+  }, [controls]);
+
+  useEffect(() => {
+    if (!playAnimation) return;
+
     const sloganInterval = setInterval(() => {
       setCurrentSlogan((prev) => {
         if (prev < slogans.length - 1) return prev + 1;
@@ -30,10 +47,12 @@ const HeroSection = () => {
         return prev;
       });
     }, 1500);
-  }, []);
+
+    return () => clearInterval(sloganInterval);
+  }, [playAnimation]);
 
   useEffect(() => {
-    if (showSubtitle) {
+    if (playAnimation && showSubtitle) {
       setTimeout(() => {
         setShrinkToTop(true);
         setTimeout(() => {
@@ -41,7 +60,7 @@ const HeroSection = () => {
         }, 1000);
       }, 2000);
     }
-  }, [showSubtitle]);
+  }, [playAnimation, showSubtitle, controls]);
 
   const enterFrom = {
     left: { x: -100, opacity: 0 },
@@ -55,7 +74,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className=" shadow-xl h-[calc(120dvh)] w-full relative bg-inherit text-titles flex flex-col items-center justify-center overflow-hidden px-4">
+    <div className="shadow-xl h-[calc(120dvh)] w-full relative bg-inherit text-titles flex flex-col items-center justify-center overflow-hidden px-4">
       <div
         className={`z-[99] transition-all duration-1000 ease-in-out 
     ${
@@ -68,9 +87,9 @@ const HeroSection = () => {
           <div className="relative inline-block">
             <motion.h1
               key={slogans[currentSlogan].text}
-              initial={enterFrom[slogans[currentSlogan].from]}
+              initial={playAnimation ? enterFrom[slogans[currentSlogan].from] : { opacity: 1 }}
               animate={{ x: 0, y: 0, opacity: 1 }}
-              exit={{ opacity: 0, animationDuration: 2 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.8 }}
               className="text-5xl md:text-8xl font-bold text-center text-accent relative z-10"
             >
@@ -105,20 +124,8 @@ const HeroSection = () => {
         animate={controls}
         transition={{ duration: 1 }}
       >
-        {/* bg-[linear-gradient(to_right,_#f4791f,_#659999)] */}
-        {/* bg-[linear-gradient(to_right,_#FFFFFF,_#FFEFBA)] LIGHT */}
-        {/* bg-[linear-gradient(to_right,_#a2ab58,_#636363)] zelenkasta */}
-        {/* bg-[linear-gradient(to_right,_#ef8e38,_#108dc7)] */}
-
-        {/* TOP 3  */}
-
-        {/* bg-[linear-gradient(to_right,_#ffd452,_#544a7d)] KAKO LAKERS top 3*/}
-        {/* bg-[linear-gradient(to_right,_#DECBA4,_#3E5151)] TOP 3 */}
-        {/* bg-[linear-gradient(to_right,_#605C3C,_#3C3B3F)] TOP 3 */}
-        {/* bg-[linear-gradient(to_right,_#D3CBB8,_#6D6027)] */}
-
         <div
-          className="h-[95dvh]  bg-[linear-gradient(to_right,_#ffd452,_#544a7d)]
+          className="h-[95dvh] bg-[linear-gradient(to_right,_#ffd452,_#544a7d)]
              bg-[length:200%_200%]
              animate-gradientMove flex items-center justify-center "
         >

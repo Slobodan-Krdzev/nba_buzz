@@ -47,7 +47,7 @@ const SingleItem = ({ item }: SingleItemProps) => {
       onMouseLeave={() => setIsHovered(false)}
       className={`block relative p-3 rounded-xl border shadow-lg transition-all duration-300
         ${item.isPromotion
-          ? "text-white bg-gradient-to-l from-[#ffd452] to-[#544a7d] border-none shadow-[#fadd87]"
+          ? "text-white bg-gradient-to-l from-[#ffd452] to-[#544a7d] border-none shadow-[0_4px_20px_rgba(84,74,125,0.5),0_4px_20px_rgba(255,212,82,0.6)]"
           : "bg-white"
         }`}
     >

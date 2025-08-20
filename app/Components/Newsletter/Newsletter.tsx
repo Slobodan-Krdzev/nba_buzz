@@ -8,11 +8,11 @@ export default function NewsletterSection() {
       
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 z-10" />
+      <div className="absolute inset-0 bg-black/55 z-10" />
 
       {/* Content */}
       <div className="relative z-20 text-center text-white px-4 max-w-xl w-full">
-        <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <h2 className="text-2xl md:text-5xl font-bold mb-3 tracking-tighter">
           JOIN OUR NEWSLETTER
         </h2>
         <p className="text-sm md:text-base mb-5">
@@ -21,15 +21,15 @@ export default function NewsletterSection() {
         </p>
 
         {/* Input */}
-        <form className="flex items-center justify-center">
+        <form className="flex items-center justify-center ">
           <input
             type="email"
             placeholder="Email..."
-            className="w-full md:w-[300px] px-4 py-2 text-black focus:outline-none"
+            className="w-full md:w-[300px] px-4 py-3 text-black focus:outline-none rounded-l rounded-none" 
           />
           <button
             type="submit"
-            className="bg-white text-black font-semibold px-4 py-2 rounded-r hover:bg-accentLight transition"
+            className="bg-white text-black font-semibold px-4 py-3 rounded-r hover:bg-accentLight transition"
           >
             Subscribe
           </button>

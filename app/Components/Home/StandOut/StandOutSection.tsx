@@ -6,7 +6,7 @@ const StandOutSection = () => {
     <section className="flex flex-col lg:flex-row items-center justify-between  gap-10 bg-white">
       {/* Left - Image */}
       
-      <div className="w-full lg:w-1/2 relative">
+      <div className="w-full lg:w-1/2 relative order-2 md:order-1">
         <Image
           src="/common/standOut1.jpg" 
           alt="Unique T-shirt Display"
@@ -18,9 +18,7 @@ const StandOutSection = () => {
       </div>
 
       {/* Right - Text and Button */}
-       <div className="w-[90%] lg:w-1/2 text-center flex flex-col justify-center items-center 
-      
-      ">
+       <div className="w-[90%] lg:w-1/2 text-center flex flex-col justify-center items-center order-1 md:order-2">
         <h2 className="text-center text-2xl lg:text-4xl w-[90%] lg:w-[50%] tracking-tighter mb-6 font-black uppercase text-titles">
           FOR THOSE WHO WANT TO STAND OUT
         </h2>
