@@ -23,3 +23,14 @@ body{
 .swiper-slide:last-child {
   margin-right: 2.5rem !important; /* 10 in Tailwind scale */
 }
+
+.scrollbar-hidden {
+  overflow-y: auto;          /* enable vertical scrolling */
+  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+/* For Webkit browsers (Chrome, Safari, Edge) */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

@@ -42,7 +42,7 @@ const SingleItem = ({ item }: SingleItemProps) => {
 
   return (
     <Link
-      href={""}
+      href={`/products/${item._id}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`block relative p-3 rounded-xl border shadow-lg transition-all duration-300
