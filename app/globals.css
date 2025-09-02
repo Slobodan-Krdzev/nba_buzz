@@ -34,3 +34,21 @@ body{
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+.swiper-pagination {
+  gap: 5px !important;   
+}
+
+/* make bullets bigger */
+.swiper-pagination-bullet {
+  width: 14px;
+  height: 14px;
+  background: #ffffff !important; /* gray-300 */
+  opacity: 1 !important; /* remove default transparency */
+}
+
+/* active bullet */
+.swiper-pagination-bullet-active {
+  background: #eab831 !important; /* red-500 */
+  transform: scale(1.2);
+}

@@ -1,9 +1,8 @@
 "use client";
 import { Product } from "@/app/Types/Types";
-import React from "react";
-import SingleItem from "./SingleItem";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import SingleItem from "./SingleItem";
 
 interface ItemsListerProps {
   title: string;
@@ -19,17 +18,16 @@ const ItemsLister = ({ title, items = [] }: ItemsListerProps) => {
 
       {/* <div className="flex gap-4"> */}
       <Swiper
-        modules={[Navigation, Pagination]}
+        modules={[Navigation]}
         navigation
-        pagination={{ clickable: true }}
         loop={false}
         breakpoints={{
-          320: { slidesPerView: 1.3, spaceBetween: 10,slidesOffsetBefore: 20, slidesOffsetAfter: 20 },
-          640: { slidesPerView: 2.3, spaceBetween: 15,slidesOffsetBefore: 40, slidesOffsetAfter: 40 },
-          800: { slidesPerView: 3.6, spaceBetween: 20,slidesOffsetBefore: 90, slidesOffsetAfter: 90 },
-          1024: { slidesPerView: 4.6, spaceBetween: 20,slidesOffsetBefore: 90, slidesOffsetAfter: 90 },
-
-        }}
+  320: { slidesPerView: 1.3, spaceBetween: 12, slidesOffsetBefore: 20, slidesOffsetAfter: 20 },
+  640: { slidesPerView: 2.5, spaceBetween: 16, slidesOffsetBefore: 40, slidesOffsetAfter: 40 },
+  800: { slidesPerView: 3.2, spaceBetween: 20, slidesOffsetBefore: 32, slidesOffsetAfter: 32 },
+  1280: { slidesPerView: 3.5, spaceBetween: 15, slidesOffsetBefore: 90, slidesOffsetAfter: 90 },
+  1500: {slidesPerView: 4.5, spaceBetween: 24, slidesOffsetBefore: 90, slidesOffsetAfter: 90}
+}}
         className="!py-8"
       >
         {items.sort((a , b) => (b.isPromotion ? 1 : 0) - (a.isPromotion ? 1 : 0)).map((item, idx) => (

@@ -72,8 +72,8 @@ const SingleItem = ({ item }: SingleItemProps) => {
               <Image
                 src={src}
                 alt={`${item.name}-${idx}`}
-                width={400}
-                height={500}
+                width={1080}
+                height={1280}
                 className="rounded-md w-full h-full object-cover"
               />
             </SwiperSlide>

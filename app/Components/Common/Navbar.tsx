@@ -4,16 +4,25 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, ShoppingCart, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = ["Products", "Our Story"];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showTitle, setShowTitle] = useState(false);
+  const pathname = usePathname();
+
+  const [showTitle, setShowTitle] = useState(pathname !== "/"); // 👈 show by default if not "/"
 
   useEffect(() => {
+    if (pathname !== "/") {
+      // if not homepage → always show title, no scroll logic
+      setShowTitle(true);
+      return;
+    }
+
+    // homepage → add scroll listener
     const handleScroll = () => {
-      // Show the title after scrolling 100px (adjust as needed)
       if (window.scrollY > 100) {
         setShowTitle(true);
       } else {
@@ -22,12 +31,14 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // check initial position
+
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <header
-      className={`fixed z-[9999] top-0 left-0 right-0  flex items-center justify-between px-4 py-3  text-titles ${
+      className={`fixed z-[9999] top-0 left-0 right-0 flex items-center justify-between px-4 py-3 text-titles transition-colors ${
         showTitle ? "bg-white shadow-custom-green" : "bg-transparent"
       }`}
     >
@@ -39,7 +50,6 @@ const Navbar = () => {
           width={50}
           height={120}
         />
-        {/* <span className="font-bold">NBABUZZ.MK</span> */}
       </Link>
 
       {showTitle && (
@@ -60,16 +70,14 @@ const Navbar = () => {
       )}
 
       {/* Desktop nav */}
-      <nav className=" hidden md:flex items-center gap-6 basis-2/12 justify-end">
+      <nav className="hidden md:flex items-center gap-6 basis-2/12 justify-end">
         {navItems.map((item) => (
           <span key={item} className="font-medium cursor-pointer">
             {item}
           </span>
         ))}
         <div className="flex gap-4 items-center">
-          {/* <Search className="w-5 h-5 cursor-pointer" /> */}
           <ShoppingCart className="w-5 h-5 cursor-pointer" fill="black" />
-
           <Link href={"/login"}>
             <User className="w-5 h-5 cursor-pointer" fill="black" />
           </Link>
@@ -109,7 +117,6 @@ const Navbar = () => {
             {navItems.map((item) => (
               <span key={item}>{item}</span>
             ))}
-            {/* <span>🔍 Search</span> */}
             <span>🛒 Cart</span>
             <span>👤 Account</span>
           </div>

@@ -501,7 +501,7 @@ export const allProducts: Product[] = [
     ],
     details: ["Warm fleece", "Adjustable hood", "NBA licensed"],
     washing: "Machine wash cold, tumble dry low",
-    name: "Donovan Mitchell Hoodie",
+    name: "Donovan Mitchell Hoodie 2",
   },
   {
     _id: "15",

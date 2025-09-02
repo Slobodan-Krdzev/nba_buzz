@@ -1,11 +1,29 @@
-import React from 'react'
+'use client'
+import { useEffect, useState } from 'react';
+import { allProducts } from '../Home/ListItemsByTypeSection';
+import ItemsLister from './ItemsLister';
 
-const FeaturedProducts = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+function getRandomItems<T>(arr: T[], count: number): T[] {
+  if (count >= arr.length) return [...arr]; // return all if count > length
+
+  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
 }
 
-export default FeaturedProducts
+const FeaturedProducts = () => {
+  const [randomProducts, setRandomProducts] = useState<typeof allProducts>([]);
+
+  useEffect(() => {
+    setRandomProducts(getRandomItems(allProducts, 6));
+  }, []);
+
+  return (
+    <section className="py-16">
+      {randomProducts.length > 0 && (
+        <ItemsLister items={randomProducts} title="Featured Products" />
+      )}
+    </section>
+  );
+};
+
+export default FeaturedProducts;
