@@ -42,8 +42,8 @@ const ShopBy = () => {
             <Image
               src={category.image}
               alt={category.name}
-              width={8000}
-              height={300}
+              width={1080}
+              height={1280}
               className={`w-full h-full object-cover max-h-[650px]`}
             />
             <div className="absolute top-0 left-0 right-0 p-4 text-title">

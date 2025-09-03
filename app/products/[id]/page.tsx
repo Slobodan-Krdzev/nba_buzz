@@ -1,3 +1,4 @@
+import Counter from "@/app/Components/Common/Counter";
 import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
 import MobileProductGalery from "@/app/Components/Common/MobileProductGalery";
 import DimensionsTable, { sizes } from "@/app/Components/Common/SizingTable";
@@ -11,7 +12,6 @@ interface Props {
 
 export default async function UserPage({ params }: Props) {
   const { id } = await params;
-
   //   const res = await fetch(`https://api.example.com/users/${id}`);
   //   const user = await res.json();
 
@@ -29,7 +29,7 @@ export default async function UserPage({ params }: Props) {
         </div>
 
         <div className="basis-[30%] h-full ">
-          <h1 className="text-3xl tracking-tighter mb-6 font-black capitalize">
+          <h1 className="text-5xl tracking-tighter mb-6 font-black capitalize">
             {productToRender.name}
           </h1>
 
@@ -72,7 +72,7 @@ export default async function UserPage({ params }: Props) {
                   <button
                     disabled={s.quantity === 0}
                     key={s.name}
-                    className={`cursor-pointer flex justify-center items-center uppercase text-sm font-medium border-[1px]  p-1 w-[30px] h-[30px] ${
+                    className={`hover:scale-105 transition-transform ease-in-out delay-100 cursor-pointer flex justify-center items-center uppercase text-sm font-medium border-[1px]  p-1 w-[30px] h-[30px] ${
                       s.quantity === 0
                         ? "bg-[#e0dede] border-gray-400 text-gray-500"
                         : "border-black"
@@ -84,14 +84,28 @@ export default async function UserPage({ params }: Props) {
             </div>
           </div>
 
+           <div className="mb-6">
+            <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
+              Colors
+            </h2>
+            <div className="flex justify-start items-center gap-1">
+              {productToRender.colors
+                .map((s) => (
+                  <button
+                    // disabled={s.quantity === 0}
+                    key={s.name}
+                    className={`hover:scale-105 transition-transform ease-in-out delay-100 cursor-pointer flex justify-center items-center uppercase text-sm font-medium border-[1px] p-1 w-[30px] h-[30px]`}
+                    style={{backgroundColor: s.color}}
+                  >
+                  </button>
+                ))}
+            </div>
+          </div>
+
           <div className="mb-6 pb-6 border-b-[1px] border-black">
             <p className="text-sm">Add to Cart</p>
             <div className="flex gap-4">
-              <div className="flex border-[1px] border-black min-w-[100px] p-2">
-                <button className="basis-1/3">-</button>
-                <p className="basis-1/3 text-center">2</p>
-                <button className="basis-1/3">+</button>
-              </div>
+             <Counter borderColor="#000000"/>
               <button className="bg-black p-2 px-8 text-white">
                 Add To Cart
               </button>
@@ -107,7 +121,7 @@ export default async function UserPage({ params }: Props) {
         </div>
       </main>
 
-      <main className="pt-[70px] min-h-[100dvh] w-[95%] m-auto block lg:hidden">
+      <main className="pt-[80px] min-h-[100dvh] w-[95%] m-auto block lg:hidden">
 
         <MobileProductGalery images={images}/>
 
@@ -166,6 +180,23 @@ export default async function UserPage({ params }: Props) {
                 ))}
             </div>
           </div>
+            <div className="mb-6">
+            <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
+              Colors
+            </h2>
+            <div className="flex justify-start items-center gap-1">
+              {productToRender.colors
+                .map((s) => (
+                  <button
+                    // disabled={s.quantity === 0}
+                    key={s.name}
+                    className={`hover:scale-105 transition-transform ease-in-out delay-100 cursor-pointer flex justify-center items-center uppercase text-sm font-medium border-[1px] p-1 w-[30px] h-[30px]`}
+                    style={{backgroundColor: s.color}}
+                  >
+                  </button>
+                ))}
+            </div>
+          </div>
 
            <div className="my-6">
             <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
@@ -175,15 +206,9 @@ export default async function UserPage({ params }: Props) {
           </div>
       </main>
 
-      <div className="fixed lg:hidden z-[9000] left-0 bottom-0 right-0 bg-white flex justify-between items-stretch shadow-2xl shadow-gray-500">
-        <div className="flex justify-between items-stretch  min-w-[100px]  basis-[40%] border-t-[1px] border-[#e4e4e4]">
-          <button className="basis-1/3 ">-</button>
-          <p className="bg-[#e4e4e4] basis-1/3 text-center flex justify-center items-center border-x-[1.5px]">
-            2
-          </p>
-          <button className="basis-1/3 ">+</button>
-        </div>
-        <div className="basis-[25%] text-lg tracking-tighter py-3 font-black capitalize text-white flex justify-center items-center bg-black">
+      <div className="fixed lg:hidden z-[9000] left-0 bottom-0 right-0 bg-white flex justify-between items-stretch  shadow-glow-top">
+        <Counter />
+        <div className="basis-[25%] text-lg tracking-tighter py-5 font-black capitalize text-white flex justify-center items-center bg-black">
           €{productToRender.price}.00
         </div>
         <button className="font-bold tracking-tighter basis-[40%] bg-accent !bg-t-[#c39f3f] text-white ">

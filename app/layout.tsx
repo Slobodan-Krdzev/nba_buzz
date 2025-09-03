@@ -3,6 +3,7 @@ import { Jost } from "next/font/google";
 import Navbar from "./Components/Common/Navbar";
 import "./globals.css";
 import Footer from "./Components/Common/Footer";
+import ReduxProvider from "./ReduxProvider";
 
 const jostSans = Jost({
   variable: "--font-jost-sans",
@@ -21,12 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${jostSans.className} antialiased`}
-      >
-        <Navbar />
-        {children}
-        <Footer />
+      <body className={`${jostSans.className} antialiased`}>
+        <ReduxProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );

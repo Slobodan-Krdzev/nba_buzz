@@ -70,22 +70,22 @@ const Navbar = () => {
       )}
 
       {/* Desktop nav */}
-      <nav className="hidden md:flex items-center gap-6 basis-2/12 justify-end">
+      <nav className="hidden lg:flex items-center gap-6 basis-2/12 justify-end">
         {navItems.map((item) => (
-          <span key={item} className="font-medium cursor-pointer">
+          <span key={item} className="font-medium cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75">
             {item}
           </span>
         ))}
         <div className="flex gap-4 items-center">
-          <ShoppingCart className="w-5 h-5 cursor-pointer" fill="black" />
+          <ShoppingCart className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75" fill="black" />
           <Link href={"/login"}>
-            <User className="w-5 h-5 cursor-pointer" fill="black" />
+            <User className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75" fill="black" />
           </Link>
         </div>
       </nav>
 
       {/* Hamburger menu */}
-      <button className="md:hidden text-black" onClick={() => setIsOpen(true)}>
+      <button className="lg:hidden text-black" onClick={() => setIsOpen(true)}>
         <Menu size={24} />
       </button>
 

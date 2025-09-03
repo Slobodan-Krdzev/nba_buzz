@@ -31,6 +31,14 @@ export const allProducts: Product[] = [
       { percentage: 80, materialName: "Cotton" },
       { percentage: 20, materialName: "Polyester" },
     ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Breathable fabric", "Machine washable"],
     washing: "Machine wash cold",
     name: "LeBron James Lakers Tee",
@@ -40,19 +48,19 @@ export const allProducts: Product[] = [
     userId: 102,
     id: 2,
     description: {
-      player: "Stephen Curry",
-      desc: "Celebrate the greatness of LeBron James with this official Los Angeles Lakers T-shirt, designed for fans who demand both comfort and style. Made from lightweight, breathable fabric, it ensures all-day freshness whether you’re cheering courtside, training hard at the gym, or simply expressing your team pride in everyday life. The sleek design highlights the iconic Lakers colors while offering a modern, athletic fit that complements any wardrobe. Durable stitching guarantees long-lasting quality, while the soft texture feels great against the skin. This T-shirt is more than apparel—it’s a statement of loyalty to LeBron and the legendary Lakers franchise. Golden State Warriors Hoodie, soft fleece",
+      player: "The Joker",
+      desc: "Show your admiration for Nikola Jokić with this bold, Joker-inspired hoodie, designed for fans who want to combine comfort, style, and a touch of mischief. Crafted from soft, premium fleece, it keeps you warm and cozy whether you’re hitting the streets, training, or watching the game with friends. The striking design features vibrant, playful colors and graphics that pay homage to Jokić’s unstoppable creativity on the court, while the modern athletic fit ensures a flattering silhouette for any wardrobe. Reinforced stitching guarantees long-lasting durability, and the plush interior feels amazing against the skin. More than just a hoodie, it’s a statement of devotion to Jokić and his legendary basketball flair.",
     },
     gallery: {
-      front: "https://picsum.photos/1080/1280?random=10",
-      back: "https://picsum.photos/1080/1280?random=11",
-      left: "https://picsum.photos/1080/1280?random=12",
-      right: "https://picsum.photos/1080/1280?random=13",
-      model: "https://picsum.photos/1080/1280?random=14",
-      modelFront: "https://picsum.photos/1080/1280?random=15",
-      modelBack: "https://picsum.photos/1080/1280?random=16",
-      modelLeft: "https://picsum.photos/1080/1280?random=17",
-      modelRight: "https://picsum.photos/1080/1280?random=18",
+      front: "/poses/1.jpg",
+      back: "/poses/2.jpg",
+      left: "/poses/3.jpg",
+      right: "/poses/4.jpg",
+      model: "/poses/5.jpg",
+      modelFront: "/poses/6.jpg",
+      modelBack: "/poses/7.jpg",
+      modelLeft: "/poses/8.jpg",
+      modelRight: "/poses/9.jpg",
     },
     date_added: Date.now(),
     isPromotion: false,
@@ -63,9 +71,17 @@ export const allProducts: Product[] = [
       { percentage: 60, materialName: "Cotton" },
       { percentage: 40, materialName: "Polyester" },
     ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Warm fleece inside", "Adjustable hood", "NBA licensed"],
     washing: "Machine wash cold, tumble dry low",
-    name: "Stephen Curry Warriors Hoodie",
+    name: "The Joker Hoodie",
   },
   {
     _id: "3",
@@ -92,6 +108,14 @@ export const allProducts: Product[] = [
     price: 85,
     type: "Jersey",
     materials: [{ percentage: 100, materialName: "Polyester" }],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Moisture-wicking", "Lightweight"],
     washing: "Hand wash recommended",
     name: "Kevin Durant Nets Jersey",
@@ -123,6 +147,14 @@ export const allProducts: Product[] = [
     materials: [
       { percentage: 70, materialName: "Cotton" },
       { percentage: 30, materialName: "Polyester" },
+    ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
     ],
     details: ["Casual fit", "Soft material", "Machine washable"],
     washing: "Machine wash cold",
@@ -156,6 +188,14 @@ export const allProducts: Product[] = [
       { percentage: 80, materialName: "Cotton" },
       { percentage: 20, materialName: "Polyester" },
     ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Casual fit", "Machine washable"],
     washing: "Machine wash cold",
     name: "Bradley Beal Wizards Tee",
@@ -180,13 +220,21 @@ export const allProducts: Product[] = [
       modelRight: "https://picsum.photos/1080/1280?random=54",
     },
     date_added: Date.now(),
-    isPromotion: true,
+    isPromotion: false,
     sizes: { xs: 3, s: 12, m: 18, l: 24, xl: 12, xxl: 6 },
     price: 72,
     type: "Hoodie",
     materials: [
       { percentage: 60, materialName: "Cotton" },
       { percentage: 40, materialName: "Polyester" },
+    ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
     ],
     details: ["Warm fleece", "Adjustable hood", "NBA licensed"],
     washing: "Machine wash cold, tumble dry low",
@@ -217,6 +265,14 @@ export const allProducts: Product[] = [
     price: 88,
     type: "Jersey",
     materials: [{ percentage: 100, materialName: "Polyester" }],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Breathable", "Moisture-wicking"],
     washing: "Hand wash recommended",
     name: "Devin Booker Suns Jersey",
@@ -249,6 +305,14 @@ export const allProducts: Product[] = [
       { percentage: 75, materialName: "Cotton" },
       { percentage: 25, materialName: "Polyester" },
     ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Casual fit", "Soft material", "Machine washable"],
     washing: "Machine wash cold",
     name: "CJ McCollum Blazers Tee",
@@ -273,13 +337,21 @@ export const allProducts: Product[] = [
       modelRight: "https://picsum.photos/1080/1280?random=81",
     },
     date_added: Date.now(),
-    isPromotion: true,
+    isPromotion: false,
     sizes: { xs: 3, s: 11, m: 17, l: 23, xl: 13, xxl: 7 },
     price: 74,
     type: "Hoodie",
     materials: [
       { percentage: 60, materialName: "Cotton" },
       { percentage: 40, materialName: "Polyester" },
+    ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
     ],
     details: ["Soft fleece", "Adjustable hood", "NBA licensed"],
     washing: "Machine wash cold, tumble dry low",
@@ -310,6 +382,14 @@ export const allProducts: Product[] = [
     price: 86,
     type: "Jersey",
     materials: [{ percentage: 100, materialName: "Polyester" }],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Lightweight", "Moisture-wicking"],
     washing: "Hand wash recommended",
     name: "Julius Randle Knicks Jersey",
@@ -342,6 +422,14 @@ export const allProducts: Product[] = [
       { percentage: 80, materialName: "Cotton" },
       { percentage: 20, materialName: "Polyester" },
     ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Breathable fabric", "Machine washable"],
     washing: "Machine wash cold",
     name: "LeBron James Lakers Tee",
@@ -366,13 +454,21 @@ export const allProducts: Product[] = [
       modelRight: "https://picsum.photos/1080/1280?random=18",
     },
     date_added: Date.now(),
-    isPromotion: true,
+    isPromotion: false,
     sizes: { xs: 3, s: 12, m: 18, l: 25, xl: 12, xxl: 6 },
     price: 70,
     type: "Hoodie",
     materials: [
       { percentage: 60, materialName: "Cotton" },
       { percentage: 40, materialName: "Polyester" },
+    ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
     ],
     details: ["Warm fleece inside", "Adjustable hood", "NBA licensed"],
     washing: "Machine wash cold, tumble dry low",
@@ -403,6 +499,14 @@ export const allProducts: Product[] = [
     price: 85,
     type: "Jersey",
     materials: [{ percentage: 100, materialName: "Polyester" }],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Moisture-wicking", "Lightweight"],
     washing: "Hand wash recommended",
     name: "Kevin Durant Nets Jersey",
@@ -434,6 +538,14 @@ export const allProducts: Product[] = [
     materials: [
       { percentage: 70, materialName: "Cotton" },
       { percentage: 30, materialName: "Polyester" },
+    ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
     ],
     details: ["Casual fit", "Soft material", "Machine washable"],
     washing: "Machine wash cold",
@@ -467,6 +579,14 @@ export const allProducts: Product[] = [
       { percentage: 80, materialName: "Cotton" },
       { percentage: 20, materialName: "Polyester" },
     ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Casual fit", "Machine washable"],
     washing: "Machine wash cold",
     name: "Bradley Beal Wizards Tee",
@@ -499,6 +619,14 @@ export const allProducts: Product[] = [
       { percentage: 60, materialName: "Cotton" },
       { percentage: 40, materialName: "Polyester" },
     ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Warm fleece", "Adjustable hood", "NBA licensed"],
     washing: "Machine wash cold, tumble dry low",
     name: "Donovan Mitchell Hoodie 2",
@@ -528,6 +656,14 @@ export const allProducts: Product[] = [
     price: 88,
     type: "Jersey",
     materials: [{ percentage: 100, materialName: "Polyester" }],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Breathable", "Moisture-wicking"],
     washing: "Hand wash recommended",
     name: "Devin Booker Suns Jersey",
@@ -559,6 +695,14 @@ export const allProducts: Product[] = [
     materials: [
       { percentage: 75, materialName: "Cotton" },
       { percentage: 25, materialName: "Polyester" },
+    ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
     ],
     details: ["Casual fit", "Soft material", "Machine washable"],
     washing: "Machine wash cold",
@@ -592,6 +736,14 @@ export const allProducts: Product[] = [
       { percentage: 60, materialName: "Cotton" },
       { percentage: 40, materialName: "Polyester" },
     ],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Soft fleece", "Adjustable hood", "NBA licensed"],
     washing: "Machine wash cold, tumble dry low",
     name: "Kyrie Irving Nets Hoodie",
@@ -621,6 +773,14 @@ export const allProducts: Product[] = [
     price: 86,
     type: "Jersey",
     materials: [{ percentage: 100, materialName: "Polyester" }],
+    colors: [
+      {
+        name: "Creme",
+        color: "#FCF6F0",
+      },
+      { name: "Blue", color: "#2C313D" },
+      { name: "Light Green", color: "#CFCAB3" },
+    ],
     details: ["Official NBA licensed", "Lightweight", "Moisture-wicking"],
     washing: "Hand wash recommended",
     name: "Julius Randle Knicks Jersey",
@@ -634,9 +794,15 @@ const ListItemsByTypeSection = () => {
 
   return (
     <div>
-      <ItemsLister title="Hoodies" items={allHoodies} />
-      <ItemsLister title="T-Shirts" items={allTshirts} />
-      <ItemsLister title="Jerseys" items={allJerseys} />
+      {Boolean(allHoodies.length) && (
+        <ItemsLister title="Hoodies" items={allHoodies} />
+      )}
+      {Boolean(allTshirts.length) && (
+        <ItemsLister title="T-Shirts" items={allTshirts} />
+      )}
+      {Boolean(allJerseys.length) && (
+        <ItemsLister title="Jerseys" items={allJerseys} />
+      )}
     </div>
   );
 };

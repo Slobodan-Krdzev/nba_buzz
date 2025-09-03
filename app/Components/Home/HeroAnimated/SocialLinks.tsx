@@ -11,7 +11,7 @@ const socialLinks = [
         fill="#c39f3f"
         viewBox="0 0 1920 1920"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-[1vw] h-[1vw]"
+        className="w-[2vw] h-[2vw] lg:w-[1vw] lg:h-[1vw]"
       >
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
         <g
@@ -34,7 +34,7 @@ const socialLinks = [
     url: "https://instagram.com",
     icon: (
       <svg
-        className="w-[1vw] h-[1vw]"
+        className="w-[2vw] h-[2vw] lg:w-[1vw] lg:h-[1vw]"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ const socialLinks = [
     url: "https://youtube.com",
     icon: (
       <svg
-         className="w-[1vw] h-[1vw]"
+         className="w-[2vw] h-[2vw] lg:w-[1vw] lg:h-[1vw]"
         viewBox="0 -3 20 20"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"

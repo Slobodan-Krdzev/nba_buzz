@@ -20,7 +20,7 @@ export default {
       boxShadow: {
         'custom-green': '0px 0px 50.73px 0px #fff', // same as #45880078
         'custom-white-light': '0px 0px 12.73px 0px #fff', // same as #45880078
-
+        'glow-top': '0 -20px 20px rgba(255, 255, 255, 0.9)'
       },
       backgroundSize: {
         '200%': '200% 200%',

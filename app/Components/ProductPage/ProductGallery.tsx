@@ -1,6 +1,6 @@
-'use client'
-import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
+"use client";
+import Image from "next/image";
+import React, { useEffect, useRef } from "react";
 
 interface JerseyGalleryProps {
   images: string[];
@@ -28,20 +28,28 @@ const JerseyGallery: React.FC<JerseyGalleryProps> = ({ images }) => {
       // Otherwise, do nothing and let the page scroll
     };
 
-    el.addEventListener('wheel', handleWheel, { passive: false });
+    el.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
-      el.removeEventListener('wheel', handleWheel);
+      el.removeEventListener("wheel", handleWheel);
     };
   }, []);
 
-  
-    return (
-    <div className="h-[100vh] w-full overflow-y-auto scrollbar-hidden" ref={galleryRef} >
+  return (
+    <div
+      className="h-[122.5vh] w-full overflow-y-auto scrollbar-hidden scroll-smooth "
+      ref={galleryRef}
+    >
       <div className="grid grid-cols-2 grid-rows-2 gap-4">
         {images.map((image, index) => (
           <div key={index} className="relative">
-            <Image src={image} alt={`Jersey ${index + 1}`} width={1000} height={1000} className="w-full h-auto object-cover" />
+            <Image
+              src={image}
+              alt={`Jersey ${index + 1}`}
+              width={1000}
+              height={1000}
+              className="w-full h-auto object-cover"
+            />
           </div>
         ))}
       </div>

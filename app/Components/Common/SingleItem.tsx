@@ -1,9 +1,12 @@
 "use client";
+import { addFaveItem, removeFaveItem } from "@/app/Redux/Slices/counterSlice";
+import { AppDispatch, RootState } from "@/app/Redux/store";
 import { Product } from "@/app/Types/Types";
 import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,7 +18,10 @@ interface SingleItemProps {
 const SingleItem = ({ item }: SingleItemProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+const favouriteItems = useSelector((state: RootState) => state.counter.favouriteItems);
 
+const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
   const images = useMemo(() => {
     const g = item.gallery;
     return [
@@ -39,6 +45,24 @@ const SingleItem = ({ item }: SingleItemProps) => {
       swiperRef.current.slideTo(0); // reset to first image
     }
   }, [isHovered, images.length]);
+
+
+  const onFaveClick = () => {
+
+    console.log('Clicked', favouriteItems, isItemInFaves)
+    if(isItemInFaves){
+
+      dispatch(removeFaveItem(item))
+      console.log('Vleguva')
+    }else {
+      console.log('Vleguva')
+
+      dispatch(addFaveItem(item))
+
+    }
+  }
+
+  console.log('Fave', favouriteItems)
 
   return (
     <Link
@@ -90,8 +114,12 @@ const SingleItem = ({ item }: SingleItemProps) => {
       )}
 
       {/* Favorite Button */}
-      <button className="z-20 absolute rounded-full p-2 bg-white top-5 right-5  shadow-md">
-        <Heart className="w-4 h-4 md:w-5 md:h-5 cursor-pointer" color="#9ca3af" />
+      <button className="z-20 absolute rounded-full p-2 bg-white top-5 right-5  shadow-md" onClick={(e) => {
+        e.stopPropagation()
+         e.preventDefault();
+        console.log('Clicked')
+        onFaveClick()}}>
+        <Heart className="w-4 h-4 md:w-5 md:h-5 cursor-pointer" fill={isItemInFaves ? "#da5252": "white"} color={isItemInFaves ? "#da5252": "#9ca3af"} />
       </button>
 
       {/* Item Info */}

@@ -13,6 +13,7 @@ export interface Product {
   details: string[]
   washing: string
   name: string
+  colors: Color[]
 }
 
 export interface Description {
@@ -44,4 +45,9 @@ export interface Sizes {
 export interface Material {
   percentage: number
   materialName: string
+}
+
+export interface Color {
+  name: string,
+  color: string
 }

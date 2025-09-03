@@ -14,7 +14,7 @@ interface Props {
 
 const MobileProductGalery = ({ images }: Props) => {
   return (
-    <Swiper pagination={true} modules={[Pagination]} className="mySwiper mb-6">
+    <Swiper pagination={true} modules={[Pagination]} className="mySwiper mb-6 !h-[90%]">
       {images.map((i) => (
         <SwiperSlide key={i}>
           <Image src={i} alt={i} width={1080} height={1280} className=""/>
