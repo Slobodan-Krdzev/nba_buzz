@@ -9,6 +9,7 @@ export function ProductGrid() {
           className="border rounded-xl p-4 hover:shadow-lg transition"
         >
           {/* Product content stays the same */}
+         
         </div>
       ))}
     </div>

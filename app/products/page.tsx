@@ -3,6 +3,7 @@ import { useState } from "react";
 import { RotatingText } from "../Components/Common/SlogansLister";
 import { Filter } from "../ProductsPage/Filters";
 import { ProductGrid } from "../ProductsPage/ProductGrid";
+import { allProducts } from "../Components/Home/ListItemsByTypeSection";
 const slogans: string[] = ["Jerseys", "T-Shirts", "Hoodies", "Unisex","Basketball!"];
 
 const ProductsPage = () => {
@@ -36,7 +37,7 @@ const [filters, setFilters] = useState({});
     </section>
 
 
-     <section className="py-12 w-[90%] m-auto">
+     <section className="py-12 w-[90%] m-auto flex ">
        <aside className="hidden md:block w-64 border-r bg-white p-4">
         <Filter onChange={setFilters} />
       </aside>
@@ -76,12 +77,12 @@ const [filters, setFilters] = useState({});
         {/* Desktop header */}
         <div className="hidden md:flex justify-between items-center mb-6">
           <p className="text-gray-600">
-            Showing <span className="font-semibold">120 results</span> from 120
+            Showing <span className="font-semibold">{allProducts.length} results</span> from {allProducts.length}
           </p>
-          <div className="flex gap-2">
+          {/* <div className="flex gap-2">
             <button className="p-2 border rounded">🔲</button>
             <button className="p-2 border rounded">📋</button>
-          </div>
+          </div> */}
         </div>
 
         <ProductGrid />

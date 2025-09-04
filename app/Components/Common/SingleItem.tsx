@@ -62,8 +62,6 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
     }
   }
 
-  console.log('Fave', favouriteItems)
-
   return (
     <Link
       href={`/products/${item._id}`}
