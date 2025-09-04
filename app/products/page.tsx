@@ -8,7 +8,7 @@ const slogans: string[] = ["Jerseys", "T-Shirts", "Hoodies", "Unisex","Basketbal
 
 const ProductsPage = () => {
 
-const [filters, setFilters] = useState({});
+const [, setFilters] = useState({});
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
