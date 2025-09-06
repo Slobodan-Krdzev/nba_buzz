@@ -1,46 +1,47 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, ShoppingCart, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const navItems = ["Products", "Our Story"];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
-  const [showTitle, setShowTitle] = useState(pathname !== "/"); // 👈 show by default if not "/"
+  // const [showTitle, setShowTitle] = useState(pathname !== "/"); // 👈 show by default if not "/"
 
-  useEffect(() => {
-    if (pathname !== "/") {
-      // if not homepage → always show title, no scroll logic
-      setShowTitle(true);
-      return;
-    }
+  // useEffect(() => {
+  //   if (pathname !== "/") {
+  //     // if not homepage → always show title, no scroll logic
+  //     setShowTitle(true);
+  //     return;
+  //   }
 
-    // homepage → add scroll listener
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShowTitle(true);
-      } else {
-        setShowTitle(false);
-      }
-    };
+  //   // homepage → add scroll listener
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 100) {
+  //       setShowTitle(true);
+  //     } else {
+  //       setShowTitle(false);
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // check initial position
+  //   window.addEventListener("scroll", handleScroll);
+  //   handleScroll(); // check initial position
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [pathname]);
 
+
+     //   "bg-white shadow-custom-green text-titles" 
+  
   return (
     <header
-      className={`fixed z-[9999] top-0 left-0 right-0 flex items-center justify-between px-4 py-3 text-titles transition-colors ${
-        showTitle ? "bg-white shadow-custom-green" : "bg-transparent"
-      }`}
+      className={`fixed z-[99999]  top-0 left-0 right-0 flex items-center justify-between px-4 py-3  transition-colors text-titles bg-white shadow-custom-green
+      `}
     >
       {/* Logo */}
       <Link href={"/"} className="flex items-center gap-2 basis-2/12">
@@ -52,7 +53,7 @@ const Navbar = () => {
         />
       </Link>
 
-      {showTitle && (
+      {/* {showTitle && ( */}
         <AnimatePresence mode="wait">
           <div className="relative inline-block basis-8/12">
             <motion.h1
@@ -67,7 +68,7 @@ const Navbar = () => {
             </motion.h1>
           </div>
         </AnimatePresence>
-      )}
+      {/* )} */}
 
       {/* Desktop nav */}
       <nav className="hidden lg:flex items-center gap-6 basis-2/12 justify-end">
@@ -77,9 +78,9 @@ const Navbar = () => {
           </span>
         ))}
         <div className="flex gap-4 items-center">
-          <ShoppingCart className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75" fill="black" />
+          <ShoppingCart className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75" fill="white" />
           <Link href={"/login"}>
-            <User className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75" fill="black" />
+            <User className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75" fill="white" />
           </Link>
         </div>
       </nav>

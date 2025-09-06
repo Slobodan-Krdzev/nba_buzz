@@ -4,6 +4,8 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SingleItem from "./SingleItem";
 
+import 'swiper/css';
+
 interface ItemsListerProps {
   title: string;
   items: Product[];
@@ -22,19 +24,46 @@ const ItemsLister = ({ title, items = [] }: ItemsListerProps) => {
         navigation
         loop={false}
         breakpoints={{
-  320: { slidesPerView: 1.3, spaceBetween: 12, slidesOffsetBefore: 20, slidesOffsetAfter: 20 },
-  640: { slidesPerView: 2.5, spaceBetween: 16, slidesOffsetBefore: 40, slidesOffsetAfter: 40 },
-  800: { slidesPerView: 3.2, spaceBetween: 20, slidesOffsetBefore: 32, slidesOffsetAfter: 32 },
-  1280: { slidesPerView: 3.5, spaceBetween: 15, slidesOffsetBefore: 90, slidesOffsetAfter: 90 },
-  1500: {slidesPerView: 4.5, spaceBetween: 24, slidesOffsetBefore: 90, slidesOffsetAfter: 90}
-}}
+          320: {
+            slidesPerView: 1.3,
+            spaceBetween: 12,
+            slidesOffsetBefore: 20,
+            slidesOffsetAfter: 20,
+          },
+          640: {
+            slidesPerView: 2.5,
+            spaceBetween: 16,
+            slidesOffsetBefore: 40,
+            slidesOffsetAfter: 40,
+          },
+          800: {
+            slidesPerView: 3.2,
+            spaceBetween: 20,
+            slidesOffsetBefore: 32,
+            slidesOffsetAfter: 32,
+          },
+          1280: {
+            slidesPerView: 3.5,
+            spaceBetween: 15,
+            slidesOffsetBefore: 90,
+            slidesOffsetAfter: 90,
+          },
+          1500: {
+            slidesPerView: 4.5,
+            spaceBetween: 24,
+            slidesOffsetBefore: 90,
+            slidesOffsetAfter: 90,
+          },
+        }}
         className="!py-8"
       >
-        {items.sort((a , b) => (b.isPromotion ? 1 : 0) - (a.isPromotion ? 1 : 0)).map((item, idx) => (
-          <SwiperSlide key={idx} >
-            <SingleItem item={item} />
-          </SwiperSlide>
-        ))}
+        {items
+          .sort((a, b) => (b.isPromotion ? 1 : 0) - (a.isPromotion ? 1 : 0))
+          .map((item, idx) => (
+            <SwiperSlide key={idx}>
+              <SingleItem item={item} />
+            </SwiperSlide>
+          ))}
       </Swiper>
       {/* </div> */}
     </section>

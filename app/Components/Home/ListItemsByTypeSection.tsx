@@ -42,6 +42,7 @@ export const allProducts: Product[] = [
     details: ["Official NBA licensed", "Breathable fabric", "Machine washable"],
     washing: "Machine wash cold",
     name: "LeBron James Lakers Tee",
+    collection: "LeBron The King",
   },
   {
     _id: "2",
@@ -82,6 +83,7 @@ export const allProducts: Product[] = [
     details: ["Warm fleece inside", "Adjustable hood", "NBA licensed"],
     washing: "Machine wash cold, tumble dry low",
     name: "The Joker Hoodie",
+    collection: "The Joker Collection",
   },
   {
     _id: "3",
@@ -118,7 +120,8 @@ export const allProducts: Product[] = [
     ],
     details: ["Official NBA licensed", "Moisture-wicking", "Lightweight"],
     washing: "Hand wash recommended",
-    name: "Kevin Durant Nets Jersey",
+    name: "LeBron James Jersey",
+    collection: "LeBron The King",
   },
   {
     _id: "4",
@@ -159,6 +162,7 @@ export const allProducts: Product[] = [
     details: ["Casual fit", "Soft material", "Machine washable"],
     washing: "Machine wash cold",
     name: "Giannis Bucks Tee",
+    collection: "Giannis Collection",
   },
   {
     _id: "13",
@@ -199,8 +203,11 @@ export const allProducts: Product[] = [
     details: ["Official NBA licensed", "Casual fit", "Machine washable"],
     washing: "Machine wash cold",
     name: "Bradley Beal Wizards Tee",
+    collection: "Giannis Collection",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "14",
     userId: 114,
     id: 14,
@@ -241,6 +248,8 @@ export const allProducts: Product[] = [
     name: "Donovan Mitchell Hoodie",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "15",
     userId: 115,
     id: 15,
@@ -278,6 +287,8 @@ export const allProducts: Product[] = [
     name: "Devin Booker Suns Jersey",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "16",
     userId: 116,
     id: 16,
@@ -318,6 +329,8 @@ export const allProducts: Product[] = [
     name: "CJ McCollum Blazers Tee",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "17",
     userId: 117,
     id: 17,
@@ -358,6 +371,8 @@ export const allProducts: Product[] = [
     name: "Kyrie Irving Nets Hoodie",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "18",
     userId: 118,
     id: 18,
@@ -395,6 +410,8 @@ export const allProducts: Product[] = [
     name: "Julius Randle Knicks Jersey",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "1",
     userId: 101,
     id: 1,
@@ -435,6 +452,8 @@ export const allProducts: Product[] = [
     name: "LeBron James Lakers Tee",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "2",
     userId: 102,
     id: 2,
@@ -475,6 +494,8 @@ export const allProducts: Product[] = [
     name: "Stephen Curry Warriors Hoodie",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "3",
     userId: 103,
     id: 3,
@@ -512,6 +533,8 @@ export const allProducts: Product[] = [
     name: "Kevin Durant Nets Jersey",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "4",
     userId: 104,
     id: 4,
@@ -552,6 +575,8 @@ export const allProducts: Product[] = [
     name: "Giannis Bucks Tee",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "13",
     userId: 113,
     id: 13,
@@ -592,6 +617,8 @@ export const allProducts: Product[] = [
     name: "Bradley Beal Wizards Tee",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "14",
     userId: 114,
     id: 14,
@@ -632,6 +659,8 @@ export const allProducts: Product[] = [
     name: "Donovan Mitchell Hoodie 2",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "15",
     userId: 115,
     id: 15,
@@ -669,6 +698,8 @@ export const allProducts: Product[] = [
     name: "Devin Booker Suns Jersey",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "16",
     userId: 116,
     id: 16,
@@ -709,6 +740,8 @@ export const allProducts: Product[] = [
     name: "CJ McCollum Blazers Tee",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "17",
     userId: 117,
     id: 17,
@@ -749,6 +782,8 @@ export const allProducts: Product[] = [
     name: "Kyrie Irving Nets Hoodie",
   },
   {
+    collection: "Giannis Collection",
+
     _id: "18",
     userId: 118,
     id: 18,

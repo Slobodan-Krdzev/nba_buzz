@@ -37,8 +37,8 @@ const [, setFilters] = useState({});
     </section>
 
 
-     <section className="py-12 w-[90%] m-auto flex ">
-       <aside className="hidden md:block w-64 border-r bg-white p-4">
+     <section className="py-12 w-[90%]  m-auto flex ">
+       <aside className="hidden md:block w-64 border-r bg-white p-4 sticky top-20 self-start">
         <Filter onChange={setFilters} />
       </aside>
 

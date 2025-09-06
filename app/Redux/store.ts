@@ -2,9 +2,12 @@
 
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import counterReducer from "./Slices/counterSlice";
+import filtersReducer from "./Slices/filtersSlice";
+
 
 const rootReducer = combineReducers({
   counter: counterReducer,
+  filters: filtersReducer
 });
 
 export const store = configureStore({
