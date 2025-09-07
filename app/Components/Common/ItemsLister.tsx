@@ -1,6 +1,5 @@
 "use client";
 import { Product } from "@/app/Types/Types";
-import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SingleItem from "./SingleItem";
 
@@ -20,8 +19,7 @@ const ItemsLister = ({ title, items = [] }: ItemsListerProps) => {
 
       {/* <div className="flex gap-4"> */}
       <Swiper
-        modules={[Navigation]}
-        navigation
+        navigation={false}
         loop={false}
         breakpoints={{
           320: {
@@ -37,7 +35,7 @@ const ItemsLister = ({ title, items = [] }: ItemsListerProps) => {
             slidesOffsetAfter: 40,
           },
           800: {
-            slidesPerView: 3.2,
+            slidesPerView: 2.3,
             spaceBetween: 20,
             slidesOffsetBefore: 32,
             slidesOffsetAfter: 32,

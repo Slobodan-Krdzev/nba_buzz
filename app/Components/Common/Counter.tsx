@@ -5,16 +5,17 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 
 interface CounterProps {
-    borderColor?: string
+    borderColor?: string,
+    className?: string
 }
 
-const Counter = ({borderColor}: CounterProps) => {
+const Counter = ({borderColor, className}: CounterProps) => {
 
  const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <div className={`flex justify-between items-stretch  min-w-[100px]  basis-[40%] border-[1px] border-[${borderColor}]`}>
+    <div className={`${ className && className}flex justify-between items-stretch  min-w-[100px]  basis-[40%] border-[1px] border-[${borderColor}]`}>
           <button className="basis-1/3 disabled:text-gray-300" 
           disabled={count === 1} onClick={() => {
             if(count > 1)dispatch(decrement())

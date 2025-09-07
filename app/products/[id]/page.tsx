@@ -3,6 +3,7 @@ import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
 import MobileProductGalery from "@/app/Components/Common/MobileProductGalery";
 import DimensionsTable, { sizes } from "@/app/Components/Common/SizingTable";
 import { allProducts } from "@/app/Components/Home/ListItemsByTypeSection";
+import CounterAddButton from "@/app/Components/ProductPage/CounterAddButton";
 import JerseyGallery from "@/app/Components/ProductPage/ProductGallery";
 
 
@@ -102,15 +103,8 @@ export default async function UserPage({ params }: Props) {
             </div>
           </div>
 
-          <div className="mb-6 pb-6 border-b-[1px] border-black">
-            <p className="text-sm">Add to Cart</p>
-            <div className="flex gap-4">
-             <Counter borderColor="#000000"/>
-              <button className="bg-black p-2 px-8 text-white">
-                Add To Cart
-              </button>
-            </div>
-          </div>
+          {/* <CounterAddButton /> */}
+          <CounterAddButton product={productToRender}/>
 
           <div className="my-6">
             <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">

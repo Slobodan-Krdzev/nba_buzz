@@ -1,7 +1,16 @@
 'use client'
 
+import { RootState } from "@/app/Redux/store";
+import { useSelector } from "react-redux";
+
 
 export default function NewsletterSection() {
+
+const cart = useSelector((state: RootState) => state.cart.items);
+
+
+  console.log(cart)
+
   return (
     <section className="relative min-h-[800px] flex items-center justify-center bg-[url('/common/newsletter.jpg')] bg-cover lg:bg-center">
       {/* Background image */}
