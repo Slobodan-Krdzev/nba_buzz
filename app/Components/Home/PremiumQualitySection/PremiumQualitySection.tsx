@@ -28,7 +28,7 @@ const features = [
 
 export default function PremiumQualitySection() {
   return (
-    <section className="px-6 py-[6dvh] 2xl:py-[25dvh] bg-white">
+    <section className="px-6 py-[8dvh] xl:py-[16dvh] bg-white">
       <SectionTitle title="Premium Quality" />
 
       <div className="grid md:grid-cols-3 gap-8 lg:gap-20 w-[90%] md:w-[70%] lg:w-[80%] m-auto mt-[5dvh]">

@@ -75,7 +75,7 @@ const Navbar = () => {
         {/* )} */}
 
         {/* Desktop nav */}
-        <nav className="hidden xl:flex items-center gap-6 basis-2/12 justify-end">
+        <nav className="hidden xl:flex items-center gap-6  justify-end">
           {navItems.map((item) => (
             <Link
               href={item.link}

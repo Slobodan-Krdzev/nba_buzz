@@ -11,9 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 interface CounterAddButtonProps {
   product: Product;
+  itemColorSize: {
+    color: string;
+    size: string;
+  }
 }
 
-const CounterAddButton = ({ product }: CounterAddButtonProps  ) => {
+const CounterAddButton = ({ product , itemColorSize}: CounterAddButtonProps  ) => {
   const [isAdded, setIsAdded] = useState(false);
   const count = useSelector((state: RootState) => state.counter.value);
 
@@ -27,7 +31,7 @@ const CounterAddButton = ({ product }: CounterAddButtonProps  ) => {
       dispatch(clearCounter());
       return;
     }
-    dispatch(addToCart({product, qty: count}));
+    dispatch(addToCart({product, qty: count, color: itemColorSize?.color || "", size: itemColorSize?.size || ""}));
     
     setIsAdded(true);
 
@@ -38,7 +42,7 @@ const CounterAddButton = ({ product }: CounterAddButtonProps  ) => {
       <p className="text-sm">Add to Cart</p>
       <div className="flex gap-4">
         <div
-          className={`flex justify-between items-stretch  min-w-[100px]  basis-[40%] border-[1px]`}
+          className={`rounded flex justify-between items-stretch  min-w-[100px]  basis-[40%] border-[1px]`}
         >
           <button
             className="basis-1/3 disabled:text-gray-300"
@@ -61,7 +65,7 @@ const CounterAddButton = ({ product }: CounterAddButtonProps  ) => {
             +
           </button>
         </div>
-        <button className={`bg-black flex justify-center items-center gap-3 p-2 px-8 text-white hover:scale-105 transition-transform ease-in-out duration-75 active:scale-105 ${isAdded ? "bg-green-400" : ""}`} onClick={handleAddToCart}>{isAdded ? <>View Cart <ShoppingCartIcon size={15}/></> : "Add To Cart"}</button>
+        <button className={`rounded bg-accent font-black py-4 flex justify-center items-center gap-3 p-2 px-8 text-white hover:scale-105 transition-transform ease-in-out duration-75 active:scale-105 ${isAdded ? "bg-green-400" : ""}`} onClick={handleAddToCart}>{isAdded ? <>View Cart <ShoppingCartIcon size={15}/></> : "Add To Cart"}</button>
       </div>
     </div>
   );

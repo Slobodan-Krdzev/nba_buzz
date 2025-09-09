@@ -6,27 +6,35 @@ import { useSelector, useDispatch } from 'react-redux';
 
 interface CounterProps {
     borderColor?: string,
-    className?: string
+    className?: string,
+    onChange?: (qty: number) => void; // Optional callback if you want to use it outside Redux
 }
 
-const Counter = ({borderColor, className}: CounterProps) => {
+const Counter = ({borderColor, className, onChange}: CounterProps) => {
 
  const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch<AppDispatch>();
 
+    const handleDecrement = () => {
+    if (count > 1) {
+      dispatch(decrement());
+      if (onChange) onChange(count - 1);
+    }
+  };
+
+  const handleIncrement = () => {
+    dispatch(increment());
+    if (onChange) onChange(count + 1);
+  };
+
   return (
-    <div className={`${ className && className}flex justify-between items-stretch  min-w-[100px]  basis-[40%] border-[1px] border-[${borderColor}]`}>
+    <div className={`${ className && className} flex justify-between items-stretch  min-w-[100px]  basis-[40%] border-[1px] border-[${borderColor}]`}>
           <button className="basis-1/3 disabled:text-gray-300" 
-          disabled={count === 1} onClick={() => {
-            if(count > 1)dispatch(decrement())
-            
-          }}>-</button>
+          disabled={count === 1} onClick={handleDecrement}>-</button>
           <p className="bg-[#e4e4e4] basis-1/3 text-center flex justify-center items-center border-x-[1.5px]">
             {count}
           </p>
-          <button className="basis-1/3 " onClick={() => {
-            dispatch(increment())
-          }}>+</button>
+          <button className="basis-1/3 " onClick={handleIncrement}>+</button>
         </div>
   )
 }

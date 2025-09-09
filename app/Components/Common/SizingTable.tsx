@@ -13,22 +13,22 @@ interface DimensionsTableProps {
 
 const DimensionsTable: React.FC<DimensionsTableProps> = ({ sizes }) => {
   return (
-    <table className="w-full text-left border-collapse">
+    <table className="w-full text-left border-collapse ">
       <thead>
         <tr className="bg-[#e0dede]">
-          <th className="p-2 border">Size</th>
-          <th className="p-2 border">Length</th>
-          <th className="p-2 border">Waist Size</th>
-          <th className="p-2 border">Shoulder Size</th>
+          <th className="p-2 border text-center">Size</th>
+          <th className="p-2 border text-center">Length</th>
+          <th className="p-2 border text-center">Waist Size</th>
+          <th className="p-2 border text-center">Shoulder Size</th>
         </tr>
       </thead>
       <tbody>
         {sizes.map((size, index) => (
           <tr key={index} className="border">
-            <td className="p-2 border">{size.size}</td>
-            <td className="p-2 border">{size.length}</td>
-            <td className="p-2 border">{size.waist}</td>
-            <td className="p-2 border">{size.shoulder}</td>
+            <td className="p-2 border text-center">{size.size}</td>
+            <td className="p-2 border text-center">{size.length}</td>
+            <td className="p-2 border text-center">{size.waist}</td>
+            <td className="p-2 border text-center">{size.shoulder}</td>
           </tr>
         ))}
       </tbody>

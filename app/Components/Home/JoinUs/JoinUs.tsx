@@ -6,7 +6,7 @@ import Youtube from "@/app/Icons/Youtube";
 
 const JoinUs = () => {
   return (
-    <section className="px-6 py-[6dvh] 2xl:py-[25dvh]">
+    <section className="px-6 py-[8dvh] xl:py-[16dvh]">
       <SectionTitle title="We’ve got your back 24/7" />
       <p className="text-center w-[90%] m-auto md:w-[80%] lg:w-[30%]">
         Feel free to reach out if you have any questions or need assistence, our

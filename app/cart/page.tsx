@@ -24,6 +24,8 @@ const CartPage = () => {
   const shipping = 0;
   const total = cartTotal + shipping;
 
+  console.log("Cart Items:", cart);
+
   return (
     <div
       className={`min-h-screen bg-white font-sans  py-6 lg:py-12 ${
@@ -99,11 +101,25 @@ const CartPage = () => {
                         {item.product.description.player}
                       </p>
                       <p className="font-bold tracking-tighter text-sm mt-1 md:hidden ">
-                        ${item.product.price}.00
+                        Price: ${item.product.price}.00
                       </p>
-                      <p className="block md:hidden text-xs xl:text-sm tracking-tighter font-semibold">
-                        Size: S
-                      </p>
+                      <div className="flex justify-start items-center gap-2 mt-2 mb-4">
+                        <p className="block md:hidden text-xs xl:text-sm tracking-tighter font-semibold">
+                          Size: {item.size.toUpperCase()}
+                        </p>
+                        <div className="flex items-center md:hidden text-xs xl:text-sm tracking-tighter font-semibold gap-2">
+                          <p>Color: </p>{" "}
+                          <div
+                            className="h-[15px] w-[15px] rounded-full border-2 bg-cover"
+                            style={{
+                              backgroundColor: item.product.colors.find(
+                                (c) => c.name === item.color
+                              )?.color,
+                            }}
+                          ></div>
+                        </div>
+                      </div>
+
                       <div className="flex items-center mt-auto">
                         <button
                           className="px-3 py-1 border rounded bg-black text-white"
@@ -135,8 +151,20 @@ const CartPage = () => {
                           +
                         </button>
                         <p className="hidden md:block ml-4 text-xs xl:text-sm tracking-tighter font-semibold">
-                          Size: S
+                          Size: {item.size.toUpperCase()}
                         </p>
+
+                        <div className="ml-6 hidden md:flex items-center text-xs xl:text-sm tracking-tighter font-semibold gap-2">
+                          <p>Color: </p>{" "}
+                          <div
+                            className="h-[25px] w-[25px] rounded-full border-2 bg-cover"
+                            style={{
+                              backgroundColor: item.product.colors.find(
+                                (c) => c.name === item.color
+                              )?.color,
+                            }}
+                          ></div>
+                        </div>
                       </div>
                     </div>
                     <div className="hidden md:block font-bold tracking-tighter text-xl mr-6 mt-2 md:mt-0 absolute top-5 right-0">

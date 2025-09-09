@@ -5,6 +5,8 @@ export type CartItem = {
   product: Product;
   qty: number;
   checked: boolean;
+  color: string;
+  size: string;
 };
 
 type CartState = {
@@ -24,16 +26,16 @@ const cartSlice = createSlice({
     },
     addToCart(
       state,
-      action: PayloadAction<{ product: Product; qty?: number }>
+      action: PayloadAction<{ product: Product; qty?: number, color: string, size: string }>
     ) {
-      const { product, qty = 1 } = action.payload;
+      const { product, qty = 1, color, size } = action.payload;
       const existing = state.items.find(
         (item) => item.product._id === product._id
       );
       if (existing) {
         existing.qty += qty;
       } else {
-        state.items.push({ product, qty, checked: true });
+        state.items.push({ product, qty, checked: true, color , size});
       }
     },
     removeFromCart(state, action: PayloadAction<string>) {
