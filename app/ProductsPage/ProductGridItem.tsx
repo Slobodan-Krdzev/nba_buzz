@@ -73,7 +73,7 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
             src={images[0] ?? "/placeholder.jpg"}
             alt={product.name}
             width={400}
-            height={500}
+            height={4500}
             className="rounded-md mb-3 md:mb-5 w-full h-[220px] sm:h-[280px] md:h-[320px] lg:h-[380px] object-cover"
           />
         )}

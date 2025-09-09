@@ -37,7 +37,7 @@ const JerseyGallery: React.FC<JerseyGalleryProps> = ({ images }) => {
 
   return (
     <div
-      className="h-[122.5vh] w-full overflow-y-auto scrollbar-hidden scroll-smooth "
+      className="h-[122.5vh] w-full overflow-y-auto scrollbar-hidden "
       ref={galleryRef}
     >
       <div className="grid grid-cols-2 grid-rows-2 gap-4">
