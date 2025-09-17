@@ -11,6 +11,7 @@ import {
   removeFromCart,
 } from "../Redux/Slices/cartSlice";
 import { RootState } from "../Redux/store";
+import Link from "next/link";
 
 const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
@@ -215,9 +216,9 @@ const CartPage = () => {
                 <span>Total</span>
                 <span>${total}.00</span>
               </div>
-              <button className=" w-full py-3 tracking-tighter bg-black text-white rounded font-bold flex items-center justify-center gap-2">
-                Checkout
-              </button>
+              <Link href="/checkout" className="text-center  block mt-2 sm:mt-0  w-full  py-2 px-6 bg-black text-white rounded font-bold tracking-tighter gap-2">
+              Checkout
+            </Link >
             </div>
           </div>
           {/* MOBILE SUMMARY */}
@@ -231,9 +232,9 @@ const CartPage = () => {
                 </span>
               </div>
             </div>
-            <button className="mt-2 sm:mt-0 sm:ml-4 w-full sm:w-auto py-2 px-6 bg-black text-white rounded font-bold tracking-tighter flex items-center justify-center gap-2">
+            <Link href="/checkout" className="block mt-2 sm:mt-0 sm:ml-4 w-full sm:w-auto py-2 px-6 bg-black text-white rounded font-bold tracking-tighter gap-2">
               Checkout
-            </button>
+            </Link >
           </div>
         </>
       )}

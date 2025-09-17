@@ -7,6 +7,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import 'swiper/css';
 import 'swiper/css/pagination';
+import Link from "next/link";
 
 interface ProductGridItem {
   product: Product;
@@ -89,9 +90,9 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
 
       <h3 className="mt-3 text-sm font-medium">{product.name}</h3>
       <p className="text-gray-700">$ {product.price}.00</p>
-      <button className="mt-2 w-full bg-black text-white py-2 rounded hover:bg-gray-800">
-        Buy now →
-      </button>
+      <Link href={`/products/${product.id}`} className="block text-center mt-2 w-full bg-accent text-white py-2 rounded hover:bg-[#d8b249]">
+        Buy Now 
+      </Link>
     </div>
   );
 };

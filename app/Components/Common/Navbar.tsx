@@ -3,7 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, ShoppingCart, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const navItems = [
   { title: "Products", link: "/products" },
@@ -40,6 +41,11 @@ const Navbar = () => {
   // }, [pathname]);
 
   //   "bg-white shadow-custom-green text-titles"
+const pathname = usePathname();
+
+useEffect(() => {
+  setIsOpen(false);
+}, [pathname]);
 
   return (
     <header

@@ -10,7 +10,7 @@ import { addToCart } from "@/app/Redux/Slices/cartSlice";
 import { ShoppingCartIcon } from "lucide-react";
 
 interface MobileProductActionsProps {
-  product: Product; // Replace 'any' with your Product type if available
+  product: Product;
 }
 
 const MobileProductActions = ({ product }: MobileProductActionsProps) => {
@@ -25,7 +25,18 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
     size: "",
   });
 
+  // NEW: warning and shake state
+  const [showWarning, setShowWarning] = useState(false);
+  const [shake, setShake] = useState(false);
+
   const handleAddToCart = () => {
+    if (!itemColorSize.color || !itemColorSize.size) {
+      setShowWarning(true);
+      setShake(true);
+      setTimeout(() => setShake(false), 500); // Remove shake after animation
+      setTimeout(() => setShowWarning(false), 2000); // Hide warning after 2s
+      return;
+    }
     if (isAdded) {
       router.push("/cart");
       dispatch(clearCounter());
@@ -39,7 +50,6 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
         size: itemColorSize.size,
       })
     );
-
     setIsAdded(true);
   };
 
@@ -69,7 +79,6 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
           >
             Close
           </button>
-          {/* Your menu content here */}
           <div className="text-2xl tracking-tighter font-black">
             Select Sizes & Colors
           </div>
@@ -135,8 +144,9 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
         <div className="basis-[25%] text-lg tracking-tighter py-5 font-black capitalize text-white flex justify-center items-center bg-black">
           €{product.price}.00
         </div>
+        
         <button
-          className={`bg-accent flex justify-center items-center gap-3 p-2  text-white hover:scale-105 transition-transform ease-in-out duration-75 active:scale-105 basis-[35%] font-black tracking-tighter ${
+          className={`bg-accent flex justify-center items-center gap-3 p-2  text-white transition-transform ease-in-out duration-75 active:scale-105 basis-[35%] font-black tracking-tighter ${
             isAdded ? "bg-green-400" : ""
           }`}
           onClick={handleAddToCart}
@@ -150,6 +160,33 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
           )}
         </button>
       </div>
+
+{/* Warning Pop-up */}
+          {showWarning && (
+            <div
+              className={`absolute left-1/2 -translate-x-1/2 bottom-28 bg-red-500 text-white px-4 py-2 rounded shadow-lg text-sm font-semibold z-50
+                ${shake ? "animate-shake" : ""}`}
+            >
+              Please select color and size!
+            </div>
+          )}
+
+      {/* Shake animation style */}
+      <style>
+        {`
+          @keyframes shake {
+            0% { transform: translateX(-50%) translateY(0); }
+            20% { transform: translateX(-50%) translateY(-2px) rotate(-5deg);}
+            40% { transform: translateX(-50%) translateY(2px) rotate(5deg);}
+            60% { transform: translateX(-50%) translateY(-2px) rotate(-5deg);}
+            80% { transform: translateX(-50%) translateY(2px) rotate(5deg);}
+            100% { transform: translateX(-50%) translateY(0); }
+          }
+          .animate-shake {
+            animation: shake 0.5s;
+          }
+        `}
+      </style>
     </>
   );
 };
