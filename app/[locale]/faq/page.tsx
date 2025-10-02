@@ -1,5 +1,5 @@
 "use client";
-import SectionTitle from "../Components/Common/SectionTitle";
+import SectionTitle from "../../Components/Common/SectionTitle";
 
 const faqs = [
   {

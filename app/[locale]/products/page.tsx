@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import { RotatingText } from "../Components/Common/SlogansLister";
-import { Filter } from "../ProductsPage/Filters";
-import { ProductGrid } from "../ProductsPage/ProductGrid";
-import { allProducts } from "../Components/Home/ListItemsByTypeSection";
+import { RotatingText } from "../../Components/Common/SlogansLister";
+import { Filter } from "../../ProductsPage/Filters";
+import { ProductGrid } from "../../ProductsPage/ProductGrid";
+import { allProducts } from "../../Components/Home/ListItemsByTypeSection";
 const slogans: string[] = [
   "Jerseys",
   "T-Shirts",

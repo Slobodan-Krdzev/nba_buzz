@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CheckoutForm from "../Components/Checkout/CheckoutForm";
+import CheckoutForm from "../../Components/Checkout/CheckoutForm";
 
 const CheckoutPage = () => {
 

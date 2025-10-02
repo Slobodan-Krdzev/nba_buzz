@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import LocaleSwitcher from "./LocalleSwitcher";
 
 const navItems = [
   { title: "Products", link: "/products" },
@@ -82,6 +83,8 @@ useEffect(() => {
 
         {/* Desktop nav */}
         <nav className="hidden xl:flex items-center gap-6  justify-end">
+          <LocaleSwitcher />
+
           {navItems.map((item) => (
             <Link
               href={item.link}

@@ -1,4 +1,4 @@
-import SectionTitle from "./Components/Common/SectionTitle";
+import SectionTitle from "../Components/Common/SectionTitle";
 
 const NotFoundPage = () => {
   return (

@@ -3,8 +3,8 @@ import Facebook from "@/app/Icons/Facebook";
 import Instagram from "@/app/Icons/Instagram";
 import Youtube from "@/app/Icons/Youtube";
 import Link from "next/link";
-import ContactForm from "../Components/Contact/ContactForm";
-import NewsletterForm from "../Components/Contact/NewsletterForm";
+import ContactForm from "../../Components/Contact/ContactForm";
+import NewsletterForm from "../../Components/Contact/NewsletterForm";
 
 const ContactPage = () => {
   return (

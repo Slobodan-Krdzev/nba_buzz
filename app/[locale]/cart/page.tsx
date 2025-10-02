@@ -1,7 +1,7 @@
 "use client";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
-import SectionTitle from "../Components/Common/SectionTitle";
+import SectionTitle from "../../Components/Common/SectionTitle";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectAll,
@@ -9,8 +9,8 @@ import {
   toggleCheck,
   updateQty,
   removeFromCart,
-} from "../Redux/Slices/cartSlice";
-import { RootState } from "../Redux/store";
+} from "../../Redux/Slices/cartSlice";
+import { RootState } from "../../Redux/store";
 import Link from "next/link";
 
 const CartPage = () => {
