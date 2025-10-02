@@ -22,8 +22,8 @@ export const footerLists: FooterList[] = [
   {
     title: "Contact",
     links: [
-      { title: "E-Mail: office@nbabuzzmk.com", link: "/mail" },
-      { title: "Phone: +38977551012", link: "/tel" },
+      { title: "E-Mail: office@nbabuzzmk.com", link: "/contact" },
+      { title: "Phone: +38977551012", link: "/contact" },
     ],
   },
   {
@@ -32,7 +32,7 @@ export const footerLists: FooterList[] = [
       { title: "Our Story", link: "/about-us" },
 
       { title: "FAQ", link: "/faq" },
-      { title: "Terms and Privacy", link: "/terms-privacy" },
+      { title: "Terms and Privacy", link: "/terms-and-privacy" },
     ],
   },
   {

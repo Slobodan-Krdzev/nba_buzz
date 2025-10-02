@@ -1,23 +1,23 @@
 "use client";
-import Instagram from "@/app/Icons/Instagram";
 import Facebook from "@/app/Icons/Facebook";
+import Instagram from "@/app/Icons/Instagram";
 import Youtube from "@/app/Icons/Youtube";
-import Image from "next/image";
 import Link from "next/link";
+import ContactForm from "../Components/Contact/ContactForm";
 import NewsletterForm from "../Components/Contact/NewsletterForm";
 
 const ContactPage = () => {
   return (
-    <main className="min-h-screen bg-white flex flex-col lg:flex-row items-center justify-between px-4 py-10">
+    <main className="min-h-screen bg-white flex flex-col lg:flex-row items-center justify-between px-4 pt-2 py-10">
       {/* Logo, Title, Subtitle */}
-      <div className="flex flex-col items-center mb-8 w-full lg:w-1/2">
-        <Image
+      <div className="flex flex-col items-center mb-8 w-full lg:w-[60%]">
+        {/* <Image
           src="/common/nbaBuzzLogo.png"
           alt="NBABUZZ Logo"
           width={120}
           height={100}
           className="mb-4"
-        />
+        /> */}
         <h1 className="text-3xl md:text-5xl font-black text-accent mb-2 tracking-tighter text-center">
           NBABUZZ.mk
         </h1>
@@ -28,7 +28,9 @@ const ContactPage = () => {
           Custom and in-house basketball apparel designs and clothing. Safe
           purchases, extra quality, and unique style for every baller.
         </p>
-      </div>
+
+          <ContactForm />
+        </div>
 
       {/* Info Cards */}
       <div className="w-full lg:w-1/2 flex flex-col items-center">
