@@ -9,7 +9,7 @@ interface SectionTitleProps {
 const SectionTitle = ({title, color='titles'}: SectionTitleProps) => {
   return (
     <h2
-      className={`text-center text-5xl tracking-tighter mb-6 font-black uppercase text-${color}`}
+      className={`text-center text-4xl lg:text-5xl tracking-tighter mb-6 font-black uppercase text-${color}`}
     >
       {title}
     </h2>

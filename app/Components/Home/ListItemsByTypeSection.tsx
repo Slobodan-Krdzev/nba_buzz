@@ -43,6 +43,7 @@ export const allProducts: Product[] = [
     washing: "Machine wash cold",
     name: "LeBron James Lakers Tee",
     collection: "LeBron The King",
+    collectionId: 2,
   },
   {
     _id: "2",
@@ -84,6 +85,8 @@ export const allProducts: Product[] = [
     washing: "Machine wash cold, tumble dry low",
     name: "The Joker Hoodie",
     collection: "The Joker Collection",
+    collectionId: 1,
+
   },
   {
     _id: "3",
@@ -122,6 +125,8 @@ export const allProducts: Product[] = [
     washing: "Hand wash recommended",
     name: "LeBron James Jersey",
     collection: "LeBron The King",
+    collectionId: 2,
+
   },
   {
     _id: "4",
@@ -163,6 +168,8 @@ export const allProducts: Product[] = [
     washing: "Machine wash cold",
     name: "Giannis Bucks Tee",
     collection: "Giannis Collection",
+    collectionId: 3,
+
   },
   {
     _id: "13",
@@ -204,9 +211,12 @@ export const allProducts: Product[] = [
     washing: "Machine wash cold",
     name: "Bradley Beal Wizards Tee",
     collection: "Giannis Collection",
+    collectionId: 4,
+
   },
   {
     collection: "Giannis Collection",
+    collectionId: 5,
 
     _id: "14",
     userId: 114,
@@ -249,6 +259,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 4,
 
     _id: "15",
     userId: 115,
@@ -288,6 +299,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 4,
 
     _id: "16",
     userId: 116,
@@ -330,6 +342,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 4,
 
     _id: "17",
     userId: 117,
@@ -372,6 +385,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 4,
 
     _id: "18",
     userId: 118,
@@ -410,7 +424,8 @@ export const allProducts: Product[] = [
     name: "Julius Randle Knicks Jersey",
   },
   {
-    collection: "Giannis Collection",
+    collection: "The Joker Collection",
+    collectionId: 1,
 
     _id: "1",
     userId: 101,
@@ -453,6 +468,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 1,
 
     _id: "2",
     userId: 102,
@@ -495,6 +511,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 5,
 
     _id: "3",
     userId: 103,
@@ -534,6 +551,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 5,
 
     _id: "4",
     userId: 104,
@@ -576,6 +594,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 5,
 
     _id: "13",
     userId: 113,
@@ -618,6 +637,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 5,
 
     _id: "14",
     userId: 114,
@@ -660,6 +680,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 5,
 
     _id: "15",
     userId: 115,
@@ -699,6 +720,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 5,
 
     _id: "16",
     userId: 116,
@@ -741,6 +763,7 @@ export const allProducts: Product[] = [
   },
   {
     collection: "Giannis Collection",
+    collectionId: 5,
 
     _id: "17",
     userId: 117,
@@ -782,7 +805,8 @@ export const allProducts: Product[] = [
     name: "Kyrie Irving Nets Hoodie",
   },
   {
-    collection: "Giannis Collection",
+    collection: "The Joker Collection",
+    collectionId: 1,
 
     _id: "18",
     userId: 118,

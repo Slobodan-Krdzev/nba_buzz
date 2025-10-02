@@ -15,6 +15,7 @@ export interface Product {
   name: string;
   colors: Color[];
   collection: string;
+  collectionId: number;
 }
 
 export interface Description {
