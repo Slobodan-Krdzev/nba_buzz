@@ -1,6 +1,7 @@
 import { ShoppingCart, Shirt, PenTool } from "lucide-react";
 import SectionTitle from "../../Common/SectionTitle";
 import SingleFeature from "./SingleFeature";
+import { useTranslations } from "next-intl";
 
 const features = [
   {
@@ -27,9 +28,11 @@ const features = [
 ];
 
 export default function PremiumQualitySection() {
+
+  const t = useTranslations("premiumQuality");
   return (
     <section className="px-6 py-[8dvh] xl:py-[16dvh] bg-white">
-      <SectionTitle title="Premium Quality" />
+      <SectionTitle title={t("title")} />
 
       <div className="grid md:grid-cols-3 gap-8 lg:gap-20 w-[90%] md:w-[70%] lg:w-[80%] m-auto mt-[5dvh]">
         {/* Card 1 */}
@@ -37,8 +40,8 @@ export default function PremiumQualitySection() {
         <SingleFeature
           key={index}
           icon={item.icon}
-          title={item.title}
-          description={item.description}
+          title={t(`item${index + 1}.title`)}
+          description={t(`item${index + 1}.description`)}
         />
       ))}
       </div>

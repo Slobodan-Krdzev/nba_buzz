@@ -1,57 +1,53 @@
 export interface Product {
-  _id: string;
-  userId: number;
-  id: number;
-  description: Description;
-  gallery: Gallery;
-  date_added: number;
-  isPromotion: boolean;
-  sizes: Sizes;
-  price: number;
-  type: "T-shirt" | "Hoodie" | "Jersey";
-  materials: Material[];
-  details: string[];
-  washing: string;
-  name: string;
-  colors: Color[];
-  collection: string;
-  collectionId: number;
-}
-
-export interface Description {
-  player: string;
-  desc: string;
-}
-
-export interface Gallery {
-  front: string;
-  back: string;
-  left: string;
-  right: string;
-  model: string;
-  modelFront: string;
-  modelBack: string;
-  modelLeft: string;
-  modelRight: string;
+  _id: string
+  title: string
+  description: string
+  featuredImage: string
+  galleryImages: string[]
+  isPromotion: boolean
+  sizes: Sizes
+  price: number
+  type: Type
+  isFeatured: boolean
+  materials: Material[]
+  colors: Color[]
+  details: string[]
+  washing: string
+  collection: string
+  isActive: boolean
+  date_added: number
+  createdAt: string
+  updatedAt: string
+  __v: number
 }
 
 export interface Sizes {
-  l: number;
-  m: number;
-  s: number;
-  xl: number;
-  xs: number;
-  xxl: number;
+  xs: number
+  s: number
+  m: number
+  l: number
+  xl: number
+  xxl: number
+}
+
+export interface Type {
+  _id: string
+  name: string
+  isActive: boolean
+  createdAt: string
+  updatedAt: string
+  slug: string
+  __v: number
 }
 
 export interface Material {
-  percentage: number;
-  materialName: string;
+  percentage: number
+  materialName: string
 }
 
 export interface Color {
-  name: string;
-  color: string;
+  name: string
+  color: string
 }
 
 export interface HeroSlideItemType {

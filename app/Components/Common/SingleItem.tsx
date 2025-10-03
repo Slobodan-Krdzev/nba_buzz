@@ -5,7 +5,7 @@ import { Product } from "@/app/Types/Types";
 import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay } from "swiper/modules";
@@ -22,29 +22,29 @@ const SingleItem = ({ item }: SingleItemProps) => {
 const favouriteItems = useSelector((state: RootState) => state.counter.favouriteItems);
 
 const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
-  const images = useMemo(() => {
-    const g = item.gallery;
-    return [
-      g.front,
-      g.back,
-      g.left,
-      g.right,
-      g.modelFront,
-      g.modelBack,
-      g.modelLeft,
-      g.modelRight,
-    ].filter(Boolean);
-  }, [item.gallery]);
+  // const images = useMemo(() => {
+  //   const g = item.gallery;
+  //   return [
+  //     g.front,
+  //     g.back,
+  //     g.left,
+  //     g.right,
+  //     g.modelFront,
+  //     g.modelBack,
+  //     g.modelLeft,
+  //     g.modelRight,
+  //   ].filter(Boolean);
+  // }, [item.gallery]);
 
   useEffect(() => {
-    if (!swiperRef.current || images.length < 2) return;
+    if (!swiperRef.current || item.galleryImages.length < 2) return;
     if (isHovered) {
       swiperRef.current.autoplay.start();
     } else {
       swiperRef.current.autoplay.stop();
       swiperRef.current.slideTo(0); // reset to first image
     }
-  }, [isHovered, images.length]);
+  }, [isHovered, item.galleryImages.length]);
 
 
   const onFaveClick = () => {
@@ -81,7 +81,7 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
       )}
 
       {/* Image Swiper */}
-      {images.length > 1 ? (
+      {item.galleryImages.length > 1 ? (
         <Swiper
           modules={[Autoplay]}
           autoplay={{ delay: 1500, disableOnInteraction: false }}
@@ -89,11 +89,11 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           className="rounded-md mb-3 md:mb-5 w-full h-[400px] sm:h-[390px] md:h-[390px] lg:h-[480px]"
         >
-          {images.map((src, idx) => (
+          {item.galleryImages.map((src, idx) => (
             <SwiperSlide key={idx}>
               <Image
                 src={src}
-                alt={`${item.name}-${idx}`}
+                alt={`${item.title}-${idx}`}
                 width={1080}
                 height={1280}
                 className="rounded-md w-full h-full object-cover"
@@ -103,8 +103,8 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
         </Swiper>
       ) : (
         <Image
-          src={images[0] ?? "/placeholder.jpg"}
-          alt={item.name}
+          src={item.galleryImages[0] ?? "/placeholder.jpg"}
+          alt={item.title}
           width={400}
           height={500}
           className="rounded-md mb-3 md:mb-5 w-full h-[220px] sm:h-[280px] md:h-[320px] lg:h-[380px] object-cover"
@@ -122,9 +122,9 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
 
       {/* Item Info */}
       <p className={`${item.isPromotion ? "text-white" : "text-gray-500"} text-sm md:text-md`}>
-        {item.type}
+        {item.type.name}
       </p>
-      <p className="font-semibold text-lg md:text-xl">{item.name}</p>
+      <p className="font-semibold text-lg md:text-xl">{item.title}</p>
       <p className={`absolute bottom-3 right-3 md:bottom-4 md:right-4 ${item.isPromotion ? "text-lg md:text-xl font-semibold tracking-tighter" : ""}`}>
         € {item.price}
       </p>

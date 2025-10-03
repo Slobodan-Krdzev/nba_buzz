@@ -1,5 +1,51 @@
 {
     "home": {
         "welcome": "Welcome to NBA Buzz"
+    },
+    "navbar": {
+        "shop": "Shop",
+        "contact": "Contact",
+        "aboutUs": "About Us",
+        "cart": "Cart",
+        "account": "Account"
+    },
+    "footer": {
+       "subtitle": "NBA based apperral brand. ",
+       "subtitle2": "Top notch quality & prints - unique ideas -in-house design."
+    },
+    "standOut": {
+        "title": "FOR THOSE WHO WANT TO STAND OUT",
+        "description": "All of our designs are completely unique, carefully crafted and developed in-house by our dedicated design team. Each piece reflects our commitment to originality and quality, ensuring that every product stands out with its own distinct style.",
+        "button": "All Products"
+    },
+    "premiumQuality": {
+        "title": "PREMIUM QUALITY",
+        "item1": {
+                "title": "PREMIUM & RECYCLED MATERIALS",
+                "description": "NBABuzz clothing is made from high-quality materials, combined with durable printing."
+            },
+            
+            "item2": {
+                "title": "ORIGINAL DESIGNS",
+                "description": "All of our designs are completely unique, carefully crafted and developed in-house by our dedicated design team."
+            },
+            "item3":{
+                "title": "RISK FREE SHOPPING",
+                "description": "The purchase is completely secure and can be made directly via the website, via email, or social media."
+            }
+        
+    },
+    "newsletter": {
+        "title": "JOIN OUR NEWSLETTER",
+        "description": "Be first to see new arrivals, exclusive deals & discover our latest products by subscribing to our newsletter!",
+        "inputPlaceholder": "Email...",
+        "btn": "Subscribe"
+    },
+    "joinUs": {
+        "title": "WE’VE GOT YOUR BACK 24/7",
+        "description": "Feel free to reach out if you have any questions or need assistence, our team is at your service anytime. info@nbabuzz.com",
+        "followUs": "Follow Us"
+       
     }
+    
 }
