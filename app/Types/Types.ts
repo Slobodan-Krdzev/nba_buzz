@@ -57,3 +57,31 @@ export interface HeroSlideItemType {
   link: string;
   subtitle: string
 }
+
+export interface UserProfile {
+  id: string
+  firstName: string
+  lastName: string
+  imageUrl: string
+  address: string
+  email: string
+  phone: string
+}
+
+export type OrderStatus = 'open' | 'finished'
+
+export interface OrderItemSummary {
+  productId: string
+  title: string
+  quantity: number
+  price: number
+  imageUrl: string
+}
+
+export interface Order {
+  id: string
+  date: string // ISO
+  status: OrderStatus
+  total: number
+  items: OrderItemSummary[]
+}

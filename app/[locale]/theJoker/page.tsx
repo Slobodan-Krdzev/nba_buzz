@@ -1,26 +1,22 @@
 import React from "react";
-import SectionTitle from "../Components/Common/SectionTitle";
 import Image from "next/image";
-import ItemsGrid from "../Components/CollectionPage/ItemsGrid";
+import SectionTitle from "@/app/Components/Common/SectionTitle";
+import AnimatedSlogans from "@/app/Components/Common/AnimatedSlogans";
+import BouncingBasketball from "@/app/Components/Common/BouncingBasketball";
 
-const TheJokeyCollection = () => {
+const TheJokerPage = () => {
   return (
     <>
       <section
-        className="w-full h-[40dvh] md:h-[60dvh] lg:h-[100dvh] flex flex-col justify-center items-center text-white relative bg-cover bg-center"
-        style={{ backgroundImage: "url(/common/heroSection3.png)" }}
+        className="w-full flex flex-col justify-center items-center text-white relative bg-cover bg-center"
+        style={{ backgroundImage: "url(/common/heroSection3.png)", height: "calc(100dvh - 62.6px)" }}
       >
         <div className="absolute inset-0 bg-black/40 z-0" />
         <div className="relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 drop-shadow-lg">
-            The Joker Collection
-          </h1>
-          <h2 className="text-xl w-[80%] m-auto font-medium drop-shadow-md tracking-tighter ">
-            Unleash your inner MVP with our exclusive designs.
-          </h2>
+          <AnimatedSlogans items={["The Joker", "Is", "Here"]} />
         </div>
+        <BouncingBasketball />
       </section>
-      
 
       <section className="py-16 px-4 md:px-8 lg:px-16 ">
         <SectionTitle title="The Joker" />
@@ -34,9 +30,6 @@ const TheJokeyCollection = () => {
           who dare to stand out.
         </p>
       </section>
-
-      <ItemsGrid />
-
 
       <section className="py-16 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center gap-6">
         <div className="basis-1 lg:basis-[45%]">
@@ -54,16 +47,13 @@ const TheJokeyCollection = () => {
         </div>
 
         <div className="basis-1 lg:basis-[70%]">
-
           <Image src={'/common/newsletter.jpg'} alt="Image" width={1920} height={100} className="shadow-xl"/>
         </div>
       </section>
 
       <section className="py-16 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center gap-6">
         <div className="basis-1 lg:basis-[70%] order-2 lg-order-1">
-
           <Image src={'/poses/9.jpg'} alt="Image" width={1920} height={100} className="shadow-xl"/>
-
         </div>
         <div className="basis-1 lg:basis-[60%] order-1 lg:order-2">
           <SectionTitle title="Why This Collection Hits Different" />
@@ -77,7 +67,6 @@ const TheJokeyCollection = () => {
           hoops passion.
         </p>
         </div>
-       
       </section>
 
       <section className="py-16 px-4 md:px-8 lg:px-16 ">
@@ -106,4 +95,5 @@ const TheJokeyCollection = () => {
   );
 };
 
-export default TheJokeyCollection;
+export default TheJokerPage;
+
