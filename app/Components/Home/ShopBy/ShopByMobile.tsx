@@ -6,7 +6,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { ShopByCategory } from "./ShopBy";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 interface ShopByMobileProps {
   categories: ShopByCategory[];

@@ -11,7 +11,7 @@ import {
   removeFromCart,
 } from "../../Redux/Slices/cartSlice";
 import { RootState } from "../../Redux/store";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart.items);

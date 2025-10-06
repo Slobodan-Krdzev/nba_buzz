@@ -3,6 +3,7 @@ import OrdersList from "@/app/Components/Profile/OrdersList";
 import UserCard from "@/app/Components/Profile/UserCard";
 import ContactForm from "@/app/Components/Contact/ContactForm";
 import { Order, UserProfile } from "@/app/Types/Types";
+import { useTranslations } from "next-intl";
 
 // For now we provide dummy data. Replace with API fetch when ready.
 function getDummyUser(): UserProfile {
@@ -89,21 +90,22 @@ function getDummyOrders(): Order[] {
 }
 
 export default function ProfilePage() {
+  const t = useTranslations("profile");
   const user = getDummyUser();
   const orders = getDummyOrders();
 
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <SectionTitle title="Your Profile" />
+      <SectionTitle title={t("title")} />
       <div className="grid grid-cols-1 gap-6 lg:gap-8">
         <UserCard user={user} />
         <div>
-          <h3 className="text-xl font-bold text-titles mb-3">Orders</h3>
+          <h3 className="text-xl font-bold text-titles mb-3">{t("ordersTitle")}</h3>
           <OrdersList orders={orders} />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-titles mb-3">Need assistance?</h3>
-          <p className="text-titles/80 mb-4">Contact the seller for help with your orders or account.</p>
+          <h3 className="text-xl font-bold text-titles mb-3">{t("helpTitle")}</h3>
+          <p className="text-titles/80 mb-4">{t("helpText")}</p>
           <ContactForm />
         </div>
       </div>

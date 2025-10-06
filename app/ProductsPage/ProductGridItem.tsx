@@ -7,7 +7,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import 'swiper/css';
 import 'swiper/css/pagination';
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 interface ProductGridItem {
   product: Product;

@@ -2,8 +2,11 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import FormInput from "./FormInput";
+import { useTranslations } from "next-intl";
 
-const RegisterFrom = () => {
+interface Props { tNs?: string }
+const RegisterFrom = ({ tNs = 'auth.register' }: Props) => {
+  const t = useTranslations(tNs);
   const [formData, setFormData] = useState({
     Name: "",
     Lastname: "",
@@ -24,7 +27,7 @@ const RegisterFrom = () => {
       animate={{ opacity: 1 }}
       className="w-[90%] md:w-full max-w-sm mx-auto lg:mr-5 p-6 shadow-xl border-[0.5px] border-[#d1d5db80] rounded-lg text-titles"
     >
-      <h2 className="text-3xl font-bold mb-6">Sign up</h2>
+      <h2 className="text-3xl font-bold mb-6">{t('title')}</h2>
       {Object.entries(formData).map(([key, value], index) => (
         <FormInput
           key={index}
@@ -37,14 +40,14 @@ const RegisterFrom = () => {
           }
           value={value}
           onChange={(e) => handleChange(key, e.currentTarget.value)}
-          label={key}
+          label={t(key)}
           name={key}
         />
       ))}
       <button className="w-full py-2 mt-4 rounded bg-accent text-white hover:text-titles font-semibold px-6 hover:bg-accentLight transition">
-        Register
+        {t('submit')}
       </button>
-      <p className="text-center mt-4 text-sm">Help →</p>
+      <p className="text-center mt-4 text-sm">{t('help')}</p>
     </motion.div>
   );
 };

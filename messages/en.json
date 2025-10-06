@@ -1,7 +1,4 @@
 {
-    "home": {
-        "welcome": "Welcome to NBA Buzz"
-    },
     "navbar": {
         "shop": "Shop",
         "contact": "Contact",
@@ -46,6 +43,146 @@
         "description": "Feel free to reach out if you have any questions or need assistence, our team is at your service anytime. info@nbabuzz.com",
         "followUs": "Follow Us"
        
+    },
+  "profile": {
+    "title": "Your Profile",
+    "ordersTitle": "Orders",
+    "helpTitle": "Need assistance?",
+    "helpText": "Contact the seller for help with your orders or account."
+  },
+  "home": {
+    "hero": {
+      "joker": {
+        "title": "The Joker Collection",
+        "subtitle": "Discover The Joker Collection — T-shirts and Hoodies with Exclusive Designs Inspired by Nikola Jokić."
+      },
+      "luka": {
+        "title": "Luka Goes to Hollywood Collection",
+        "subtitle": "Discover The Wonderboy Collection — NBA T-shirts and Hoodies with Exclusive Designs Inspired by Luka Dončić"
+      },
+      "antic": {
+        "title": "Antic — The Real MVP",
+        "subtitle": "Celebrate Pero Antić with in-house designs blending Macedonian heritage and bold hoops style."
+      }
     }
-    
+  },
+  "contact": {
+    "brand": "NBABUZZ.mk",
+    "subtitle": "Clothing apparel for ballers",
+    "description": "Custom and in-house basketball apparel designs and clothing. Safe purchases, extra quality, and unique style for every baller.",
+    "cards": {
+      "safeTitle": "Safe Purchases",
+      "safeText": "All orders are processed securely. We guarantee extra quality on every product.",
+      "supportTitle": "24/7 Support",
+      "supportText": "Need help? Our team is available 24/7 for any questions or support.",
+      "contactTitle": "Contact Us",
+      "email": "Email:",
+      "phone": "Phone:"
+    },
+    "form": {
+      "name": "Name",
+      "lastname": "Lastname",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Message"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "forgot": "Forgot Password?",
+      "submit": "Sign in",
+      "noAccount": "I don't have an account?",
+      "signupCta": "Sign Up"
+    },
+    "register": {
+      "title": "Sign up",
+      "Name": "Name",
+      "Lastname": "Lastname",
+      "Email": "Email",
+      "Password": "Password",
+      "ConfirmPass": "Confirm Password",
+      "submit": "Register",
+      "help": "Help →",
+      "withGoogle": "Register With Google"
+    }
+  },
+  "ourStory": {
+    "title": "Our Story",
+    "startedTitle": "How it started",
+    "startedText": "It all started in 2021, in the slow, quiet hours of the pandemic. A few sketches on paper turned into our first test prints; a handful of tees became a small drop, then a real studio. What pushed us forward wasn’t a business plan — it was love for basketball and a stubborn need to express it our way. We built NBABUZZ as a space where hoops culture meets design craft, where a creative idea can jump from a notebook to a hoodie you actually want to wear.",
+    "funTitle": "Designed to have fun",
+    "funText": "We design because it’s fun — simple as that. If something makes us laugh, sparks a memory, or nods to a legendary play, it goes on the board. Some ideas land as bold graphics, others as subtle typography or vintage textures. We test, tweak, and ship small batches so every piece feels alive. It’s playful, it’s bold, and it stays unmistakably NBABUZZ.",
+    "craftTitle": "In-house craft. Original ideas.",
+    "craftText": "Everything is made in-house — from pencil sketch to vector artwork, from color tests to the final print. We obsess over fabrics, fit, and finish, so graphics look fresh on day one and still punch after a hundred washes. We build themed collections alongside daily essentials: T‑shirts, hoodies, and jerseys engineered to feel premium, move well, and last.",
+    "serviceTitle": "Quality & Service",
+    "quality1": "Top‑notch materials, heavyweight cotton, and crisp, fade‑resistant prints.",
+    "quality2": "Original collections plus essentials: tees, hoodies, and jerseys in rotating drops.",
+    "quality3": "Built in our local studio for a global hoops culture — shipped with care.",
+    "contact": {
+      "email": "Email:",
+      "phone": "Phone:",
+      "support": "24/7 support — we’re here any time."
+    },
+    "newsletterTitle": "Stay in the game"
+  },
+    "collections": {
+      "joker": {
+        "s1": "The Joker",
+        "s2": "Is",
+        "s3": "Here",
+        "title": "The Joker",
+        "intro": "When Nikola Jokić steps on the court, you never know what’s coming — a no-look pass, a triple-double, or a game-winning smile. That same spirit lives in The Joker Collection, a line of tees and hoodies designed in-house to capture his playful energy and MVP legacy. This is not just fanwear — it’s a creative statement piece built for those who dare to stand out.",
+        "unleashTitle": "Unleash Your Inner Joker",
+        "unleashText": "Every item in this collection tells a story. Bold graphics, oversized fits, and sleek prints are all crafted with a mix of fun and finesse, just like Jokić himself. The designs are born in our studio — exclusive in-house artwork that you won’t find anywhere else. Whether it’s a hoodie with a twist of surreal humor, or a tee that nods to his Serbian roots and larger-than-life personality, the collection brings that Joker unpredictability to your wardrobe.",
+        "whyTitle": "Why This Collection Hits Different",
+        "whyText": "This isn’t a random print-on-demand job. Every design is sketched, refined, and finalized by our creative team, making each piece authentically ours. Think playful illustrations, clever typography, and graphics that mix basketball culture with Joker-esque mischief. It’s a combination of street art vibes, premium fashion feel, and pure hoops passion.",
+        "materialsTitle": "Premium Materials, Maximum Comfort",
+        "materials": {
+          "soft": "Soft, Heavyweight Cotton → The kind of fabric that feels fresh on day one and still strong on day one hundred.",
+          "hoodies": "High-Quality Hoodies → Warm, durable, and cut to move with you, whether you’re chilling or running the fast break.",
+          "prints": "Fade-Resistant Prints → Vibrant colors and crisp lines that keep their edge, wash after wash.",
+          "durable": "Designed to Last → Because like Jokić’s game, style this good doesn’t fade away."
+        }
+      },
+      "antic": {
+        "s1": "The",
+        "s2": "Real Mvp",
+        "s3": "Has",
+        "s4": "Arrived",
+        "title": "Pero Antić",
+        "intro": "From Skopje courts to NBA spotlights, Pero Antić brought toughness, personality, and a fearless shot. This drop leans into the moment — Pero striding forward while LeBron’s on the deck — not disrespect, just that playful, unstoppable swagger. In-house designs blend Macedonian heritage, bold typography, and a tongue-in-cheek walk-over silhouette. Built for those who carry pride — on and off the court.",
+        "designTitle": "Design With Heart, Made For Hoops",
+        "designText": "The graphics lean into Pero’s identity — the eagle, the stripes, the grit — and that iconic walk-over stance. Expect oversized tees, premium hoodies, sharp prints, and funky color pops that nod to the golden years of European hoopers making noise in the league. Every piece is sketched and refined by our team — no copies, no shortcuts, just authentic NBABUZZ craft.",
+        "whyTitle": "Why This Collection Matters",
+        "whyText": "Pero Antić isn’t just a name — he’s a mindset. Confidence without compromise. These pieces channel that edge into wearables that feel as strong as they look. For the fans who remember the memes, the moment, and the pride of seeing a Macedonian stand tall — step by step — on the biggest stage.",
+        "materialsTitle": "Premium Materials, Maximum Comfort",
+        "materials": {
+          "heavy": "Heavyweight Cotton → Built for everyday wear with a soft hand-feel.",
+          "hoodies": "Durable Hoodies → Cozy, structured, and ready for the season.",
+          "prints": "Sharp, Fade-Resistant Prints → Graphics that keep their edge after every wash.",
+          "durable": "Made to Last → Because real MVPs don’t fade."
+        }
+      },
+      "luka": {
+        "s1": "Luka",
+        "s2": "Goes To",
+        "s3": "Hollywood",
+        "title": "Luka Dončić",
+        "intro": "Lights, camera, step-back. Luka’s game has that blockbuster charm — a mix of craft, calm, and clutch that plays like a highlight reel. The Luka Goes to Hollywood collection blends European finesse with big-screen flair: think film-grain textures, marquee-inspired typography, and NBABUZZ’s signature gold accents for that premiere-night glow.",
+        "journeyTitle": "From Ljubljana to the Big Screen",
+        "journeyText": "Story-driven graphics nod to Luka’s journey — the step-back frame, starlit backdrops, and playful references to scene-stealing moments. Expect oversized tees, premium hoodies, and sharp prints that feel as effortless as his pace control. Designed in-house, crafted to be worn on set or courtside.",
+        "actionTitle": "Step-Back. Cut. Action.",
+        "actionText": "This collection is about cool control — the kind that makes crowds whisper before they roar. Clean silhouettes, vivid prints, and a dash of Hollywood gold bring the spotlight to everyday wear. Authentically NBABUZZ, made to be rewatched.",
+        "materialsTitle": "Premium Materials, Maximum Comfort",
+        "materials": {
+          "soft": "Soft, Heavyweight Cotton → Stays fresh from first watch to the encore.",
+          "hoodies": "Premium Hoodies → Cozy structure with that red-carpet feel.",
+          "prints": "Crisp, Fade-Resistant Prints → Colors that keep their edge, scene after scene.",
+          "durable": "Designed to Last → Because classics don’t go out of style."
+        }
+      }
+    }
 }

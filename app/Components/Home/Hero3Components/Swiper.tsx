@@ -9,25 +9,34 @@ import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper as SwiperClass } from "swiper/types";
 import SwiperItem from "./SwiperItem";
+import { useTranslations } from "next-intl";
 
-const swiperSlides: HeroSlideItemType[] = [
-  {
-    id: 0,
-    title: "The Joker Collection",
-    subtitle:
-      "Discover The Joker Collection — T-shirts and Hoodies with Exclusive Designs Inspired by Nikola Jokić.",
-    img: "/common/heroSection3.png",
-    link: "/products",
-  },
-  {
-    id: 1,
-    title: "Luka goes to Hollywood Collection",
-    subtitle:
-      "Discover The Wonderboy Collection — NBA T-shirts and Hoodies with Exclusive Designs Inspired by Luka Dončić",
-    img: "/common/heroSection2.jpg",
-    link: "/products",
-  },
-];
+function useSlides(): HeroSlideItemType[] {
+  const t = useTranslations("home.hero");
+  return [
+    {
+      id: 0,
+      title: t("joker.title"),
+      subtitle: t("joker.subtitle"),
+      img: "/common/heroSection3.png",
+      link: "/theJoker",
+    },
+    {
+      id: 1,
+      title: t("luka.title"),
+      subtitle: t("luka.subtitle"),
+      img: "/common/heroSection.png",
+      link: "/luka",
+    },
+    {
+      id: 2,
+      title: t("antic.title"),
+      subtitle: t("antic.subtitle"),
+      img: "/common/heroSection2.jpg",
+      link: "/antic",
+    },
+  ];
+}
 
 const AUTOPLAY_DELAY = 6000; // ms
 const SLIDE_TRANSITION = 200; // ms
@@ -36,6 +45,7 @@ const SwiperComp = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const transitionTimeout = useRef<NodeJS.Timeout | null>(null);
+  const slides = useSlides();
 
   const handleSlideChange = (swiper: SwiperClass) => {
     setActiveIndex(swiper.activeIndex);
@@ -85,7 +95,7 @@ const SwiperComp = () => {
           setProgress(corrected);
         }}
       >
-        {swiperSlides.map((s, idx) => (
+        {slides.map((s, idx) => (
           <SwiperSlide key={s.id}>
             <SwiperItem slide={s} isActive={idx === activeIndex} />
           </SwiperSlide>

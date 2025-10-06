@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import SectionTitle from "../../Common/SectionTitle";
 import Instagram from "@/app/Icons/Instagram";
 import Facebook from "@/app/Icons/Facebook";

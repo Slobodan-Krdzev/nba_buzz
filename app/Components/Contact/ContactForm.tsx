@@ -1,7 +1,9 @@
 'use client'
 import React from "react";
+import { useTranslations } from "next-intl";
 
 const ContactForm = () => {
+  const t = useTranslations('contact.form');
   return (
     <form className="w-[90%] mx-auto bg-white border rounded-lg shadow p-6 space-y-4 mt-[1vh]">
       <div>
@@ -9,7 +11,7 @@ const ContactForm = () => {
           htmlFor="name"
           className="block text-sm font-medium text-gray-700"
         >
-          Name
+          {t('name')}
         </label>
         <input
           type="text"
@@ -24,7 +26,7 @@ const ContactForm = () => {
           htmlFor="lastname"
           className="block text-sm font-medium text-gray-700"
         >
-          Lastname
+          {t('lastname')}
         </label>
         <input
           type="text"
@@ -39,7 +41,7 @@ const ContactForm = () => {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
-          Email
+          {t('email')}
         </label>
         <input
           type="email"
@@ -54,7 +56,7 @@ const ContactForm = () => {
           htmlFor="message"
           className="block text-sm font-medium text-gray-700"
         >
-          Message
+          {t('message')}
         </label>
         <textarea
           id="message"
@@ -68,7 +70,7 @@ const ContactForm = () => {
         type="submit"
         className="w-full bg-accent text-white font-bold py-2 px-4 rounded hover:bg-accent-dark transition"
       >
-        Send Message
+        {t('submit')}
       </button>
     </form>
   );

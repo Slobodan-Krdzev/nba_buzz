@@ -4,7 +4,7 @@ import { AppDispatch, RootState } from "@/app/Redux/store";
 import { Product } from "@/app/Types/Types";
 import { Heart } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { Swiper as SwiperType } from "swiper";
