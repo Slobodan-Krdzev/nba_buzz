@@ -3,12 +3,14 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Calendar, Filter } from "lucide-react";
 import { Order, OrderStatus } from "@/app/Types/Types";
+import { useTranslations } from "next-intl";
 
 interface OrdersListProps {
   orders: Order[];
 }
 
 export default function OrdersList({ orders }: OrdersListProps) {
+  const t = useTranslations("profile.orders");
   const [status, setStatus] = useState<OrderStatus | "all">("all");
   const [from, setFrom] = useState<string>("");
   const [to, setTo] = useState<string>("");
@@ -43,7 +45,7 @@ export default function OrdersList({ orders }: OrdersListProps) {
       <div className="flex flex-col lg:flex-row lg:items-end gap-4 lg:gap-6 mb-4">
         <div className="flex items-center gap-2 text-titles">
           <Filter className="w-4 h-4 text-accent" />
-          <span className="font-semibold">Filters</span>
+          <span className="font-semibold">{t("filters")}</span>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <select
@@ -54,9 +56,9 @@ export default function OrdersList({ orders }: OrdersListProps) {
             }}
             className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           >
-            <option value="all">All</option>
-            <option value="open">Open</option>
-            <option value="finished">Finished</option>
+            <option value="all">{t("status.all")}</option>
+            <option value="open">{t("status.open")}</option>
+            <option value="finished">{t("status.finished")}</option>
           </select>
 
           <div className="flex items-center gap-2">
@@ -70,7 +72,7 @@ export default function OrdersList({ orders }: OrdersListProps) {
               }}
               className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
             />
-            <span className="text-sm text-titles">to</span>
+            <span className="text-sm text-titles">{t("to")}</span>
             <input
               type="date"
               value={to}
@@ -96,7 +98,7 @@ export default function OrdersList({ orders }: OrdersListProps) {
                       : "bg-green-100 text-green-800"
                   }`}
                 >
-                  {order.status === "open" ? "Open" : "Finished"}
+                  {order.status === "open" ? t("status.open") : t("status.finished")}
                 </span>
                 <span className="text-sm text-titles">
                   {new Date(order.date).toLocaleDateString()}
@@ -125,7 +127,7 @@ export default function OrdersList({ orders }: OrdersListProps) {
         ))}
 
         {pageItems.length === 0 && (
-          <div className="py-8 text-center text-titles">No orders found.</div>
+          <div className="py-8 text-center text-titles">{t("empty")}</div>
         )}
       </div>
 
@@ -136,17 +138,17 @@ export default function OrdersList({ orders }: OrdersListProps) {
           className="inline-flex items-center gap-2 px-3 py-2 rounded-md border disabled:opacity-50"
         >
           <ChevronLeft className="w-4 h-4" />
-          Prev
+          {t("prev")}
         </button>
         <div className="text-sm text-titles">
-          Page {currentPage} of {totalPages}
+          {t("page", { current: currentPage, total: totalPages })}
         </div>
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages}
           className="inline-flex items-center gap-2 px-3 py-2 rounded-md border disabled:opacity-50"
         >
-          Next
+          {t("next")}
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>

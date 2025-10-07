@@ -1,11 +1,11 @@
 
-import { allProducts } from "../Components/Home/ListItemsByTypeSection";
 import ProductGridItem from "./ProductGridItem";
+import { Product } from "@/app/Types/Types";
 
-export function ProductGrid() {
+export function ProductGrid({ products = [] as Product[] }: { products: Product[] }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-      {allProducts.map((product , idx)=> (
+      {products.map((product , idx)=> (
         // <div
         //   key={idx}
         //   className="border rounded-xl p-4 hover:shadow-lg transition"

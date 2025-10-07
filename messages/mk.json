@@ -36,6 +36,21 @@
     "inputPlaceholder": "Е-пошта...",
     "btn": "Претплати се"
   },
+  "filters": {
+    "search": "Пребарување",
+    "searchPlaceholder": "Пребарај производи...",
+    "collections": "Колекции",
+    "categories": "Категории",
+    "price": "Цена",
+    "size": "Големина",
+    "all": "Сите",
+    "trending": "Во тренд",
+    "categoryNames": {
+      "tshirt": "Маица",
+      "hoodie": "Дуксер",
+      "jersey": "Дрес"
+    }
+  },
   "home": {
     "hero": {
       "joker": {
@@ -51,6 +66,24 @@
         "subtitle": "Прослави го Перо Антиќ со дизајни создадени во куќа, инспирирани од македонско наследство и смел кошаркарски стил."
       }
     }
+  },
+  "product": {
+    "notFound": "Нема производ",
+    "materials": "Материјали:",
+    "details": "Детали:",
+    "washing": "Перење:",
+    "dimensions": "Димензии",
+    "sizes": "Големини",
+    "colors": "Бои",
+    "close": "Затвори",
+    "selectSizesColors": "Избери големини и бои",
+    "viewCart": "Види кошничка",
+    "addToCart": "Додај во кошничка",
+    "selectColorSizeWarning": "Избери боја и големина!",
+    "sizeHeader": "Големина",
+    "lengthHeader": "Должина",
+    "waistHeader": "Половина",
+    "shoulderHeader": "Раменици"
   },
   "joinUs": {
     "title": "ТУКА СМЕ ЗА ТЕБЕ 24/7",
@@ -82,7 +115,16 @@
     "title": "Твој профил",
     "ordersTitle": "Нарачки",
     "helpTitle": "Потребна е помош?",
-    "helpText": "Контактирај го продавачот за помош околу нарачки или сметка."
+    "helpText": "Контактирај го продавачот за помош околу нарачки или сметка.",
+    "orders": {
+      "filters": "Филтри",
+      "status": { "all": "Сите", "open": "Отворени", "finished": "Завршени" },
+      "to": "до",
+      "empty": "Нема пронајдени нарачки.",
+      "prev": "Претходна",
+      "next": "Следна",
+      "page": "Страница {current} од {total}"
+    }
   },
   "auth": {
     "login": {

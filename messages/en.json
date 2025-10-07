@@ -48,7 +48,16 @@
     "title": "Your Profile",
     "ordersTitle": "Orders",
     "helpTitle": "Need assistance?",
-    "helpText": "Contact the seller for help with your orders or account."
+    "helpText": "Contact the seller for help with your orders or account.",
+    "orders": {
+      "filters": "Filters",
+      "status": { "all": "All", "open": "Open", "finished": "Finished" },
+      "to": "to",
+      "empty": "No orders found.",
+      "prev": "Prev",
+      "next": "Next",
+      "page": "Page {current} of {total}"
+    }
   },
   "home": {
     "hero": {
@@ -65,6 +74,24 @@
         "subtitle": "Celebrate Pero Antić with in-house designs blending Macedonian heritage and bold hoops style."
       }
     }
+  },
+  "product": {
+    "notFound": "No Product",
+    "materials": "Materials:",
+    "details": "Details:",
+    "washing": "Washing:",
+    "dimensions": "Dimensions",
+    "sizes": "Sizes",
+    "colors": "Colors",
+    "close": "Close",
+    "selectSizesColors": "Select Sizes & Colors",
+    "viewCart": "View Cart",
+    "addToCart": "Add To Cart",
+    "selectColorSizeWarning": "Please select color and size!",
+    "sizeHeader": "Size",
+    "lengthHeader": "Length",
+    "waistHeader": "Waist Size",
+    "shoulderHeader": "Shoulder Size"
   },
   "contact": {
     "brand": "NBABUZZ.mk",

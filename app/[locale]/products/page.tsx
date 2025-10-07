@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { RotatingText } from "../../Components/Common/SlogansLister";
 import { Filter } from "../../ProductsPage/Filters";
 import { ProductGrid } from "../../ProductsPage/ProductGrid";
-import { allProducts } from "../../Components/Home/ListItemsByTypeSection";
+import { Product } from "@/app/Types/Types";
+import { useLocale } from "next-intl";
 const slogans: string[] = [
   "Jerseys",
   "T-Shirts",
@@ -13,8 +14,76 @@ const slogans: string[] = [
 ];
 
 const ProductsPage = () => {
-  const [, setFilters] = useState({});
+
+  const locale = useLocale();
+  const [filters, setFilters] = useState<Record<string, string | number | boolean>>({});
+  const [products, setProducts] = useState<Product[]>([]);
+  const [total, setTotal] = useState(0);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const queryString = useMemo(() => {
+    const params = new URLSearchParams();
+    params.set("locale", locale);
+    if (filters.q) params.set("q", String(filters.q));
+    // Category (type) is filtered client-side per requirements
+    if (filters.isActive !== undefined) params.set("isActive", String(filters.isActive));
+    const isFeaturedVal = filters.isFeatured as string | undefined;
+    if (isFeaturedVal === 'true' || isFeaturedVal === 'false') params.set("isFeatured", isFeaturedVal);
+    if (filters.minPrice !== undefined) params.set("minPrice", String(filters.minPrice));
+    if (filters.maxPrice !== undefined) params.set("maxPrice", String(filters.maxPrice));
+    if (filters.collection) params.set("collection", String(filters.collection));
+    if (filters.sizes) params.set("sizes", String(filters.sizes));
+    return params.toString();
+  }, [filters, locale]);
+
+
+
+  useEffect(() => {
+    console.log("Products fetch URL:", `https://adminbuzzmk.com/api/products?${queryString}`);
+
+
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`https://adminbuzzmk.com/api/products?${queryString}`, { cache: 'no-store' });
+        const data = await res.json();
+        const raw: Product[] = data.products ?? [];
+
+        // Apply front-end filters: collections/trending, category (type), sizes
+        const selectedCollection = (filters.collection as string) || '';
+        const isTrending = (filters.isFeatured as string) === 'true';
+        const selectedType = (filters.type as string) || '';
+        const selectedSizes = (filters.sizes as string)?.split(',').filter(Boolean) || [];
+
+        const filtered = raw.filter((p) => {
+          // Collections / Trending
+          if (isTrending) {
+            if (!p.isFeatured) return false;
+          } else if (selectedCollection) {
+            if (p.collection !== selectedCollection) return false;
+          }
+          // Category filter
+          if (selectedType && p.type?.name !== selectedType) return false;
+          // Sizes filter: keep only products where all selected sizes have stock > 0
+          if (selectedSizes.length > 0) {
+            const ps = p.sizes as unknown as Record<string, number>;
+            const ok = selectedSizes.every((s) => (ps?.[s] ?? 0) > 0);
+            if (!ok) return false;
+          }
+          return true;
+        });
+
+        setProducts(filtered);
+        setTotal(data.total ?? 0);
+      } catch {
+        setProducts([]);
+        setTotal(0);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, [queryString, filters.type, filters.sizes, filters.collection, filters.isFeatured, locale]);
 
   return (
     <main>
@@ -29,16 +98,16 @@ const ProductsPage = () => {
       <section className="py-8 md:py-12 w-full md:w-[95%] m-auto flex flex-col lg:flex-row gap-0 md:gap-4">
         {/* Sidebar Filter (desktop) */}
         <aside className="hidden lg:block w-full lg:w-56 border-r bg-white p-4 sticky top-20 self-start">
-          <Filter onChange={setFilters} />
+          <Filter
+            onChange={(partial) => setFilters((prev) => ({ ...prev, ...partial }))}
+            collections={[...new Set(products.map(p => p.collection).filter(Boolean))]}
+            categories={[...new Set(products.map(p => p.type?.name).filter(Boolean) as string[])]}
+          />
         </aside>
 
         {/* Mobile filter button */}
         <div className="lg:hidden p-4 flex justify-between items-center w-full border-t-[1px] border-black/20 sticky shadow-custom-green top-[61px] bg-white z-20">
-          <p className="text-gray-600 text-sm">
-            Showing{" "}
-            <span className="font-semibold">{allProducts.length} results</span>{" "}
-            from {allProducts.length}
-          </p>
+          <p className="text-gray-600 text-sm">{loading ? 'Loading…' : `Showing ${products.length} of ${total}`}</p>
           <button
             className="px-3 py-1 border rounded text-sm"
             onClick={() => setIsFilterOpen(true)}
@@ -55,7 +124,11 @@ const ProductsPage = () => {
                 <h2 className="font-semibold">Filters</h2>
                 <button onClick={() => setIsFilterOpen(false)}>✕</button>
               </div>
-              <Filter onChange={setFilters} />
+              <Filter
+                onChange={(partial) => setFilters((prev) => ({ ...prev, ...partial }))}
+                collections={[...new Set(products.map(p => p.collection).filter(Boolean))]}
+                categories={[...new Set(products.map(p => p.type?.name).filter(Boolean) as string[])]}
+              />
             </div>
             <div
               className="flex-1 bg-black/40"
@@ -68,15 +141,9 @@ const ProductsPage = () => {
         <section className="flex-1 p-2 md:pt-6 md:px-1 w-full">
           {/* Desktop header */}
           <div className="hidden lg:flex justify-between items-center mb-6">
-            <p className="text-gray-600">
-              Showing{" "}
-              <span className="font-semibold">
-                {allProducts.length} results
-              </span>{" "}
-              from {allProducts.length}
-            </p>
+            <p className="text-gray-600">{loading ? 'Loading…' : `Showing ${products.length} of ${total}`}</p>
           </div>
-          <ProductGrid />
+          <ProductGrid products={products} />
         </section>
       </section>
     </main>

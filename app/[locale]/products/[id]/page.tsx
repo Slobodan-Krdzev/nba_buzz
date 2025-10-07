@@ -1,25 +1,42 @@
+// import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
 import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
 import MobileProductGalery from "@/app/Components/Common/MobileProductGalery";
 import DimensionsTable, { sizes } from "@/app/Components/Common/SizingTable";
-import { allProducts } from "@/app/Components/Home/ListItemsByTypeSection";
 import DesktopSizesAndColors from "@/app/Components/ProductPage/DesktopSizesAndColors";
 import MobileProductActions from "@/app/Components/ProductPage/MobileProductActions";
 import JerseyGallery from "@/app/Components/ProductPage/ProductGallery";
+import { Product } from "@/app/Types/Types";
+import { getTranslations } from "next-intl/server";
 
 interface Props {
-  params: Promise<{ id: string }>; // note: params is async
+  params: Promise<{ id: string, locale: string }>; // note: params is async
 }
 
 export default async function UserPage({ params }: Props) {
-  const { id } = await params;
-  //   const res = await fetch(`https://api.example.com/users/${id}`);
-  //   const user = await res.json();
+  const { id, locale } = await params;
+  const t = await getTranslations('product');
 
-  const productToRender = allProducts.find((p) => p._id === id);
+  const res = await fetch(`https://adminbuzzmk.com/api/products/${id}?locale=${locale.toUpperCase()}`, {
+    // Keep fresh during development
+    cache: "no-store",
+  });
 
-  if (!productToRender) return <>No Product</>;
+  if (!res.ok) {
+    return <>{t('notFound')}</>;
+  }
 
-  const images = Object.values(productToRender.gallery);
+  const data = await res.json();
+  const productToRender = data?.product as Product | undefined;
+
+  if (!productToRender) {
+    return <>{t('notFound')}</>;
+  }
+
+  const images = productToRender.galleryImages?.length
+    ? productToRender.galleryImages
+    : productToRender.featuredImage
+    ? [productToRender.featuredImage]
+    : [];
 
   return (
     <>
@@ -30,15 +47,15 @@ export default async function UserPage({ params }: Props) {
 
         <div className="basis-[30%] h-full ">
           <h1 className="text-5xl tracking-tighter mb-6 font-black capitalize">
-            {productToRender.name}
+            {productToRender.title}
           </h1>
 
           <p className="text-md tracking-tighter mb-6 font-normal">
-            {productToRender.description.desc}
+            {productToRender.description}
           </p>
           <ul className="text-md tracking-tighter mb-6 font-normal list-inside list-disc">
             <li>
-              Materials:{" "}
+              {t('materials')} {" "}
               {productToRender.materials.map((m, idx: number, arr) => (
                 <span key={m.materialName}>
                   {m.percentage}% {m.materialName}{" "}
@@ -47,58 +64,19 @@ export default async function UserPage({ params }: Props) {
               ))}
             </li>
             <li>
-              Details:{" "}
+              {t('details')} {" "}
               {productToRender.details.map((d, idx: number, arr) => (
                 <span key={d}>
                   {d} {idx === arr.length - 1 ? "" : "- "}
                 </span>
               ))}
             </li>
-            <li>Washing: {productToRender.washing}</li>
+            <li>{t('washing')} {productToRender.washing}</li>
           </ul>
 
           <p className="text-5xl tracking-tighter mb-6 font-black capitalize text-accent">
             € {productToRender.price}.00
           </p>
-
-          {/* <div className="mb-6">
-            <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
-              Sizes
-            </h2>
-            <div className="flex justify-start items-center gap-1">
-              {Object.entries(productToRender.sizes)
-                .map(([name, quantity]) => ({ name, quantity }))
-                .map((s) => (
-                  <button
-                    disabled={s.quantity === 0}
-                    key={s.name}
-                    className={`hover:scale-105 transition-transform ease-in-out delay-100 cursor-pointer flex justify-center items-center uppercase text-sm font-medium border-[1px]  p-1 w-[30px] h-[30px] ${
-                      s.quantity === 0
-                        ? "bg-[#e0dede] border-gray-400 text-gray-500"
-                        : "border-black"
-                    }`}
-                  >
-                    {s.name}
-                  </button>
-                ))}
-            </div>
-          </div> */}
-
-          {/* <div className="mb-6">
-            <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
-              Colors
-            </h2>
-            <div className="flex justify-start items-center gap-1">
-              {productToRender.colors.map((s) => (
-                <button
-                  // disabled={s.quantity === 0}
-                  key={s.name}
-                  className={`hover:scale-105 transition-transform ease-in-out delay-100 cursor-pointer flex justify-center items-center uppercase text-sm font-medium border-[1px] p-1 w-[30px] h-[30px]`}
-                  style={{ backgroundColor: s.color }}
-                ></button>
-              ))}
-            </div>
-          </div> */}
 
           <DesktopSizesAndColors product={productToRender} />
 
@@ -106,7 +84,7 @@ export default async function UserPage({ params }: Props) {
 
           <div className="my-6">
             <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
-              Dimensions
+              {t('dimensions')}
             </h2>
             <DimensionsTable sizes={sizes} />
           </div>
@@ -119,16 +97,16 @@ export default async function UserPage({ params }: Props) {
         <MobileProductGalery images={images} />
 
         <h1 className="text-3xl tracking-tighter mb-6 font-black capitalize">
-          {productToRender.name}
+          {productToRender.title}
         </h1>
 
         <p className="text-md tracking-tighter mb-6 font-normal">
-          {productToRender.description.desc}
+          {productToRender.description}
         </p>
 
         <ul className="text-md tracking-tighter mb-6 font-normal list-inside list-disc">
           <li>
-            Materials:{" "}
+            {t('materials')} {" "}
             {productToRender.materials.map((m, idx: number, arr) => (
               <span key={m.materialName}>
                 {m.percentage}% {m.materialName}{" "}
@@ -137,14 +115,14 @@ export default async function UserPage({ params }: Props) {
             ))}
           </li>
           <li>
-            Details:{" "}
+            {t('details')} {" "}
             {productToRender.details.map((d, idx: number, arr) => (
               <span key={d}>
                 {d} {idx === arr.length - 1 ? "" : "- "}
               </span>
             ))}
           </li>
-          <li>Washing: {productToRender.washing}</li>
+          <li>{t('washing')} {productToRender.washing}</li>
         </ul>
 
         <p className="text-5xl tracking-tighter mb-6 font-black capitalize text-accent">
@@ -153,7 +131,7 @@ export default async function UserPage({ params }: Props) {
 
         <div className="my-6">
           <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
-            Dimensions
+            {t('dimensions')}
           </h2>
           <DimensionsTable sizes={sizes} />
         </div>

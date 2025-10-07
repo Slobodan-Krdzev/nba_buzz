@@ -36,6 +36,21 @@
     "inputPlaceholder": "Е-пошта...",
     "btn": "Претплати се"
   },
+  "filters": {
+    "search": "Претрага",
+    "searchPlaceholder": "Претражи производе...",
+    "collections": "Колекције",
+    "categories": "Категорије",
+    "price": "Цена",
+    "size": "Величина",
+    "all": "Све",
+    "trending": "Популарно",
+    "categoryNames": {
+      "tshirt": "Мајица",
+      "hoodie": "Дукс",
+      "jersey": "Дрес"
+    }
+  },
   "home": {
     "hero": {
       "joker": {
@@ -51,6 +66,24 @@
         "subtitle": "Прославите Пера Антића уз наше оригиналне дизајне, инспирисане македонским наслеђем и смелим кошаркашким стилом."
       }
     }
+  },
+  "product": {
+    "notFound": "Нема производа",
+    "materials": "Материјали:",
+    "details": "Детаљи:",
+    "washing": "Прање:",
+    "dimensions": "Димензије",
+    "sizes": "Величине",
+    "colors": "Боје",
+    "close": "Затвори",
+    "selectSizesColors": "Изаберите величине и боје",
+    "viewCart": "Погледај корпу",
+    "addToCart": "Додај у корпу",
+    "selectColorSizeWarning": "Изаберите боју и величину!",
+    "sizeHeader": "Величина",
+    "lengthHeader": "Дужина",
+    "waistHeader": "Струк",
+    "shoulderHeader": "Рамена"
   },
   "joinUs": {
     "title": "ТУ СМО ЗА ВАС 24/7",
@@ -83,7 +116,16 @@
     "title": "Ваш профил",
     "ordersTitle": "Поруџбине",
     "helpTitle": "Потребна помоћ?",
-    "helpText": "Контактирајте продавача за помоћ око поруџбина или налога."
+    "helpText": "Контактирајте продавача за помоћ око поруџбина или налога.",
+    "orders": {
+      "filters": "Филтери",
+      "status": { "all": "Све", "open": "Отворене", "finished": "Завршене" },
+      "to": "до",
+      "empty": "Нема поруџбина.",
+      "prev": "Назад",
+      "next": "Напред",
+      "page": "Страна {current} од {total}"
+    }
   },
   "auth": {
     "login": {

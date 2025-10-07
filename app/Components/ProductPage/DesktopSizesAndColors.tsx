@@ -2,12 +2,14 @@
 import { Product } from "@/app/Types/Types";
 import React, { useState } from "react";
 import CounterAddButton from "./CounterAddButton";
+import { useTranslations } from "next-intl";
 
 interface DesktopSizesAndColorsProps {
   product: Product;
 }
 
 const DesktopSizesAndColors = ({ product }: DesktopSizesAndColorsProps) => {
+  const t = useTranslations('product');
   const [itemColorSize, setItemColorSize] = useState({
     color: "",
     size: "",
@@ -16,7 +18,7 @@ const DesktopSizesAndColors = ({ product }: DesktopSizesAndColorsProps) => {
   return (
     <div className="mb-6">
       <h2 className="text-xl tracking-tighter mb-2 font-black capitalize">
-        Sizes
+        {t('sizes')}
       </h2>
       <div className="flex justify-start items-center gap-1">
         {Object.entries(product.sizes)
@@ -45,7 +47,7 @@ const DesktopSizesAndColors = ({ product }: DesktopSizesAndColorsProps) => {
 
       <div className="mt-6">
         <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
-          Colors
+          {t('colors')}
         </h2>
         <div className="flex justify-start items-center gap-1">
           {product.colors.map((s) => (

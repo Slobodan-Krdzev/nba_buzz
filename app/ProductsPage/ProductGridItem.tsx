@@ -18,18 +18,12 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const images = useMemo(() => {
-    const g = product.gallery;
-    return [
-      g.front,
-      g.back,
-      g.left,
-      g.right,
-      g.modelFront,
-      g.modelBack,
-      g.modelLeft,
-      g.modelRight,
-    ].filter(Boolean);
-  }, [product.gallery]);
+    if (product.galleryImages && product.galleryImages.length > 0) {
+      return product.galleryImages;
+    }
+    if (product.featuredImage) return [product.featuredImage];
+    return [] as string[];
+  }, [product.galleryImages, product.featuredImage]);
 
   useEffect(() => {
     if (!swiperRef.current || images.length < 2) return;
@@ -61,7 +55,7 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
               <SwiperSlide key={idx} >
                 <Image
                   src={src}
-                  alt={`${product.name}-${idx}`}
+                  alt={`${product.title}-${idx}`}
                   width={1080}
                   height={1280}
                   className=" w-full h-full object-cover"
@@ -72,15 +66,15 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
         ) : (
           <Image
             src={images[0] ?? "/placeholder.jpg"}
-            alt={product.name}
+            alt={product.title}
             width={400}
-            height={4500}
+            height={500}
             className="rounded-md mb-3 md:mb-5 w-full h-[220px] sm:h-[280px] md:h-[320px] lg:h-[380px] object-cover"
           />
         )}
-        {product.name && (
+        {product.type?.name && (
           <span className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
-            {product.name}
+            {product.type.name}
           </span>
         )}
         <span className="absolute bottom-2 right-2 bg-white shadow px-2 py-1 text-sm rounded">
@@ -88,9 +82,9 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
         </span>
       </div>
 
-      <h3 className="mt-3 text-sm font-medium">{product.name}</h3>
+      <h3 className="mt-3 text-sm font-medium">{product.title}</h3>
       <p className="text-gray-700">$ {product.price}.00</p>
-      <Link href={`/products/${product.id}`} className="block text-center mt-2 w-full bg-accent text-white py-2 rounded hover:bg-[#d8b249]">
+      <Link href={`/products/${product._id}`} className="block text-center mt-2 w-full bg-accent text-white py-2 rounded hover:bg-[#d8b249]">
         Buy Now 
       </Link>
     </div>

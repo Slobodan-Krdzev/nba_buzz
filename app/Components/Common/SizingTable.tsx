@@ -1,4 +1,6 @@
+"use client";
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface SizeDimension {
   size: string;
@@ -12,14 +14,15 @@ interface DimensionsTableProps {
 }
 
 const DimensionsTable: React.FC<DimensionsTableProps> = ({ sizes }) => {
+  const t = useTranslations('product');
   return (
     <table className="w-full text-left border-collapse ">
       <thead>
         <tr className="bg-[#e0dede]">
-          <th className="p-2 border text-center">Size</th>
-          <th className="p-2 border text-center">Length</th>
-          <th className="p-2 border text-center">Waist Size</th>
-          <th className="p-2 border text-center">Shoulder Size</th>
+          <th className="p-2 border text-center">{t('sizeHeader')}</th>
+          <th className="p-2 border text-center">{t('lengthHeader')}</th>
+          <th className="p-2 border text-center">{t('waistHeader')}</th>
+          <th className="p-2 border text-center">{t('shoulderHeader')}</th>
         </tr>
       </thead>
       <tbody>

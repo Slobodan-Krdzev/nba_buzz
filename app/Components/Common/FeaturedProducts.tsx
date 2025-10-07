@@ -1,29 +1,33 @@
-'use client'
-import { useEffect, useState } from 'react';
-import { allProducts } from '../Home/ListItemsByTypeSection';
 import ItemsLister from './ItemsLister';
+import { Product } from '@/app/Types/Types';
 
-function getRandomItems<T>(arr: T[], count: number): T[] {
-  if (count >= arr.length) return [...arr]; // return all if count > length
-
-  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+function pickRandom<T>(arr: T[], count: number): T[] {
+  if (!Array.isArray(arr) || arr.length === 0) return [];
+  if (count >= arr.length) return [...arr];
+  const shuffled = [...arr].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, count);
 }
 
-const FeaturedProducts = () => {
-  const [randomProducts, setRandomProducts] = useState<typeof allProducts>([]);
+export default async function FeaturedProducts() {
+  let products: Product[] = [];
+  try {
+    const res = await fetch('https://adminbuzzmk.com/api/products', { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      products = (data?.products ?? []) as Product[];
+    }
+  } catch {
+    products = [];
+  }
 
-  useEffect(() => {
-    setRandomProducts(getRandomItems(allProducts, 6));
-  }, []);
+  const randomProducts = pickRandom(products, 6);
+
+  if (randomProducts.length === 0) return null;
 
   return (
     <section className="py-16">
-      {randomProducts.length > 0 && (
-        <ItemsLister items={randomProducts} title="Featured Products" />
-      )}
+      <ItemsLister items={randomProducts} title="Featured Products" />
     </section>
   );
-};
+}
 
-export default FeaturedProducts;

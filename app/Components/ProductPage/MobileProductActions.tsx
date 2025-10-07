@@ -8,12 +8,14 @@ import { clearCounter } from "@/app/Redux/Slices/counterSlice";
 import { useRouter } from "next/navigation";
 import { addToCart } from "@/app/Redux/Slices/cartSlice";
 import { ShoppingCartIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface MobileProductActionsProps {
   product: Product;
 }
 
 const MobileProductActions = ({ product }: MobileProductActionsProps) => {
+  const t = useTranslations('product');
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const [isAdded, setIsAdded] = useState(false);
@@ -60,7 +62,7 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
         className="fixed lg:hidden right-2 bottom-[75px] z-[9100] px-6 py-2 rounded bg-black text-white font-bold shadow-lg"
         onClick={() => setMenuOpen(true)}
       >
-        Sizes & Colors
+        {t('sizes')} & {t('colors')}
       </button>
 
       {/* Slide-up menu */}
@@ -77,15 +79,15 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
             className="self-end text-black font-bold"
             onClick={() => setMenuOpen(false)}
           >
-            Close
+            {t('close')}
           </button>
           <div className="text-2xl tracking-tighter font-black">
-            Select Sizes & Colors
+            {t('selectSizesColors')}
           </div>
           <div>
             <div className="mb-6">
               <h2 className="text-xl tracking-tighter mb-2 font-black capitalize">
-                Sizes
+                {t('sizes')}
               </h2>
               <div className="flex justify-start items-center gap-1">
                 {Object.entries(product.sizes)
@@ -116,7 +118,7 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
 
           <div>
             <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
-              Colors
+              {t('colors')}
             </h2>
             <div className="flex justify-start items-center gap-1">
               {product.colors.map((s) => (
@@ -153,10 +155,10 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
         >
           {isAdded ? (
             <>
-              View Cart <ShoppingCartIcon size={15} />
+              {t('viewCart')} <ShoppingCartIcon size={15} />
             </>
           ) : (
-            "Add To Cart"
+            t('addToCart')
           )}
         </button>
       </div>
@@ -167,7 +169,7 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
               className={`absolute left-1/2 -translate-x-1/2 bottom-28 bg-red-500 text-white px-4 py-2 rounded shadow-lg text-sm font-semibold z-50
                 ${shake ? "animate-shake" : ""}`}
             >
-              Please select color and size!
+              {t('selectColorSizeWarning')}
             </div>
           )}
 
