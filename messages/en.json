@@ -7,8 +7,14 @@
         "account": "Account"
     },
     "footer": {
-       "subtitle": "NBA based apperral brand. ",
-       "subtitle2": "Top notch quality & prints - unique ideas -in-house design."
+      "subtitle": "NBA based apperral brand. ",
+      "subtitle2": "Top notch quality & prints - unique ideas -in-house design.",
+      "info": "Info",
+      "faq": "FAQ",
+      "termsAndPrivacy": "Terms and Privacy",
+      "myAccount": "My Account",
+      "wishlist": "Wishlist",
+      "poweredBy": "Powered By:"
     },
     "standOut": {
         "title": "FOR THOSE WHO WANT TO STAND OUT",
@@ -59,6 +65,63 @@
       "page": "Page {current} of {total}"
     }
   },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": {
+      "0": {
+        "q": "How do I place an order?",
+        "a": "Simply browse our collections, add your favorite items to the cart, and proceed to checkout. Follow the instructions to complete your purchase securely."
+      },
+      "1": {
+        "q": "What payment methods do you accept?",
+        "a": "Currently we only support pay on delivery."
+      },
+      "2": {
+        "q": "How long does shipping take?",
+        "a": "Shipping times vary by location, but most orders are delivered within 3-7 business days. You’ll receive a tracking number once your order ships."
+      },
+      "3": {
+        "q": "Can I return or exchange an item?",
+        "a": "Yes! If you’re not satisfied, you can return or exchange your item within 14 days of delivery. Please see our Returns Policy for details."
+      },
+      "4": {
+        "q": "Are your products authentic and in-house designed?",
+        "a": "Absolutely. All designs are created by our team and produced with premium materials for true basketball fans."
+      },
+      "5": {
+        "q": "How do I contact support?",
+        "a": "You can reach us via email at info@nbabuzz.mk or use the contact form on our Contact page. Our team is available 24/7."
+      }
+    }
+  },
+  "terms": {
+    "tagline": "For those who want to stand out.",
+    "privacyTitle": "Privacy Policy",
+    "intro": "– NBABUZZ.mk respects your privacy and is committed to protecting the personal data you share with us.",
+    "collectTitle": "What data do we collect:",
+    "collect": {
+      "name": "Name and surname",
+      "contact": "Email address and phone number",
+      "address": "Delivery address",
+      "payment": "Payment information (processed through secure payment processors – we do not store your card details)"
+    },
+    "useTitle": "How we use your data:",
+    "use": {
+      "processing": "For processing and delivering orders",
+      "notifications": "For order status notifications",
+      "promo": "For promotional email messages (only with your consent)",
+      "improve": "For improving our service"
+    },
+    "protectionTitle": "Data protection:",
+    "protectionText": "Your information is stored securely and is not shared with third parties, except when necessary for: Delivery (courier services) Payment (bank/payment processors)",
+    "rightsTitle": "Your rights:",
+    "rights": {
+      "access": "Access and correction of data",
+      "delete": "Deletion of data (\"right to be forgotten\")",
+      "unsubscribe": "Unsubscribe from marketing messages"
+    },
+    "contactTitle": "For questions, contact:"
+  },
   "home": {
     "hero": {
       "joker": {
@@ -72,7 +135,13 @@
       "antic": {
         "title": "Antic — The Real MVP",
         "subtitle": "Celebrate Pero Antić with in-house designs blending Macedonian heritage and bold hoops style."
-      }
+      },
+      "details": "Details"
+    },
+    "titles": {
+      "hoodies": "Hoodies",
+      "tshirts": "T-Shirts",
+      "jerseys": "Jerseys"
     }
   },
   "product": {

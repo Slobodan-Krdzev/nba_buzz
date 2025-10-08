@@ -6,14 +6,12 @@ import { Link } from "@/i18n/navigation";
 import { usePathname } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 import LocaleSwitcher from "./LocalleSwitcher";
+import { useTranslations } from "next-intl";
 
-const navItems = [
-  { title: "Products", link: "/products" },
-  { title: "Our Story", link: "/about" },
-  { title: "Contact", link: "/contact" },
-];
+// Navigation items are built from translations to support localized headers
 
 const Navbar = () => {
+  const t = useTranslations("navbar");
   const [isOpen, setIsOpen] = useState(false);
   // const pathname = usePathname();
 
@@ -85,7 +83,11 @@ useEffect(() => {
         <nav className="hidden xl:flex items-center gap-6  justify-end">
           <LocaleSwitcher />
 
-          {navItems.map((item) => (
+          {[
+            { title: t("shop"), link: "/products" },
+            { title: t("aboutUs"), link: "/ourStory" },
+            { title: t("contact"), link: "/contact" },
+          ].map((item) => (
             <Link
               href={item.link}
               key={item.title}
@@ -121,42 +123,82 @@ useEffect(() => {
 
         {/* Slide-in menu */}
         {isOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.3 }}
-            className="border-2 fixed top-0 right-0 w-full h-full bg-white z-50 p-6 flex flex-col"
-          >
-            <div className="flex justify-between mb-8">
-              <Link href={"/"} className="flex items-center gap-2">
-                <Image
-                  src={"/common/nbaBuzzLogo.png"}
-                  alt="Logo"
-                  width={50}
-                  height={120}
-                />
-                <span className="font-bold">NBABUZZ.MK</span>
-              </Link>
-
-              <button onClick={() => setIsOpen(false)}>
-                <X size={28} />
-              </button>
-            </div>
-            <div className="flex flex-col gap-6 text-xl font-medium">
-              {navItems.map((item) => (
-                <Link
-                  href={item.link}
-                  key={item.title}
-                  className="font-medium cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75"
-                >
-                  {item.title}
+          <>
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black/40 z-[99998]"
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-0 right-0 h-full w-[85%] sm:w-[70%] max-w-[420px] bg-white z-[99999] p-6 flex flex-col shadow-2xl rounded-l-2xl border-l border-gray-200"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <Link href={"/"} className="flex items-center gap-2">
+                  <Image
+                    src={"/common/nbaBuzzLogo.png"}
+                    alt="Logo"
+                    width={50}
+                    height={120}
+                  />
+                  <span className="font-bold">NBABUZZ.MK</span>
                 </Link>
-              ))}
-              <Link href={"/cart"}>🛒 Cart</Link>
-              <span>👤 Account</span>
-            </div>
-          </motion.div>
+                <div className="flex items-center gap-3">
+                  <LocaleSwitcher />
+                  <button
+                    aria-label="Close navigation"
+                    onClick={() => setIsOpen(false)}
+                    className="rounded-full p-2 hover:bg-gray-100 active:bg-gray-200"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+              </div>
+              <nav className="flex flex-col gap-2 text-base">
+                {[
+                  { title: t("shop"), link: "/products" },
+                  { title: t("aboutUs"), link: "/ourStory" },
+                  { title: t("contact"), link: "/contact" },
+                ].map((item) => (
+                  <Link
+                    href={item.link}
+                    key={item.title}
+                    className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span className="font-medium">{item.title}</span>
+                    <span className="text-gray-400">›</span>
+                  </Link>
+                ))}
+                <Link
+                  href={"/cart"}
+                  className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span className="flex items-center gap-3 font-medium">
+                    <ShoppingCart className="w-5 h-5" /> {t("cart")}
+                  </span>
+                  <span className="text-gray-400">›</span>
+                </Link>
+                <Link
+                  href={"/login"}
+                  className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span className="flex items-center gap-3 font-medium">
+                    <User className="w-5 h-5" /> {t("account")}
+                  </span>
+                  <span className="text-gray-400">›</span>
+                </Link>
+              </nav>
+              <div className="mt-auto pt-6 text-xs text-gray-400">
+                © {new Date().getFullYear()} NBABUZZ.MK
+              </div>
+            </motion.div>
+          </>
         )}
       </div>
     </header>

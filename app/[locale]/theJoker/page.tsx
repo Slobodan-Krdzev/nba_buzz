@@ -11,8 +11,8 @@ const TheJokerPage = () => {
   return (
     <>
       <section
-        className="w-full flex flex-col justify-center items-center text-white relative bg-cover bg-center"
-        style={{ backgroundImage: "url(/common/heroSection3.png)", height: "calc(100dvh - 62.6px)" }}
+        className="w-full flex flex-col justify-center items-center text-white relative bg-cover bg-center h-[calc(40dvh-70px)] md:h-[calc(60dvh-70px)] lg:h-[calc(100dvh-62.6px)]"
+        style={{ backgroundImage: "url(/common/heroSection3.png)"}}
       >
         <div className="absolute inset-0 bg-black/40 z-0" />
         <div className="relative z-10 text-center">

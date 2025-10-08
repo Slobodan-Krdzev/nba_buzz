@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 interface FooterList {
   title: string;
@@ -10,43 +11,45 @@ interface FooterList {
   }[];
 }
 
-export const footerLists: FooterList[] = [
-  {
-    title: "Shop",
-    links: [
-      { title: "Jerseys", link: "/products" },
-      { title: "T-Shirts", link: "/products" },
-      { title: "Hoodies", link: "/products" },
-    ],
-  },
-  {
-    title: "Contact",
-    links: [
-      { title: "E-Mail: office@nbabuzzmk.com", link: "/contact" },
-      { title: "Phone: +38977551012", link: "/contact" },
-    ],
-  },
-  {
-    title: "Info",
-    links: [
-      { title: "Our Story", link: "/about-us" },
-
-      { title: "FAQ", link: "/faq" },
-      { title: "Terms and Privacy", link: "/terms-and-privacy" },
-    ],
-  },
-  {
-    title: "Account",
-    links: [
-      { title: "Login", link: "/login" },
-      { title: "My Account", link: "/account" },
-      { title: "Orders", link: "/account" },
-      { title: "Whishlist", link: "/account" },
-    ],
-  },
-];
+// Footer lists are built from translations for localized UI
 
 const Footer = () => {
+  const t = useTranslations();
+
+  const footerLists: FooterList[] = [
+    {
+      title: t("navbar.shop"),
+      links: [
+        { title: t("home.hero.joker.title"), link: "/theJoker" },
+        { title: t("home.hero.luka.title"), link: "/luka" },
+        { title: t("home.hero.antic.title"), link: "/antic" },
+      ],
+    },
+    {
+      title: t("navbar.contact"),
+      links: [
+        { title: `${t("contact.cards.email")} office@nbabuzzmk.com`, link: "/contact" },
+        { title: `${t("contact.cards.phone")} +38977551012`, link: "/contact" },
+      ],
+    },
+    {
+      title: t("footer.info"),
+      links: [
+        { title: t("ourStory.title"), link: "/ourStory" },
+        { title: t("footer.faq"), link: "/faq" },
+        { title: t("footer.termsAndPrivacy"), link: "/terms-and-privacy" },
+      ],
+    },
+    {
+      title: t("navbar.account"),
+      links: [
+        { title: t("auth.login.title"), link: "/login" },
+        { title: t("footer.myAccount"), link: "/account" },
+        { title: t("profile.ordersTitle"), link: "/account" },
+        { title: t("footer.wishlist"), link: "/account" },
+      ],
+    },
+  ];
   return (
     <footer className='bg-[url("/common/footerBg.png")] bg-cover relative text-white'>
       <div
@@ -68,8 +71,8 @@ const Footer = () => {
                 NBABUZZMK
               </h4>
               <p className="text-sm md:text-xl">
-                NBA based apperral brand. <br />
-                Top notch quality & prints - unique ideas -in-house design.
+                {t("footer.subtitle")} <br />
+                {t("footer.subtitle2")}
               </p>
             </div>
           </div>
@@ -102,7 +105,7 @@ const Footer = () => {
           className="text-xs md:text-sm flex justify-end items-center gap-1"
           target="_blank"
         >
-          Powered By:
+          {t("footer.poweredBy")}
           <Image src={"/zicLogo.webp"} alt={""} width={80} height={50} />{" "}
         </Link>
       </div>

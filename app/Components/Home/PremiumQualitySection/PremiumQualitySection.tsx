@@ -34,7 +34,7 @@ export default function PremiumQualitySection() {
     <section className="px-6 py-[8dvh] xl:py-[16dvh] bg-white">
       <SectionTitle title={t("title")} />
 
-      <div className="grid md:grid-cols-3 gap-8 lg:gap-20 w-[90%] md:w-[70%] lg:w-[80%] m-auto mt-[5dvh]">
+      <div className="grid lg:grid-cols-3 gap-8 lg:gap-20 w-[90%] md:w-[70%] lg:w-[80%] m-auto mt-[5dvh]">
         {/* Card 1 */}
         {features.map((item, index) => (
         <SingleFeature

@@ -3,6 +3,7 @@ import { HeroSlideItemType } from "@/app/Types/Types";
 import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import BouncingBasketball from "@/app/Components/Common/BouncingBasketball";
+import { useTranslations } from "next-intl";
 
 interface SwiperItemProps {
   slide: HeroSlideItemType;
@@ -10,15 +11,13 @@ interface SwiperItemProps {
 }
 
 const SwiperItem = ({ slide, isActive }: SwiperItemProps) => {
-
-
+  const t = useTranslations("home.hero");
   return (
       <section
         style={{
           backgroundImage: `url(${slide.img})`,
-          height: "calc(100dvh - 62.6px)",
         }}
-        className={`relative bg-cover bg-center w-full`}
+        className={`relative bg-cover bg-center w-full h-[calc(40dvh-70px)] md:h-[calc(60dvh-70px)] lg:h-[calc(100dvh-62.6px)]`}
       >
         <div className="w-full h-full bg-black/40 flex justify-center items-center">
           <div className="flex flex-col justify-center items-center w-[95%] md:w-[70%] xl:w-[50%]">
@@ -50,7 +49,7 @@ const SwiperItem = ({ slide, isActive }: SwiperItemProps) => {
              bg-[length:200%_200%]
              animate-gradientMove text-white hover:text-titles py-3 px-6 hover:bg-accentLight transition text-sm lg:text-xl"
             >
-              <Link href={slide.link}>Details</Link>
+              <Link href={slide.link}>{t("details")}</Link>
             </motion.div>
           </div>
         </div>
