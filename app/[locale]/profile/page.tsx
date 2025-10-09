@@ -4,13 +4,13 @@ import OrdersList from "@/app/Components/Profile/OrdersList";
 import UserCard from "@/app/Components/Profile/UserCard";
 import ContactForm from "@/app/Components/Contact/ContactForm";
 import FavoritesSection from "@/app/Components/Profile/FavoritesSection";
-import { Order, UserProfile } from "@/app/Types/Types";
+import { Order, OrderStatus, UserProfile } from "@/app/Types/Types";
 import { useTranslations } from "next-intl";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/Redux/store";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { clearUser, setToken, setUser } from "@/app/Redux/Slices/userSlice";
+import { setUser } from "@/app/Redux/Slices/userSlice";
 import { AppDispatch } from "@/app/Redux/store";
 import { useRouter } from "@/i18n/navigation";
 
@@ -43,7 +43,7 @@ export default function ProfilePage() {
   const authToken = useSelector((s: RootState) => s.user.token);
   const dispatch = useDispatch<AppDispatch>();
   const user = storedUser ?? getDummyUser();
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [, setOrders] = useState<Order[]>([]);
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   useEffect(() => setMounted(true), []);
@@ -118,7 +118,7 @@ export default function ProfilePage() {
         const mapped: Order[] = items.map((o) => ({
           id: String(o._id || o.id),
           date: String(o.placedAt || o.createdAt || new Date().toISOString()),
-          status: String(o.status || 'pending').toLowerCase() as any,
+          status: String(o.status || 'pending').toLowerCase() as OrderStatus,
           total: Number(o.total) || 0,
           items: (Array.isArray(o.items) ? o.items : []).map((it: unknown) => {
             const item = it as Record<string, unknown>;

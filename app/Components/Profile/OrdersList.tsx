@@ -63,7 +63,7 @@ export default function OrdersList() {
         const mapped: Order[] = items.map((o) => ({
           id: String(o._id || o.id),
           date: String(o.placedAt || o.createdAt || new Date().toISOString()),
-          status: String(o.status || 'pending').toLowerCase() as any,
+          status: String(o.status || 'pending').toLowerCase() as OrderStatus,
           total: Number(o.total) || 0,
           items: (Array.isArray(o.items) ? o.items : []).map((it: unknown) => {
             const item = it as Record<string, unknown>;
@@ -150,7 +150,7 @@ export default function OrdersList() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex items-center gap-3">
                 <span className={`px-2.5 py-1 rounded-full text-xs font-semibold capitalize ${statusToClasses[order.status] || 'bg-gray-100 text-gray-800'}`}>
-                  {t(`status.${order.status}` as any)}
+                  {t(`status.${order.status}`)}
                 </span>
                 <span className="text-sm text-titles">
                   {new Date(order.date).toLocaleDateString()}

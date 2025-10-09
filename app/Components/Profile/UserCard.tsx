@@ -21,7 +21,7 @@ export default function UserCard({ user }: UserCardProps) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const authToken = useSelector((s: RootState) => s.user.token);
-  const [uploading, setUploading] = useState(false);
+  const [, setUploading] = useState(false);
   const [fileInputKey, setFileInputKey] = useState(0);
   const [shippingClasses, setShippingClasses] = useState<Array<{ _id: string, country: string, name: string, price: number }>>([]);
 

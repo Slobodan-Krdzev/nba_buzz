@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslations } from 'next-intl';
 import { clearCart } from '@/app/Redux/Slices/cartSlice';
 import Image from 'next/image';
+import { OrderPayload } from '@/app/Types/Types';
 
 const CheckoutForm = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
@@ -37,7 +38,7 @@ const CheckoutForm = () => {
     phone: '',
     address: '',
     city: '',
-    county: '',
+    country: '',
     zip: '',
   });
 
@@ -54,11 +55,14 @@ const CheckoutForm = () => {
         phone: f.phone || user.address?.phone || user.phone || '',
         address: f.address || user.address?.street || '',
         city: f.city || user.address?.city || '',
-        county: f.county || user.address?.state || '',
+        country: f.country || user.address?.state || '',
         zip: f.zip || user.address?.zip || '',
       }));
+      if (!country && (user.address?.state as string | undefined)) {
+        setCountry(user.address.state as string);
+      }
     }
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user, country]);
 
   // Fetch shipping classes and try to preselect user's saved country
   useEffect(() => {
@@ -85,7 +89,7 @@ const CheckoutForm = () => {
         }
       } catch { }
     })();
-  }, [isAuthenticated, authToken]);
+  }, [isAuthenticated, authToken, country]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -93,7 +97,7 @@ const CheckoutForm = () => {
 
   function validate(): string | null {
     if (selectedItems.length === 0) return t('validation.noItems') as string;
-    const required = ['name', 'lastname', 'email', 'phone', 'address', 'city', 'county', 'zip'] as const;
+    const required = ['name', 'lastname', 'email', 'phone', 'address', 'city', 'country', 'zip'] as const;
     for (const key of required) {
       if (!form[key] || !form[key].trim()) return t('validation.required') as string;
     }
@@ -101,7 +105,7 @@ const CheckoutForm = () => {
     if (!emailOk) return t('validation.email') as string;
     const digits = form.phone.replace(/\D/g, '');
     if (digits.length < 6) return t('validation.phone') as string;
-    if (!country) return t('validation.required') as string;
+    if (!country && !form.country) return t('validation.required') as string;
     return null;
   }
 
@@ -116,18 +120,19 @@ const CheckoutForm = () => {
         title: ci.product.title as unknown as string,
         quantity: ci.qty,
         price: ci.product.price,
+        imageUrl: (ci.product as unknown as { featuredImage: string })?.featuredImage || '',
         size: ci.size,
         color: ci.color,
       }));
-      const orderPayload: any = {
+      const orderPayload: OrderPayload = {
         items,
         shippingAddress: {
           email: form.email,
           firstName: form.name,
           lastName: form.lastname,
-          street1: form.address,
+          street: form.address,
           city: form.city,
-          state: form.county,
+          state: form.country,
           country: country,
           zip: form.zip,
           phone: form.phone,
@@ -161,7 +166,7 @@ const CheckoutForm = () => {
                 lastName: form.lastname,
                 street1: form.address,
                 city: form.city,
-                state: form.county,
+                state: form.country,
                 zip: form.zip,
                 phone: form.phone,
               },
@@ -177,7 +182,7 @@ const CheckoutForm = () => {
       } else {
         router.push('/');
       }
-    } catch (err) {
+    } catch {
       setErrors(t('validation.submitFailed') as string);
     }
   };
@@ -281,8 +286,8 @@ const CheckoutForm = () => {
               />
               <select
                 name="country"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
+                value={country || form.country}
+                onChange={(e) => { setCountry(e.target.value); setForm((f) => ({ ...f, country: e.target.value })); }}
                 required
                 className="w-1/2 border rounded px-3 py-2 bg-white"
               >
@@ -341,7 +346,7 @@ const CheckoutForm = () => {
                   phone: '',
                   address: '',
                   city: '',
-                  county: '',
+                  country: '',
                   zip: '',
                 });
                 router.push('/');

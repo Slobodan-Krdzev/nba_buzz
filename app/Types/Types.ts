@@ -59,6 +59,10 @@ export interface HeroSlideItemType {
 }
 
 export interface UserAddress {
+  email?: string
+  firstName?: string
+  lastName?: string
+  country?: string
   street: string
   street2?: string
   city: string
@@ -74,7 +78,7 @@ export interface UserProfile {
   imageUrl: string
   address: UserAddress
   email: string
-  phone: string
+  phone?: string
   marketingOptIn?: boolean
 }
 
@@ -86,6 +90,8 @@ export interface OrderItemSummary {
   quantity: number
   price: number
   imageUrl: string
+  size?: string
+  color?: string
 }
 
 export interface Order {
@@ -94,4 +100,11 @@ export interface Order {
   status: OrderStatus
   total: number
   items: OrderItemSummary[]
+}
+
+export interface OrderPayload {
+  items: OrderItemSummary[]
+  shippingAddress: UserAddress
+  notes?: string
+  couponCode?: string
 }

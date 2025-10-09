@@ -1,15 +1,15 @@
-"use client";
-import React from "react";
-import { allProducts } from "../Home/ListItemsByTypeSection";
+import { Product } from "@/app/Types/Types";
 import ItemsLister from "../Common/ItemsLister";
 
-const itemsToList = allProducts.filter((item) => item.collectionId === 1);
+type ItemsGridProps = {
+  items: Product[];
+};
 
-const ItemsGrid = () => {
+const ItemsGrid = ({ items }: ItemsGridProps) => {
 
   return (
     <section>
-      <ItemsLister title="The Joker Collection" items={itemsToList} />
+      <ItemsLister title="The Joker Collection" items={items} />
     </section>
   );
 };

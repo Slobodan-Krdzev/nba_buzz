@@ -1,13 +1,13 @@
 "use client";
-import { motion } from "framer-motion";
-import React, { useState } from "react";
-import FormInput from "./FormInput";
-import { useTranslations } from "next-intl";
-import { useDispatch } from "react-redux";
+import { setToken, setUser } from "@/app/Redux/Slices/userSlice";
 import { AppDispatch } from "@/app/Redux/store";
-import { setUser, setToken } from "@/app/Redux/Slices/userSlice";
-import { useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import FormInput from "./FormInput";
 
 interface Props { tNs?: string }
 type RegisterFormData = {

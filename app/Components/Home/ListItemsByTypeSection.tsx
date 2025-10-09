@@ -3,13 +3,14 @@ import React from "react";
 import ItemsLister from "../Common/ItemsLister";
 import { getTranslations } from "next-intl/server";
 
-type ListItemsByTypeSectionProps = {locale: string};
+type ListItemsByTypeSectionProps = { locale: string };
 
-const ListItemsByTypeSection = async ({locale}: ListItemsByTypeSectionProps) => {
+const ListItemsByTypeSection = async ({ locale }: ListItemsByTypeSectionProps) => {
   const t = await getTranslations("home.titles");
 
   const res = await fetch(`https://adminbuzzmk.com/api/products?locale=${locale.toUpperCase()}`);
-  const data: {products: Product[]} = await res.json();
+  const data: { products: Product[] } = await res.json();
+
 
   console.log("DATA OD LISTER", data);
 

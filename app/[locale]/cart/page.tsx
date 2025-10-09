@@ -42,7 +42,7 @@ const CartPage = () => {
       if (!res.ok) throw new Error('Invalid coupon');
       const data = await res.json();
       dispatch(applyCoupon({ code: data.coupon.code, discountAmount: data.discount }));
-    } catch (e) {
+    } catch {
       alert('Invalid or ineligible coupon');
     }
   };
