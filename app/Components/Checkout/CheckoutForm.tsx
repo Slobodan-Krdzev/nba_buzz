@@ -214,7 +214,7 @@ const CheckoutForm = () => {
               <div className="text-sm text-gray-600">{t('noItems')}</div>
             )}
             {selectedItems.map((item) => (
-              <div key={(item as any).lineId || `${item.product._id}:${item.size}:${item.color}`} className="flex items-center gap-3 py-2 border-b last:border-b-0">
+              <div key={(item as unknown as { lineId: string }).lineId || `${item.product._id}:${item.size}:${item.color}`} className="flex items-center gap-3 py-2 border-b last:border-b-0">
                 <div className="relative w-16 h-16 rounded overflow-hidden bg-gray-100">
                   <Image src={item.product.galleryImages?.[0] || item.product.featuredImage || '/placeholder.jpg'} alt={String(item.product.title)} fill sizes="64px" className="object-cover" />
                 </div>

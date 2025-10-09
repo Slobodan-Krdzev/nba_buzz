@@ -93,14 +93,14 @@ const CartPage = () => {
               <div className="bg-gray-50 rounded-lg p-2 md:p-4">
                 {cart.map((item) => (
                   <div
-                    key={(item as any).lineId || `${item.product._id}:${item.size}:${item.color}`}
+                    key={(item as unknown as { lineId: string }).lineId || `${item.product._id}:${item.size}:${item.color}`}
                     className="relative flex  flex-row items-stretch tracking-tighter border-b py-4 last:border-b-0"
                   >
                     <div className="flex items-center w-auto ">
                       <input
                         type="checkbox"
                         checked={item.checked}
-                        onChange={() => dispatch(toggleCheck((item as any).lineId || `${item.product._id}:${item.size}:${item.color}`))}
+                        onChange={() => dispatch(toggleCheck((item as unknown as { lineId: string }).lineId || `${item.product._id}:${item.size}:${item.color}`))}
                         className="mr-2 md:mr-4"
                       />
                       <Image
@@ -145,7 +145,7 @@ const CartPage = () => {
                           onClick={() =>
                             dispatch(
                               updateQty({
-                                lineId: (item as any).lineId || `${item.product._id}:${item.size}:${item.color}`,
+                                lineId: (item as unknown as { lineId: string }).lineId || `${item.product._id}:${item.size}:${item.color}`,
                                 qty: item.qty - 1,
                               })
                             )
@@ -161,7 +161,7 @@ const CartPage = () => {
                           onClick={() =>
                             dispatch(
                               updateQty({
-                                lineId: (item as any).lineId || `${item.product._id}:${item.size}:${item.color}`,
+                                lineId: (item as unknown as { lineId: string }).lineId || `${item.product._id}:${item.size}:${item.color}`,
                                 qty: item.qty + 1,
                               })
                             )
@@ -191,7 +191,7 @@ const CartPage = () => {
                     </div>
                     <button
                       className="text-red-500 mt-2 md:mt-0 absolute bottom-6 right-2 md:right-5"
-                      onClick={() => dispatch(removeFromCart((item as any).lineId || `${item.product._id}:${item.size}:${item.color}`))}
+                      onClick={() => dispatch(removeFromCart((item as unknown as { lineId: string }).lineId || `${item.product._id}:${item.size}:${item.color}`))}
                     >
                       <Trash2 size={20} />
                     </button>
