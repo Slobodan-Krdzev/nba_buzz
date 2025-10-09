@@ -177,11 +177,14 @@ const CheckoutForm = () => {
       setShowModal(true);
       dispatch(clearCart());
       // Redirect based on auth status
-      if (isAuthenticated) {
-        router.push('/profile');
-      } else {
-        router.push('/');
-      }
+
+      setTimeout(() => {
+        if (isAuthenticated) {
+          router.push('/profile');
+        } else {
+          router.push('/');
+        }
+      }, 3000);
     } catch {
       setErrors(t('validation.submitFailed') as string);
     }
