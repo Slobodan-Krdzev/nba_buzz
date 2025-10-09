@@ -7,6 +7,7 @@ export type CartItem = {
   checked: boolean;
   color: string;
   size: string;
+  lineId?: string;
 };
 
 type CartState = {
@@ -26,30 +27,35 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     setCart(state, action: PayloadAction<CartItem[]>) {
-      state.items = action.payload;
+      state.items = action.payload.map((it) => ({
+        ...it,
+        lineId: it.lineId || `${it.product._id}:${it.size}:${it.color}`,
+      }));
     },
     addToCart(
       state,
       action: PayloadAction<{ product: Product; qty?: number, color: string, size: string }>
     ) {
       const { product, qty = 1, color, size } = action.payload;
+      const lineId = `${product._id}:${size}:${color}`;
       const existing = state.items.find(
-        (item) => item.product._id === product._id
+        (item) => (item.lineId || `${item.product._id}:${item.size}:${item.color}`) === lineId
       );
       if (existing) {
         existing.qty += qty;
       } else {
-        state.items.push({ product, qty, checked: true, color, size });
+        state.items.push({ product, qty, checked: true, color, size, lineId });
       }
     },
     removeFromCart(state, action: PayloadAction<string>) {
+      const lineId = action.payload;
       state.items = state.items.filter(
-        (item) => item.product._id !== action.payload
+        (item) => (item.lineId || `${item.product._id}:${item.size}:${item.color}`) !== lineId
       );
     },
-    updateQty(state, action: PayloadAction<{ id: string; qty: number }>) {
+    updateQty(state, action: PayloadAction<{ lineId: string; qty: number }>) {
       const item = state.items.find(
-        (item) => item.product._id === action.payload.id
+        (item) => (item.lineId || `${item.product._id}:${item.size}:${item.color}`) === action.payload.lineId
       );
       if (item) {
         item.qty = Math.max(1, action.payload.qty);
@@ -57,7 +63,7 @@ const cartSlice = createSlice({
     },
     toggleCheck(state, action: PayloadAction<string>) {
       const item = state.items.find(
-        (item) => item.product._id === action.payload
+        (item) => (item.lineId || `${item.product._id}:${item.size}:${item.color}`) === action.payload
       );
       if (item) {
         item.checked = !item.checked;

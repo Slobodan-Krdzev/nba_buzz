@@ -55,7 +55,7 @@ const ItemsLister = ({ title, items = [] }: ItemsListerProps) => {
         }}
         className="!py-8"
       >
-        {items
+        {[...items]
           .sort((a, b) => (b.isPromotion ? 1 : 0) - (a.isPromotion ? 1 : 0))
           .map((item, idx) => (
             <SwiperSlide key={idx}>

@@ -161,16 +161,15 @@ export default function OrdersList() {
             </div>
 
             <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {order.items.map((item) => (
-                <div key={item.productId} className="flex items-center gap-3 p-2 rounded-lg border">
+              {order.items.map((item, idx) => (
+                <div key={`${item.productId}:${item.size || ''}:${item.color || ''}:${idx}`} className="flex items-center gap-3 p-2 rounded-lg border">
                   <div className="relative w-12 h-12 rounded-md overflow-hidden">
                     <Image src={item.imageUrl} alt={item.title} fill className="object-cover" />
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-titles line-clamp-1">{item.title}</p>
-                    <p className="text-xs text-titles/70">
-                      x{item.quantity} · ${(item.price * item.quantity).toFixed(2)}
-                    </p>
+                    <p className="text-xs text-titles/70">x{item.quantity} · ${(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="text-[10px] text-titles/60">Size: {item.size || '-'} · Color: {item.color || '-'}</p>
                   </div>
                 </div>
               ))}

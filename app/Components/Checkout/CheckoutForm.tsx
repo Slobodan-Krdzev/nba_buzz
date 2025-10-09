@@ -214,13 +214,15 @@ const CheckoutForm = () => {
               <div className="text-sm text-gray-600">{t('noItems')}</div>
             )}
             {selectedItems.map((item) => (
-              <div key={item.product._id} className="flex items-center gap-3 py-2 border-b last:border-b-0">
+              <div key={(item as any).lineId || `${item.product._id}:${item.size}:${item.color}`} className="flex items-center gap-3 py-2 border-b last:border-b-0">
                 <div className="relative w-16 h-16 rounded overflow-hidden bg-gray-100">
                   <Image src={item.product.galleryImages?.[0] || item.product.featuredImage || '/placeholder.jpg'} alt={String(item.product.title)} fill sizes="64px" className="object-cover" />
                 </div>
                 <div className="flex-1">
                   <div className="text-sm font-semibold">{item.product.title}</div>
                   <div className="text-xs text-gray-500">{t('qty')}: {item.qty}</div>
+                  <div className="text-xs text-gray-500">{t('size')}: {item.size?.toUpperCase() || '-'}</div>
+                  <div className="text-xs text-gray-500">{t('color')}: {item.color || '-'}</div>
                 </div>
                 <div className="text-sm font-semibold">€{(item.product.price * item.qty).toFixed(2)}</div>
               </div>
