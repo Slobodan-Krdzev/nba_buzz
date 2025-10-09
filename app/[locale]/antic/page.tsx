@@ -12,7 +12,7 @@ const AnticPage = () => {
   return (
     <>
       <section
-        className="w-full flex flex-col justify-center items-center h-[calc(40dvh-70px)] md:h-[calc(60dvh-70px)] lg:h-[calc(100dvh-62.6px)] text-white relative bg-cover bg-center"
+        className="w-full flex flex-col justify-center items-center h-[calc(60dvh-70px)] md:h-[calc(60dvh-70px)] lg:h-[calc(100dvh-62.6px)] text-white relative bg-cover bg-center"
         style={{ backgroundImage: "url(/common/heroSection2.jpg)" }}
       >
         <div className="absolute inset-0 bg-black/40 z-0" />
@@ -36,13 +36,13 @@ const AnticPage = () => {
         </div>
 
         <div className="basis-1 lg:basis-[70%]">
-          <Image src={'/common/productsHero.jpg'} alt="Antic collection" width={1920} height={100} className="shadow-xl"/>
+          <Image src={'/common/productsHero.jpg'} alt="Antic collection" width={1920} height={100} className="shadow-xl" />
         </div>
       </section>
 
       <section className="py-16 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center gap-6">
         <div className="basis-1 lg:basis-[70%] order-2 lg-order-1">
-          <Image src={'/poses/8.jpg'} alt="Pero walking over LeBron — inspired design" width={1920} height={100} className="shadow-xl"/>
+          <Image src={'/poses/8.jpg'} alt="Pero walking over LeBron — inspired design" width={1920} height={100} className="shadow-xl" />
         </div>
         <div className="basis-1 lg:basis-[60%] order-1 lg:order-2">
           <SectionTitle title={t("whyTitle")} />

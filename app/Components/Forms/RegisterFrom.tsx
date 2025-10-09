@@ -43,7 +43,7 @@ const RegisterFrom = ({ tNs = 'auth.register' }: Props) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="w-[90%] md:w-full max-w-sm mx-auto lg:mr-5 p-6 shadow-xl border-[0.5px] border-[#d1d5db80] rounded-lg text-titles"
+      className="w-[90%] md:w-full max-w-sm mx-auto lg:mr-5 p-6 shadow-xl border-[0.5px] border-[#d1d5db80] rounded-lg bg-white/95 backdrop-blur-sm text-titles"
     >
       <h2 className="text-3xl font-bold mb-6">{t('title')}</h2>
       {(Object.entries(formData) as [keyof RegisterFormData, string][]).map(([key, value], index) => (
