@@ -73,6 +73,8 @@ export default function OrdersList() {
               quantity: Number(item.quantity) || 1,
               price: Number(item.price) || 0,
               imageUrl: String(item.imageUrl || '/poses/1.jpg'),
+              size: typeof item.size === 'string' ? item.size : undefined,
+              color: typeof item.color === 'string' ? item.color : undefined,
             };
           }),
         }));
