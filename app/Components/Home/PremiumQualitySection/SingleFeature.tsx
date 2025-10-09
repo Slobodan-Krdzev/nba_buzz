@@ -15,8 +15,8 @@ interface SingleFeatureProps {
     description,
   }) => {
     return (
-      <div className="text-center md:text-left">
-        <Icon className="w-8 h-8 mx-auto md:mx-0 mb-4 text-titles" />
+      <div className="text-center ">
+        <Icon className="w-8 h-8 mx-auto mb-4 text-titles" />
         <h3 className={`font-bold text-2xl text-transparent 
              bg-clip-text 
              bg-brand-gradient 
