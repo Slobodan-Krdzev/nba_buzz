@@ -15,9 +15,9 @@ const rootReducer = combineReducers({
 });
 
 // Hydrate from sessionStorage
-const preloadedCart = typeof window !== "undefined"
-  ? JSON.parse(sessionStorage.getItem("cart") || "[]")
-  : [];
+const preloadedCartState = typeof window !== "undefined"
+  ? JSON.parse(sessionStorage.getItem("cartState") || "null")
+  : null;
 const preloadedFavourites = typeof window !== "undefined"
   ? JSON.parse(sessionStorage.getItem("favourites") || "[]")
   : [];
@@ -29,7 +29,7 @@ const preloadedToken = typeof window !== "undefined"
   : null;
 
 const preloadedState = {
-  cart: { items: preloadedCart },
+  cart: preloadedCartState ? preloadedCartState : { items: [] },
   counter: { value: 1, favouriteItems: preloadedFavourites },
   user: { currentUser: preloadedUser, token: preloadedToken, isAuthenticated: Boolean(preloadedUser || preloadedToken) },
 };

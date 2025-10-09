@@ -58,9 +58,10 @@ export default function ProfilePage() {
     let cancelled = false;
     (async () => {
       try {
+        const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
         const headers: Record<string, string> = {};
         if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
-        const res = await fetch('https://adminbuzzmk.com/api/users/me', {
+        const res = await fetch(`${base}/users/me`, {
           credentials: 'include',
           headers,
         });
@@ -85,6 +86,7 @@ export default function ProfilePage() {
           },
           email: u.email || '',
           phone: (addr.phone || ''),
+          marketingOptIn: Boolean(u.marketingOptIn),
         } as const;
         if (!cancelled) {
           dispatch(setUser(mapped));
@@ -103,9 +105,10 @@ export default function ProfilePage() {
     let cancelled = false;
     (async () => {
       try {
+        const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
         const headers: Record<string, string> = {};
         if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
-        const res = await fetch('https://adminbuzzmk.com/api/orders/mine/list?limit=50&sort=createdAt&order=desc', {
+        const res = await fetch(`${base}/orders/mine/list?limit=50&sort=createdAt&order=desc`, {
           credentials: 'include',
           headers,
         });
@@ -114,8 +117,8 @@ export default function ProfilePage() {
         const items = (data?.orders || []) as Array<Record<string, unknown>>;
         const mapped: Order[] = items.map((o) => ({
           id: String(o._id || o.id),
-          date: String(o.createdAt || new Date().toISOString()),
-          status: (o.status === 'delivered' || o.status === 'finished') ? 'finished' : 'open',
+          date: String(o.placedAt || o.createdAt || new Date().toISOString()),
+          status: String(o.status || 'pending').toLowerCase() as any,
           total: Number(o.total) || 0,
           items: (Array.isArray(o.items) ? o.items : []).map((it: unknown) => {
             const item = it as Record<string, unknown>;
@@ -129,7 +132,7 @@ export default function ProfilePage() {
           }),
         }));
         if (!cancelled) setOrders(mapped);
-      } catch {}
+      } catch { }
     })();
     return () => { cancelled = true; };
   }, [mounted, isAuthenticated, authToken]);
@@ -144,7 +147,7 @@ export default function ProfilePage() {
           <UserCard user={user} />
 
           <OrdersHeader />
-          <OrdersList orders={orders} />
+          <OrdersList />
         </div>
       </main>
 
@@ -163,21 +166,9 @@ export default function ProfilePage() {
 
 function OrdersHeader() {
   const t = useTranslations("profile");
-  const dispatch = useDispatch<AppDispatch>();
   return (
     <div className="flex items-center justify-between">
       <h3 className="text-xl font-bold text-titles mb-3">{t("ordersTitle")}</h3>
-      <button
-        onClick={() => {
-          dispatch(clearUser());
-          dispatch(setToken(null));
-          try { sessionStorage.removeItem('currentUser'); sessionStorage.removeItem('authToken'); } catch {}
-          window.location.href = '/login';
-        }}
-        className="px-3 py-1.5 rounded bg-black text-white"
-      >
-        {t('logout', { default: 'Log out' })}
-      </button>
     </div>
   );
 }

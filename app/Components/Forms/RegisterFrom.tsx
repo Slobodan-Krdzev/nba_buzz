@@ -34,9 +34,9 @@ const RegisterFrom = ({ tNs = 'auth.register' }: Props) => {
   const router = useRouter();
 
   const handleChange = (key: keyof RegisterFormData, value: string) => {
-  setFormData((prev) => ({ ...prev, [key]: value }));
+    setFormData((prev) => ({ ...prev, [key]: value }));
 
-};
+  };
 
 
   return (
@@ -53,8 +53,8 @@ const RegisterFrom = ({ tNs = 'auth.register' }: Props) => {
             key === "Password" || key === "ConfirmPass"
               ? "password"
               : key === "Email"
-              ? "email"
-              : "text"
+                ? "email"
+                : "text"
           }
           value={value}
           onChange={(e) => handleChange(key, e.currentTarget.value)}
@@ -89,7 +89,8 @@ const RegisterFrom = ({ tNs = 'auth.register' }: Props) => {
           }
           try {
             setSubmitting(true);
-            const res = await fetch('https://adminbuzzmk.com/api/auth/register', {
+            const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+            const res = await fetch(`${base}/auth/register`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               credentials: 'include',

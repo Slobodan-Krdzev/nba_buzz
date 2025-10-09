@@ -29,7 +29,7 @@ const Footer = () => {
       title: t("navbar.contact"),
       links: [
         { title: `${t("contact.cards.email")} office@nbabuzzmk.com`, link: "/contact" },
-        { title: `${t("contact.cards.phone")} +38977551012`, link: "/contact" },
+        { title: `${t("contact.cards.phone")} +389 77 551 012`, link: "/contact" },
       ],
     },
     {
@@ -53,7 +53,7 @@ const Footer = () => {
   return (
     <footer className='bg-[url("/common/footerBg.png")] bg-cover relative text-white'>
       <div
-      className="w-full h-full"
+        className="w-full h-full"
         style={{
           backgroundColor: "#00000099",
         }}

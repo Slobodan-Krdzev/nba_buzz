@@ -4,7 +4,7 @@ export const sessionStorageMiddleware: Middleware = (store) => (next) => (action
   const result = next(action);
   const state = store.getState();
   if (state.cart) {
-    sessionStorage.setItem("cart", JSON.stringify(state.cart.items));
+    sessionStorage.setItem("cartState", JSON.stringify(state.cart));
   }
   if (state.counter) {
     sessionStorage.setItem("favourites", JSON.stringify(state.counter.favouriteItems));

@@ -75,9 +75,10 @@ export interface UserProfile {
   address: UserAddress
   email: string
   phone: string
+  marketingOptIn?: boolean
 }
 
-export type OrderStatus = 'open' | 'finished'
+export type OrderStatus = 'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled'
 
 export interface OrderItemSummary {
   productId: string

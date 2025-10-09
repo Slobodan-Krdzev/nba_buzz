@@ -11,8 +11,8 @@ import { useRouter } from 'next/navigation';
 
 interface Props { tNs?: string }
 const LoginForm = ({ tNs = 'auth.login' }: Props) => {
- const t = useTranslations(tNs);
- const [email, setEmail] = useState("");
+  const t = useTranslations(tNs);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,7 +35,8 @@ const LoginForm = ({ tNs = 'auth.login' }: Props) => {
           if (!email || !password) { setError(t('validationRequired') as string); return; }
           try {
             setSubmitting(true);
-            const res = await fetch('https://adminbuzzmk.com/api/auth/login', {
+            const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+            const res = await fetch(`${base}/auth/login`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               credentials: 'include',
@@ -51,12 +52,12 @@ const LoginForm = ({ tNs = 'auth.login' }: Props) => {
             else {
               // Fallback: fetch token endpoint (reads from httpOnly cookie server-side)
               try {
-                const tkRes = await fetch('https://adminbuzzmk.com/api/auth/token', { credentials: 'include' });
+                const tkRes = await fetch(`${base}/auth/token`, { credentials: 'include' });
                 if (tkRes.ok) {
                   const tk = await tkRes.json();
                   if (tk?.token) dispatch(setToken(tk.token));
                 }
-              } catch {}
+              } catch { }
             }
             if (data?.user) {
               const addr = data.user.shippingAddress || {};

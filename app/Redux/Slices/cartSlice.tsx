@@ -11,10 +11,14 @@ export type CartItem = {
 
 type CartState = {
   items: CartItem[];
+  couponCode?: string;
+  discountAmount?: number;
 };
 
 const initialState: CartState = {
   items: [],
+  couponCode: undefined,
+  discountAmount: 0,
 };
 
 const cartSlice = createSlice({
@@ -35,7 +39,7 @@ const cartSlice = createSlice({
       if (existing) {
         existing.qty += qty;
       } else {
-        state.items.push({ product, qty, checked: true, color , size});
+        state.items.push({ product, qty, checked: true, color, size });
       }
     },
     removeFromCart(state, action: PayloadAction<string>) {
@@ -65,8 +69,18 @@ const cartSlice = createSlice({
     removeChecked(state) {
       state.items = state.items.filter((item) => !item.checked);
     },
+    applyCoupon(state, action: PayloadAction<{ code: string; discountAmount: number }>) {
+      state.couponCode = action.payload.code;
+      state.discountAmount = action.payload.discountAmount;
+    },
+    clearCoupon(state) {
+      state.couponCode = undefined;
+      state.discountAmount = 0;
+    },
     clearCart(state) {
       state.items = [];
+      state.couponCode = undefined;
+      state.discountAmount = 0;
     },
   },
 });
@@ -79,6 +93,8 @@ export const {
   toggleCheck,
   selectAll,
   removeChecked,
+  applyCoupon,
+  clearCoupon,
   clearCart,
 } = cartSlice.actions;
 

@@ -7,8 +7,9 @@ import { usePathname } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 import LocaleSwitcher from "./LocalleSwitcher";
 import { useTranslations } from "next-intl";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/Redux/store";
+import { clearUser, setToken } from "@/app/Redux/Slices/userSlice";
 
 // Navigation items are built from translations to support localized headers
 
@@ -16,6 +17,8 @@ const Navbar = () => {
   const t = useTranslations("navbar");
   const [isOpen, setIsOpen] = useState(false);
   const isAuthenticated = useSelector((s: RootState) => s.user.isAuthenticated);
+  const dispatch = useDispatch();
+  const [accountOpen, setAccountOpen] = useState(false);
   // const pathname = usePathname();
 
   // const [showTitle, setShowTitle] = useState(pathname !== "/"); // 👈 show by default if not "/"
@@ -43,11 +46,12 @@ const Navbar = () => {
   // }, [pathname]);
 
   //   "bg-white shadow-custom-green text-titles"
-const pathname = usePathname();
+  const pathname = usePathname();
 
-useEffect(() => {
-  setIsOpen(false);
-}, [pathname]);
+  useEffect(() => {
+    setIsOpen(false);
+    setAccountOpen(false);
+  }, [pathname]);
 
   return (
     <header
@@ -99,7 +103,7 @@ useEffect(() => {
               {item.title}
             </Link>
           ))}
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center relative">
             <Link href={"/cart"}>
               <ShoppingCart
                 className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75"
@@ -107,12 +111,56 @@ useEffect(() => {
               />
             </Link>
 
-            <Link href={isAuthenticated ? "/profile" : "/login"}>
+            <button
+              type="button"
+              aria-label="Account menu"
+              onClick={() => setAccountOpen((v) => !v)}
+              className="relative"
+            >
               <User
                 className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75"
                 fill="white"
               />
-            </Link>
+            </button>
+
+            {accountOpen && (
+              <div className="absolute right-0 top-7 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-xl py-2 z-[100000]">
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      href="/profile"
+                      className="block px-4 py-2 text-sm text-titles hover:bg-gray-50"
+                      onClick={() => setAccountOpen(false)}
+                    >
+                      Profile
+                    </Link>
+                    <button
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                      onClick={async () => {
+                        try {
+                          const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+                          await fetch(`${base}/auth/logout`, { method: 'POST', credentials: 'include' });
+                        } catch { }
+                        dispatch(clearUser());
+                        dispatch(setToken(null));
+                        try { sessionStorage.removeItem('currentUser'); sessionStorage.removeItem('authToken'); } catch { }
+                        window.location.href = '/login';
+                      }}
+                    >
+                      Log Out
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="block px-4 py-2 text-sm text-titles hover:bg-gray-50"
+                    onClick={() => setAccountOpen(false)}
+                  >
+                    Log In
+                  </Link>
+                )}
+              </div>
+            )}
           </div>
         </nav>
 
@@ -186,16 +234,49 @@ useEffect(() => {
                   </span>
                   <span className="text-gray-400">›</span>
                 </Link>
-                <Link
-                  href={isAuthenticated ? "/profile" : "/login"}
-                  className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <span className="flex items-center gap-3 font-medium">
-                    <User className="w-5 h-5" /> {t("account")}
-                  </span>
-                  <span className="text-gray-400">›</span>
-                </Link>
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      href="/profile"
+                      className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span className="flex items-center gap-3 font-medium">
+                        <User className="w-5 h-5" /> Profile
+                      </span>
+                      <span className="text-gray-400">›</span>
+                    </Link>
+                    <button
+                      className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-red-50 active:bg-red-100 transition text-left text-red-600"
+                      onClick={async () => {
+                        try {
+                          const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+                          await fetch(`${base}/auth/logout`, { method: 'POST', credentials: 'include' });
+                        } catch { }
+                        dispatch(clearUser());
+                        dispatch(setToken(null));
+                        try { sessionStorage.removeItem('currentUser'); sessionStorage.removeItem('authToken'); } catch { }
+                        setIsOpen(false);
+                        window.location.href = '/login';
+                      }}
+                    >
+                      <span className="flex items-center gap-3 font-medium w-full">
+                        <User className="w-5 h-5" /> Log Out
+                      </span>
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span className="flex items-center gap-3 font-medium">
+                      <User className="w-5 h-5" /> Log In
+                    </span>
+                    <span className="text-gray-400">›</span>
+                  </Link>
+                )}
               </nav>
               <div className="mt-auto pt-6 text-xs text-gray-400">
                 © {new Date().getFullYear()} NBABUZZ.MK

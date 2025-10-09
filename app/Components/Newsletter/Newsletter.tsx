@@ -3,21 +3,25 @@
 import { RootState } from "@/app/Redux/store";
 import { useTranslations } from "next-intl";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 
 export default function NewsletterSection() {
 
-const t = useTranslations("newsletter");
+  const t = useTranslations("newsletter");
 
-const cart = useSelector((state: RootState) => state.cart.items);
+  const cart = useSelector((state: RootState) => state.cart.items);
 
 
   console.log(cart)
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <section className="relative min-h-[800px] flex items-center justify-center bg-[url('/common/newsletter.jpg')] bg-cover lg:bg-center">
       {/* Background image */}
-      
+
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/55 z-10" />
@@ -32,19 +36,43 @@ const cart = useSelector((state: RootState) => state.cart.items);
         </p>
 
         {/* Input */}
-        <form className="flex items-center justify-center ">
+        <form className="flex items-center justify-center " onSubmit={async (e) => {
+          e.preventDefault();
+          setMessage(null);
+          if (!email) return;
+          try {
+            setSubmitting(true);
+            const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+            const res = await fetch(`${base}/newsletter/subscribe`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email }),
+            });
+            if (!res.ok) throw new Error('Subscribe failed');
+            setMessage('Subscribed! Please check your email.');
+            setEmail('');
+          } catch {
+            setMessage('Subscription failed. Please try again.');
+          } finally {
+            setSubmitting(false);
+          }
+        }}>
           <input
             type="email"
             placeholder={t("inputPlaceholder")}
-            className="w-full md:w-[300px] px-4 py-3 text-black focus:outline-none rounded-l rounded-none" 
+            className="w-full md:w-[300px] px-4 py-3 text-black focus:outline-none rounded-l rounded-none"
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.value)}
           />
           <button
             type="submit"
-            className="bg-white text-black font-semibold px-4 py-3 rounded-r hover:bg-accentLight transition"
+            className="bg-white text-black font-semibold px-4 py-3 rounded-r hover:bg-accentLight transition disabled:opacity-60"
+            disabled={submitting}
           >
             {t("btn")}
           </button>
         </form>
+        {message && <p className="mt-3 text-sm">{message}</p>}
       </div>
     </section>
   )

@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Camera } from "lucide-react";
 import { UserAddress, UserProfile } from "@/app/Types/Types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/app/Redux/store";
 import { setUser } from "@/app/Redux/Slices/userSlice";
@@ -21,6 +21,21 @@ export default function UserCard({ user }: UserCardProps) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const authToken = useSelector((s: RootState) => s.user.token);
+  const [uploading, setUploading] = useState(false);
+  const [fileInputKey, setFileInputKey] = useState(0);
+  const [shippingClasses, setShippingClasses] = useState<Array<{ _id: string, country: string, name: string, price: number }>>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+        const res = await fetch(`${base}/shipping-classes`);
+        if (!res.ok) return;
+        const data = await res.json();
+        setShippingClasses(Array.isArray(data?.shippingClasses) ? data.shippingClasses : []);
+      } catch { }
+    })();
+  }, []);
 
   const handleSave = async () => {
     const { street, street2, city, state, zip, phone } = addressInput;
@@ -30,7 +45,8 @@ export default function UserCard({ user }: UserCardProps) {
       setSaving(true);
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
-      const res = await fetch('https://adminbuzzmk.com/api/users/me', {
+      const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+      const res = await fetch(`${base}/users/me`, {
         method: 'PUT',
         headers,
         credentials: 'include',
@@ -40,6 +56,7 @@ export default function UserCard({ user }: UserCardProps) {
             street2: street2 || '',
             city,
             state,
+            country: addressInput.state,
             zip,
             phone,
           },
@@ -87,13 +104,69 @@ export default function UserCard({ user }: UserCardProps) {
   return (
     <section className="w-full bg-white rounded-2xl shadow-custom-white-light p-4 sm:p-6">
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
-        <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden ring-2 ring-accentLight">
-          <Image
-            src={user.imageUrl}
-            alt={`${user.firstName} ${user.lastName}`}
-            fill
-            className="object-cover"
-          />
+        <div className="relative inline-block">
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden ring-2 ring-accentLight">
+            <Image
+              src={user.imageUrl}
+              alt={`${user.firstName} ${user.lastName}`}
+              fill
+              className="object-cover"
+            />
+          </div>
+          <label className="absolute -bottom-1 -right-1 bg-white/90 rounded-full p-1.5 shadow border cursor-pointer z-50">
+            <Camera className="w-4 h-4 text-titles" />
+            <input
+              key={fileInputKey}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={async (e) => {
+                const file = e.currentTarget.files?.[0];
+                if (!file) return;
+                setError(null);
+                try {
+                  setUploading(true);
+                  const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+                  const form = new FormData();
+                  form.append('file', file);
+                  const headers: Record<string, string> = {};
+                  if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+                  const res = await fetch(`${base}/users/me/image`, { method: 'POST', body: form, credentials: 'include', headers });
+                  if (!res.ok) throw new Error('Upload failed');
+                  const data = await res.json();
+                  const newUrl: string = data?.file?.url || '';
+                  if (!newUrl) throw new Error('Invalid upload response');
+                  // Save to user profile
+                  const saveHeaders: Record<string, string> = { 'Content-Type': 'application/json' };
+                  if (authToken) saveHeaders['Authorization'] = `Bearer ${authToken}`;
+                  const saveRes = await fetch(`${base}/users/me`, {
+                    method: 'PUT',
+                    credentials: 'include',
+                    headers: saveHeaders,
+                    body: JSON.stringify({ imageUrl: newUrl }),
+                  });
+                  if (!saveRes.ok) throw new Error('Failed to save profile image');
+                  const saved = await saveRes.json();
+                  const u = saved?.user;
+                  dispatch(setUser({
+                    id: u?.id || u?._id || user.id,
+                    firstName: u?.firstName ?? user.firstName,
+                    lastName: u?.lastName ?? user.lastName,
+                    imageUrl: u?.imageUrl || newUrl,
+                    address: user.address,
+                    email: u?.email || user.email,
+                    phone: u?.shippingAddress?.phone || user.address.phone,
+                  }));
+                  setFileInputKey((k) => k + 1);
+                } catch (err) {
+                  const msg = err instanceof Error ? err.message : 'Error';
+                  setError(msg);
+                } finally {
+                  setUploading(false);
+                }
+              }}
+            />
+          </label>
         </div>
         <div className="flex-1 text-center sm:text-left">
           <h1 className="text-2xl sm:text-3xl font-black text-titles tracking-tight">
@@ -146,13 +219,16 @@ export default function UserCard({ user }: UserCardProps) {
                       placeholder={t("address.city", { default: "City" })}
                       className="w-full border border-gray-300 px-3 py-1.5 rounded"
                     />
-                    <input
-                      type="text"
+                    <select
                       value={addressInput.state}
                       onChange={(e) => setAddressInput({ ...addressInput, state: e.currentTarget.value })}
-                      placeholder={t("address.state", { default: "State" })}
-                      className="w-full border border-gray-300 px-3 py-1.5 rounded"
-                    />
+                      className="w-full border border-gray-300 px-3 py-1.5 rounded bg-white"
+                    >
+                      <option value="">{t("address.state", { default: "Country" })}</option>
+                      {Array.from(new Set(shippingClasses.map(sc => sc.country))).map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
                     <input
                       type="text"
                       value={addressInput.zip}
@@ -168,6 +244,39 @@ export default function UserCard({ user }: UserCardProps) {
                       className="w-full border border-gray-300 px-3 py-1.5 rounded"
                     />
                   </div>
+                  <label className="flex items-center gap-2 text-sm mt-1">
+                    <input
+                      type="checkbox"
+                      checked={Boolean(user.marketingOptIn)}
+                      onChange={async (e) => {
+                        try {
+                          const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+                          const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+                          if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+                          const res = await fetch(`${base}/users/me`, {
+                            method: 'PUT',
+                            headers,
+                            credentials: 'include',
+                            body: JSON.stringify({ marketingOptIn: e.currentTarget.checked }),
+                          });
+                          if (!res.ok) throw new Error('Failed to update');
+                          const data = await res.json();
+                          const u = data?.user;
+                          dispatch(setUser({
+                            id: u?.id || u?._id || user.id,
+                            firstName: u?.firstName ?? user.firstName,
+                            lastName: u?.lastName ?? user.lastName,
+                            imageUrl: u?.imageUrl || user.imageUrl,
+                            address: user.address,
+                            email: u?.email || user.email,
+                            phone: u?.shippingAddress?.phone || user.address.phone,
+                            marketingOptIn: Boolean(u?.marketingOptIn),
+                          }));
+                        } catch { }
+                      }}
+                    />
+                    <span className="text-titles/80">{t('newsletterConsent', { default: 'Receive newsletter and promotions' })}</span>
+                  </label>
                   {error && <p className="text-red-600 text-xs">{error}</p>}
                   <div className="flex gap-2">
                     <button

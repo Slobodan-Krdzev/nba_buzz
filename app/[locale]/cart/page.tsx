@@ -3,6 +3,8 @@ import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import SectionTitle from "../../Components/Common/SectionTitle";
 import { useSelector, useDispatch } from "react-redux";
+import { applyCoupon, clearCoupon } from "../../Redux/Slices/cartSlice";
+import { useState } from "react";
 import {
   selectAll,
   removeChecked,
@@ -20,22 +22,39 @@ const CartPage = () => {
   const t = useTranslations("cart");
 
   const checkedCount = cart.filter((item) => item.checked).length;
+  const [couponInput, setCouponInput] = useState("");
   const cartTotal = cart
     .filter((item) => item.checked)
     .reduce((sum, item) => sum + item.product.price * item.qty, 0);
 
-  const shipping = 0;
-  const total = cartTotal + shipping;
+  const discount = (useSelector((state: RootState) => state.cart.discountAmount) || 0);
+  const appliedCode = useSelector((state: RootState) => state.cart.couponCode);
+  const total = Math.max(0, cartTotal - discount);
+
+  const validateCoupon = async () => {
+    if (!couponInput) return;
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/coupons/validate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: couponInput, subtotal: cartTotal }),
+      });
+      if (!res.ok) throw new Error('Invalid coupon');
+      const data = await res.json();
+      dispatch(applyCoupon({ code: data.coupon.code, discountAmount: data.discount }));
+    } catch (e) {
+      alert('Invalid or ineligible coupon');
+    }
+  };
 
   console.log("Cart Items:", cart);
 
   return (
     <div
-      className={`min-h-screen bg-white font-sans  py-6 lg:py-12 ${
-        cart.length === 0
-          ? "min-h-[40vh] flex flex-col items-center justify-center"
-          : ""
-      }`}
+      className={`min-h-screen bg-white font-sans  py-6 lg:py-12 ${cart.length === 0
+        ? "min-h-[40vh] flex flex-col items-center justify-center"
+        : ""
+        }`}
     >
       {cart.length === 0 && (
         <div>
@@ -191,11 +210,26 @@ const CartPage = () => {
                   type="text"
                   placeholder={t("couponPlaceholder")}
                   className="border rounded px-3 py-2 flex-1"
+                  value={couponInput}
+                  onChange={(e) => setCouponInput(e.target.value)}
+                  disabled={Boolean(appliedCode)}
                 />
-                <button className="ml-2 px-4 py-2 bg-black text-white rounded">
-                  {t("apply")}
-                </button>
+                {!appliedCode ? (
+                  <button onClick={validateCoupon} className="ml-2 px-4 py-2 bg-black text-white rounded">
+                    {t("apply")}
+                  </button>
+                ) : (
+                  <button onClick={() => dispatch(clearCoupon())} className="ml-2 px-4 py-2 border border-gray-300 rounded">
+                    {t("remove")}
+                  </button>
+                )}
               </div>
+              {appliedCode && (
+                <div className="flex justify-between mb-2 text-green-700">
+                  <span>Coupon ({appliedCode})</span>
+                  <span>- ${discount}</span>
+                </div>
+              )}
               <div className="flex justify-between mb-2">
                 <span>{t("cartItems")}</span>
                 <span>{cart.length} {t("items")}</span>
@@ -204,11 +238,9 @@ const CartPage = () => {
                 <span>{t("cartTotal")}</span>
                 <span>${cartTotal}</span>
               </div>
-              <div className="flex justify-between mb-2">
+              <div className="flex justify-between mb-2 text-sm text-gray-600">
                 <span>{t("shippingCharges")}</span>
-                <span className="text-green-600 font-medium">
-                  {t("free")} <span className="line-through text-gray-400">$2</span>
-                </span>
+                <span>Calculated at checkout</span>
               </div>
               <hr className="my-2" />
               <div className="flex justify-between font-bold text-lg mb-4">
@@ -216,20 +248,15 @@ const CartPage = () => {
                 <span>${total}.00</span>
               </div>
               <Link href="/checkout" className="text-center  block mt-2 sm:mt-0  w-full  py-2 px-6 bg-black text-white rounded font-bold tracking-tighter gap-2">
-              {t("checkout")}
-            </Link >
+                {t("checkout")}
+              </Link >
             </div>
           </div>
           {/* MOBILE SUMMARY */}
           <div className="fixed shadow-glow-top bottom-0 left-0 w-full bg-[#faf1d3] border-t z-30 p-4 flex flex-col sm:flex-row items-center justify-between lg:hidden">
             <div className="flex justify-between  gap-2 w-full">
               <p className="font-bold text-lg">{t("total")} ${total}</p>
-              <div className="flex justify-between items-center mb-2 text-xs">
-                <span>{t("shipping")} </span>
-                <span className="text-green-600 font-medium ml-1">
-                  {t("free")} <span className="line-through text-gray-400">$2</span>
-                </span>
-              </div>
+              <div className="flex justify-between items-center mb-2 text-xs text-gray-600">{t("shippingCharges")} · calculated at checkout</div>
             </div>
             <Link href="/checkout" className="block mt-2 sm:mt-0 sm:ml-4 w-full sm:w-auto py-2 px-6 bg-black text-white rounded font-bold tracking-tighter gap-2">
               {t("checkout")}
