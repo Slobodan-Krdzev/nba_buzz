@@ -133,7 +133,8 @@
     "titles": {
       "hoodies": "Дуксеви",
       "tshirts": "Мајице",
-      "jerseys": "Дресови"
+      "jerseys": "Дресови",
+      "featured": "Издвојени производи"
     }
   },
   "product": {
@@ -181,11 +182,73 @@
       "submit": "Пошаљи поруку"
     }
   },
+  "cart": {
+    "title": "Корпа",
+    "empty": "Ваша корпа је празна",
+    "selectAll": "Изабери све",
+    "price": "Цена:",
+    "color": "Боја:",
+    "size": "Величина:",
+    "orderSummary": "Преглед поруџбине",
+    "couponPlaceholder": "Купон код",
+    "apply": "Примени",
+    "cartItems": "Артикли у корпи:",
+    "items": "артикли",
+    "cartTotal": "Укупно у корпи",
+    "shippingCharges": "Трошкови доставе",
+    "free": "Бесплатно",
+    "total": "Укупно",
+    "shipping": "Достава:",
+    "checkout": "Плаћање"
+  },
+  "checkout": {
+    "title": "Плаћање",
+    "subtitle": "Одећа за праве балере",
+    "shippingInfoTitle": "Информације о достави",
+    "shippingInfoText": "Испорука се врши за 2–3 дана преко локалних пошта.",
+    "paymentInfoTitle": "Информације о плаћању",
+    "paymentInfoText": "Плаћање се врши приликом преузимања. Није потребно онлајн плаћање.",
+    "shippingCostTitle": "Цена доставе",
+    "shippingCostText": "Достава је БЕСПЛАТНА за све поруџбине!",
+    "returnPolicyTitle": "Политика поврата",
+    "returnPolicyText": "Уколико нисте задовољни поруџбином, можете је вратити у року од 14 дана од пријема. Артикли морају бити неношени и у оригиналном стању.",
+    "itemsInCart": "Артикли у корпи",
+    "total": "Укупно",
+    "firstName": "Име",
+    "lastName": "Презиме",
+    "email": "Е-пошта",
+    "phone": "Телефон",
+    "address": "Адреса",
+    "city": "Град",
+    "county": "Општина",
+    "orderNow": "Наручи",
+    "confirmedTitle": "Поруџбина потврђена!",
+    "confirmedText1": "Хвала на поруџбини. Ускоро ћемо вас контактирати око детаља испоруке.",
+    "confirmedText2": "Послаћемо вам и мејл потврду.",
+    "confirmedHelp": "За било какву помоћ, позовите нас на",
+    "close": "Затвори"
+  },
   "profile": {
     "title": "Ваш профил",
+    "favoritesTitle": "Омиљени",
     "ordersTitle": "Поруџбине",
     "helpTitle": "Потребна помоћ?",
     "helpText": "Контактирајте продавача за помоћ око поруџбина или налога.",
+    "editAddress": "Измени адресу",
+    "addAddress": "Додај адресу",
+    "cancel": "Откажи",
+    "save": "Сачувај",
+    "saving": "Чување...",
+    "noAddress": "Адреса није унета",
+    "address": {
+      "street": "Улица",
+      "street2": "Улица 2 (опционо)",
+      "city": "Град",
+      "state": "Држава",
+      "zip": "Поштански број",
+      "phone": "Телефон"
+    },
+    "logout": "Одјава",
     "orders": {
       "filters": "Филтери",
       "status": { "all": "Све", "open": "Отворене", "finished": "Завршене" },
@@ -214,8 +277,13 @@
       "Password": "Лозинка",
       "ConfirmPass": "Потврди лозинку",
       "submit": "Региструј се",
+      "submitting": "Слање...",
+      "success": "Регистрација успела!",
+      "validationRequired": "Молимо попуните сва поља.",
+      "validationPasswords": "Лозинке се не поклапају.",
       "help": "Помоћ →",
-      "withGoogle": "Региструј се преко Google"
+      "withGoogle": "Региструј се преко Google",
+      "newsletterConsent": "Желим да примам NBABUZZ билтен и промоције"
     }
   },
   "ourStory": {

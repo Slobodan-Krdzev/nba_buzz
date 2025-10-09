@@ -44,8 +44,8 @@ const Footer = () => {
       title: t("navbar.account"),
       links: [
         { title: t("auth.login.title"), link: "/login" },
-        { title: t("footer.myAccount"), link: "/account" },
-        { title: t("profile.ordersTitle"), link: "/account" },
+        { title: t("footer.myAccount"), link: "/profile" },
+        { title: t("profile.ordersTitle"), link: "/profile" },
         { title: t("footer.wishlist"), link: "/account" },
       ],
     },

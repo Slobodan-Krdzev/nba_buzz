@@ -1,5 +1,6 @@
 import ItemsLister from './ItemsLister';
 import { Product } from '@/app/Types/Types';
+import { getTranslations } from 'next-intl/server';
 
 function pickRandom<T>(arr: T[], count: number): T[] {
   if (!Array.isArray(arr) || arr.length === 0) return [];
@@ -9,6 +10,7 @@ function pickRandom<T>(arr: T[], count: number): T[] {
 }
 
 export default async function FeaturedProducts() {
+  const t = await getTranslations('home.titles');
   let products: Product[] = [];
   try {
     const res = await fetch('https://adminbuzzmk.com/api/products', { cache: 'no-store' });
@@ -26,7 +28,7 @@ export default async function FeaturedProducts() {
 
   return (
     <section className="py-16">
-      <ItemsLister items={randomProducts} title="Featured Products" />
+      <ItemsLister items={randomProducts} title={t('featured')} />
     </section>
   );
 }

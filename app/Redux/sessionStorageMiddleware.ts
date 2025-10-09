@@ -6,5 +6,12 @@ export const sessionStorageMiddleware: Middleware = (store) => (next) => (action
   if (state.cart) {
     sessionStorage.setItem("cart", JSON.stringify(state.cart.items));
   }
+  if (state.counter) {
+    sessionStorage.setItem("favourites", JSON.stringify(state.counter.favouriteItems));
+  }
+  if (state.user) {
+    sessionStorage.setItem("currentUser", JSON.stringify(state.user.currentUser));
+    sessionStorage.setItem("authToken", JSON.stringify(state.user.token));
+  }
   return result;
 };

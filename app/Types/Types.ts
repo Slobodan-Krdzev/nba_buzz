@@ -58,12 +58,21 @@ export interface HeroSlideItemType {
   subtitle: string
 }
 
+export interface UserAddress {
+  street: string
+  street2?: string
+  city: string
+  state: string
+  zip: string
+  phone: string
+}
+
 export interface UserProfile {
   id: string
   firstName: string
   lastName: string
   imageUrl: string
-  address: string
+  address: UserAddress
   email: string
   phone: string
 }

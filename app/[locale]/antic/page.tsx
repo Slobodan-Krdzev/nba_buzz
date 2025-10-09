@@ -4,6 +4,7 @@ import SectionTitle from "@/app/Components/Common/SectionTitle";
 import AnimatedSlogans from "@/app/Components/Common/AnimatedSlogans";
 import BouncingBasketball from "@/app/Components/Common/BouncingBasketball";
 import { useTranslations } from "next-intl";
+import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
 
 const AnticPage = () => {
   const t = useTranslations("collections.antic");
@@ -60,6 +61,8 @@ const AnticPage = () => {
           <li className="text-center">{t("materials.durable")}</li>
         </ul>
       </section>
+
+      <FeaturedProducts />
     </>
   );
 };

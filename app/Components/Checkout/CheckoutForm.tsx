@@ -3,10 +3,12 @@ import { RootState } from '@/app/Redux/store';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
+import { useTranslations } from 'next-intl';
 
 const CheckoutForm = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
 const router = useRouter();
+  const t = useTranslations('checkout');
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
   const cartTotal = cart.reduce((sum, item) => sum + item.product.price * item.qty, 0);
 
@@ -39,13 +41,13 @@ const router = useRouter();
     <>
       <section className="w-full lg:w-1/2 flex justify-center items-center  px-4 md:px-12 py-8 order-1 md:order-1">
         <div className="w-full max-w-2xl  rounded-lg shadow p-6 bg-gray-50">
-          <h1 className="text-3xl font-bold mb-6 text-center tracking-tighter">Checkout</h1>
+          <h1 className="text-3xl font-bold mb-6 text-center tracking-tighter">{t('title')}</h1>
           <div className="mb-6 flex flex-col gap-2">
             <p className="text-lg font-semibold">
-              Items in Cart: <span className="text-accent">{cartCount}</span>
+              {t('itemsInCart')}: <span className="text-accent">{cartCount}</span>
             </p>
             <p className="text-lg font-semibold">
-              Total: <span className="text-accent">€{cartTotal}.00</span>
+              {t('total')}: <span className="text-accent">€{cartTotal}.00</span>
             </p>
           </div>
           <form className="space-y-4" onSubmit={handleSubmit}>
@@ -53,7 +55,7 @@ const router = useRouter();
               <input
                 type="text"
                 name="name"
-                placeholder="First Name"
+                placeholder={t('firstName')}
                 value={form.name}
                 onChange={handleChange}
                 required
@@ -62,7 +64,7 @@ const router = useRouter();
               <input
                 type="text"
                 name="lastname"
-                placeholder="Last Name"
+                placeholder={t('lastName')}
                 value={form.lastname}
                 onChange={handleChange}
                 required
@@ -72,7 +74,7 @@ const router = useRouter();
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t('email')}
               value={form.email}
               onChange={handleChange}
               required
@@ -81,7 +83,7 @@ const router = useRouter();
             <input
               type="tel"
               name="phone"
-              placeholder="Phone"
+              placeholder={t('phone')}
               value={form.phone}
               onChange={handleChange}
               required
@@ -90,7 +92,7 @@ const router = useRouter();
             <input
               type="text"
               name="address"
-              placeholder="Address"
+              placeholder={t('address')}
               value={form.address}
               onChange={handleChange}
               required
@@ -100,7 +102,7 @@ const router = useRouter();
               <input
                 type="text"
                 name="city"
-                placeholder="City"
+                placeholder={t('city')}
                 value={form.city}
                 onChange={handleChange}
                 required
@@ -109,7 +111,7 @@ const router = useRouter();
               <input
                 type="text"
                 name="county"
-                placeholder="County"
+                placeholder={t('county')}
                 value={form.county}
                 onChange={handleChange}
                 required
@@ -121,7 +123,7 @@ const router = useRouter();
               className="w-full py-3 bg-accent text-white font-bold rounded mt-4 hover:scale-105 transition-transform"
               disabled={!isFormComplete}
             >
-              Order Now
+              {t('orderNow')}
             </button>
           </form>
         </div>
@@ -135,15 +137,15 @@ const router = useRouter();
         <circle cx="12" cy="12" r="12" fill="#22c55e" opacity="0.2"/>
         <path d="M7 13l3 3 7-7" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
-      <h2 className="text-2xl font-bold mb-2 text-center">Order Confirmed!</h2>
+      <h2 className="text-2xl font-bold mb-2 text-center">{t('confirmedTitle')}</h2>
       <p className="text-gray-700 mb-2 text-center">
-        Thank you for your order. We will contact you soon for delivery details.
+        {t('confirmedText1')}
       </p>
       <p className="text-gray-700 mb-2 text-center">
-        We will send a confirmation email to you.
+        {t('confirmedText2')}
       </p>
       <p className="text-gray-700 mb-4 text-center">
-        For any help, feel free to call us at <br /> <span className="font-semibold text-accent">+389 77 123 123</span>
+        {t('confirmedHelp')} <br /> <span className="font-semibold text-accent">+389 77 123 123</span>
       </p>
       <button
   className="mt-2 px-6 py-2 bg-accent text-white rounded font-bold hover:scale-105 transition-transform"
@@ -161,7 +163,7 @@ const router = useRouter();
     router.push("/");
   }}
 >
-  Close
+  {t('close')}
 </button>
     </div>
   </div>

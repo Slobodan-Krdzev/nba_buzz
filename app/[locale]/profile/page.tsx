@@ -1,9 +1,18 @@
+"use client";
 import SectionTitle from "@/app/Components/Common/SectionTitle";
 import OrdersList from "@/app/Components/Profile/OrdersList";
 import UserCard from "@/app/Components/Profile/UserCard";
 import ContactForm from "@/app/Components/Contact/ContactForm";
+import FavoritesSection from "@/app/Components/Profile/FavoritesSection";
 import { Order, UserProfile } from "@/app/Types/Types";
 import { useTranslations } from "next-intl";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/Redux/store";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { clearUser, setToken, setUser } from "@/app/Redux/Slices/userSlice";
+import { AppDispatch } from "@/app/Redux/store";
+import { useRouter } from "@/i18n/navigation";
 
 // For now we provide dummy data. Replace with API fetch when ready.
 function getDummyUser(): UserProfile {
@@ -12,105 +21,163 @@ function getDummyUser(): UserProfile {
     firstName: "Jordan",
     lastName: "Smith",
     imageUrl: "/poses/3.jpg",
-    address: "123 Court Ave, Hoops City, USA",
+    address: {
+      street: "123 Court Ave",
+      street2: "",
+      city: "Hoops City",
+      state: "CA",
+      zip: "90210",
+      phone: "+1 (555) 234-9876",
+    },
     email: "jordan.smith@example.com",
     phone: "+1 (555) 234-9876",
   };
 }
 
-function getDummyOrders(): Order[] {
-  return [
-    {
-      id: "1023",
-      date: new Date().toISOString(),
-      status: "open",
-      total: 189.99,
-      items: [
-        {
-          productId: "p_01",
-          title: "NBABUZZ Classic Tee",
-          quantity: 1,
-          price: 49.99,
-          imageUrl: "/poses/1.jpg",
-        },
-        {
-          productId: "p_02",
-          title: "Premium Hoodie",
-          quantity: 2,
-          price: 70,
-          imageUrl: "/poses/2.jpg",
-        },
-      ],
-    },
-    {
-      id: "1017",
-      date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5).toISOString(),
-      status: "finished",
-      total: 89.99,
-      items: [
-        {
-          productId: "p_03",
-          title: "Performance Shorts",
-          quantity: 1,
-          price: 39.99,
-          imageUrl: "/poses/4.jpg",
-        },
-        {
-          productId: "p_04",
-          title: "Crew Socks (3 Pack)",
-          quantity: 1,
-          price: 50,
-          imageUrl: "/poses/5.jpg",
-        },
-      ],
-    },
-    {
-      id: "1003",
-      date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 20).toISOString(),
-      status: "finished",
-      total: 59.99,
-      items: [
-        {
-          productId: "p_05",
-          title: "Graphic Cap",
-          quantity: 1,
-          price: 29.99,
-          imageUrl: "/poses/6.jpg",
-        },
-        {
-          productId: "p_06",
-          title: "Water Bottle",
-          quantity: 1,
-          price: 30,
-          imageUrl: "/poses/7.jpg",
-        },
-      ],
-    },
-  ];
-}
+// Dummy orders removed; now using backend data exclusively
 
 export default function ProfilePage() {
   const t = useTranslations("profile");
-  const user = getDummyUser();
-  const orders = getDummyOrders();
+  const storedUser = useSelector((s: RootState) => s.user.currentUser);
+  const isAuthenticated = useSelector((s: RootState) => s.user.isAuthenticated);
+  const authToken = useSelector((s: RootState) => s.user.token);
+  const dispatch = useDispatch<AppDispatch>();
+  const user = storedUser ?? getDummyUser();
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    if (mounted && !isAuthenticated) {
+      router.replace('/login');
+    }
+  }, [mounted, isAuthenticated, router]);
+
+  useEffect(() => {
+    if (!mounted || !isAuthenticated) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const headers: Record<string, string> = {};
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+        const res = await fetch('https://adminbuzzmk.com/api/users/me', {
+          credentials: 'include',
+          headers,
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        console.log(data);
+        const u = data?.user;
+        if (!u) return;
+        const addr = u.shippingAddress || {};
+        const mapped = {
+          id: u.id || u._id || '',
+          firstName: u.firstName || '',
+          lastName: u.lastName || '',
+          imageUrl: u.imageUrl || '/poses/3.jpg',
+          address: {
+            street: addr.street1 || '',
+            street2: addr.street2 || '',
+            city: addr.city || '',
+            state: addr.state || '',
+            zip: addr.zip || '',
+            phone: addr.phone || '',
+          },
+          email: u.email || '',
+          phone: (addr.phone || ''),
+        } as const;
+        if (!cancelled) {
+          dispatch(setUser(mapped));
+        }
+      } catch {
+        // ignore
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [mounted, isAuthenticated, authToken, dispatch]);
+
+  // Fetch user's orders with filters from UI (status, from, to) - simple fetch with current filters
+  // For now, fetch latest 50 and filter client-side mirroring existing UI
+  useEffect(() => {
+    if (!mounted || !isAuthenticated) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const headers: Record<string, string> = {};
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+        const res = await fetch('https://adminbuzzmk.com/api/orders/mine/list?limit=50&sort=createdAt&order=desc', {
+          credentials: 'include',
+          headers,
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        const items = (data?.orders || []) as Array<Record<string, unknown>>;
+        const mapped: Order[] = items.map((o) => ({
+          id: String(o._id || o.id),
+          date: String(o.createdAt || new Date().toISOString()),
+          status: (o.status === 'delivered' || o.status === 'finished') ? 'finished' : 'open',
+          total: Number(o.total) || 0,
+          items: (Array.isArray(o.items) ? o.items : []).map((it: unknown) => {
+            const item = it as Record<string, unknown>;
+            return {
+              productId: String(item.productId || item._id || ''),
+              title: String(item.title || ''),
+              quantity: Number(item.quantity) || 1,
+              price: Number(item.price) || 0,
+              imageUrl: String(item.imageUrl || '/poses/1.jpg'),
+            };
+          }),
+        }));
+        if (!cancelled) setOrders(mapped);
+      } catch {}
+    })();
+    return () => { cancelled = true; };
+  }, [mounted, isAuthenticated, authToken]);
+
+  if (!mounted || !isAuthenticated) return null;
 
   return (
-    <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <SectionTitle title={t("title")} />
-      <div className="grid grid-cols-1 gap-6 lg:gap-8">
-        <UserCard user={user} />
-        <div>
-          <h3 className="text-xl font-bold text-titles mb-3">{t("ordersTitle")}</h3>
+    <>
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <SectionTitle title={t("title")} />
+        <div className="grid grid-cols-1 gap-6 lg:gap-8">
+          <UserCard user={user} />
+
+          <OrdersHeader />
           <OrdersList orders={orders} />
         </div>
-        <div>
-          <h3 className="text-xl font-bold text-titles mb-3">{t("helpTitle")}</h3>
-          <p className="text-titles/80 mb-4">{t("helpText")}</p>
-          <ContactForm />
-        </div>
+      </main>
+
+      <div>
+        <FavoritesSection />
       </div>
-    </main>
+
+      <div className="max-w-6xl mx-auto mb-6">
+        <h3 className="text-xl font-bold text-titles mb-3">{t("helpTitle")}</h3>
+        <p className="text-titles/80 mb-4">{t("helpText")}</p>
+        <ContactForm />
+      </div>
+    </>
   );
 }
 
-
+function OrdersHeader() {
+  const t = useTranslations("profile");
+  const dispatch = useDispatch<AppDispatch>();
+  return (
+    <div className="flex items-center justify-between">
+      <h3 className="text-xl font-bold text-titles mb-3">{t("ordersTitle")}</h3>
+      <button
+        onClick={() => {
+          dispatch(clearUser());
+          dispatch(setToken(null));
+          try { sessionStorage.removeItem('currentUser'); sessionStorage.removeItem('authToken'); } catch {}
+          window.location.href = '/login';
+        }}
+        className="px-3 py-1.5 rounded bg-black text-white"
+      >
+        {t('logout', { default: 'Log out' })}
+      </button>
+    </div>
+  );
+}

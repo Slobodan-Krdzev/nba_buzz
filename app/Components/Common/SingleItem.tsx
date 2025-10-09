@@ -22,20 +22,7 @@ const SingleItem = ({ item }: SingleItemProps) => {
 const favouriteItems = useSelector((state: RootState) => state.counter.favouriteItems);
 
 const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
-  // const images = useMemo(() => {
-  //   const g = item.gallery;
-  //   return [
-  //     g.front,
-  //     g.back,
-  //     g.left,
-  //     g.right,
-  //     g.modelFront,
-  //     g.modelBack,
-  //     g.modelLeft,
-  //     g.modelRight,
-  //   ].filter(Boolean);
-  // }, [item.gallery]);
-
+  
   useEffect(() => {
     if (!swiperRef.current || item.galleryImages.length < 2) return;
     if (isHovered) {

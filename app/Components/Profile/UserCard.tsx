@@ -1,13 +1,89 @@
 "use client";
 import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { UserProfile } from "@/app/Types/Types";
+import { UserAddress, UserProfile } from "@/app/Types/Types";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/app/Redux/store";
+import { setUser } from "@/app/Redux/Slices/userSlice";
+import { useTranslations } from "next-intl";
+import { RootState } from "@/app/Redux/store";
 
 interface UserCardProps {
   user: UserProfile;
 }
 
 export default function UserCard({ user }: UserCardProps) {
+  const t = useTranslations("profile");
+  const dispatch = useDispatch<AppDispatch>();
+  const [isEditingAddress, setIsEditingAddress] = useState<boolean>(false);
+  const [addressInput, setAddressInput] = useState<UserAddress>(user.address || { street: "", street2: "", city: "", state: "", zip: "", phone: "" });
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const authToken = useSelector((s: RootState) => s.user.token);
+
+  const handleSave = async () => {
+    const { street, street2, city, state, zip, phone } = addressInput;
+    if (!street || !city || !state || !zip || !phone) return;
+    setError(null);
+    try {
+      setSaving(true);
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+      const res = await fetch('https://adminbuzzmk.com/api/users/me', {
+        method: 'PUT',
+        headers,
+        credentials: 'include',
+        body: JSON.stringify({
+          shippingAddress: {
+            street1: street,
+            street2: street2 || '',
+            city,
+            state,
+            zip,
+            phone,
+          },
+        }),
+      });
+      console.log(res);
+      if (!res.ok) {
+        const msg = await res.text();
+        throw new Error(msg || 'Failed to update address');
+      }
+      const data = await res.json();
+      const u = data?.user;
+      const updated: UserProfile = {
+        id: u?.id || u?._id || user.id,
+        firstName: u?.firstName ?? user.firstName,
+        lastName: u?.lastName ?? user.lastName,
+        imageUrl: u?.imageUrl || user.imageUrl,
+        address: {
+          street: u?.shippingAddress?.street1 || street,
+          street2: u?.shippingAddress?.street2 || street2 || '',
+          city: u?.shippingAddress?.city || city,
+          state: u?.shippingAddress?.state || state,
+          zip: u?.shippingAddress?.zip || zip,
+          phone: u?.shippingAddress?.phone || u?.phone || phone,
+        },
+        email: u?.email || user.email,
+        phone: u?.shippingAddress?.phone || addressInput.phone,
+      };
+      dispatch(setUser(updated));
+      setIsEditingAddress(false);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Error';
+      setError(msg);
+    } finally {
+      setSaving(false);
+    }
+  };
+  const canSave = Boolean(
+    addressInput.street.trim() &&
+    addressInput.city.trim() &&
+    addressInput.state.trim() &&
+    addressInput.zip.trim() &&
+    addressInput.phone.trim()
+  );
   return (
     <section className="w-full bg-white rounded-2xl shadow-custom-white-light p-4 sm:p-6">
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
@@ -28,13 +104,109 @@ export default function UserCard({ user }: UserCardProps) {
               <Mail className="w-4 h-4 text-accent" />
               <span>{user.email}</span>
             </div>
-            <div className="flex items-center justify-center sm:justify-start gap-2 text-titles">
-              <Phone className="w-4 h-4 text-accent" />
-              <span>{user.phone}</span>
-            </div>
-            <div className="flex items-center justify-center sm:justify-start gap-2 text-titles sm:col-span-2">
-              <MapPin className="w-4 h-4 text-accent" />
-              <span>{user.address}</span>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-center sm:justify-start gap-2 text-titles sm:col-span-2">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-accent" />
+                {!isEditingAddress && user.address && (
+                  <>
+                    <span>{`${user.address.street}${user.address.street2 ? ", " + user.address.street2 : ""}, ${user.address.city}, ${user.address.state} ${user.address.zip}`}</span>
+                    <span className="hidden sm:inline mx-2 text-gray-300">|</span>
+                    <span className="flex items-center gap-1">
+                      <Phone className="w-3.5 h-3.5 text-accent" />
+                      <span>{user.address?.phone}</span>
+                    </span>
+                  </>
+                )}
+                {!isEditingAddress && !user.address && (
+                  <span className="text-gray-500">{t("noAddress", { default: "No address on file" })}</span>
+                )}
+              </div>
+
+              {isEditingAddress ? (
+                <div className="w-full sm:w-auto flex flex-col gap-2 sm:ml-4 mt-2 sm:mt-0">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <input
+                      type="text"
+                      value={addressInput.street}
+                      onChange={(e) => setAddressInput({ ...addressInput, street: e.currentTarget.value })}
+                      placeholder={t("address.street", { default: "Street" })}
+                      className="w-full border border-gray-300 px-3 py-1.5 rounded"
+                    />
+                    <input
+                      type="text"
+                      value={addressInput.street2 || ""}
+                      onChange={(e) => setAddressInput({ ...addressInput, street2: e.currentTarget.value })}
+                      placeholder={t("address.street2", { default: "Street 2 (optional)" })}
+                      className="w-full border border-gray-300 px-3 py-1.5 rounded"
+                    />
+                    <input
+                      type="text"
+                      value={addressInput.city}
+                      onChange={(e) => setAddressInput({ ...addressInput, city: e.currentTarget.value })}
+                      placeholder={t("address.city", { default: "City" })}
+                      className="w-full border border-gray-300 px-3 py-1.5 rounded"
+                    />
+                    <input
+                      type="text"
+                      value={addressInput.state}
+                      onChange={(e) => setAddressInput({ ...addressInput, state: e.currentTarget.value })}
+                      placeholder={t("address.state", { default: "State" })}
+                      className="w-full border border-gray-300 px-3 py-1.5 rounded"
+                    />
+                    <input
+                      type="text"
+                      value={addressInput.zip}
+                      onChange={(e) => setAddressInput({ ...addressInput, zip: e.currentTarget.value })}
+                      placeholder={t("address.zip", { default: "ZIP" })}
+                      className="w-full border border-gray-300 px-3 py-1.5 rounded"
+                    />
+                    <input
+                      type="text"
+                      value={addressInput.phone}
+                      onChange={(e) => setAddressInput({ ...addressInput, phone: e.currentTarget.value })}
+                      placeholder={t("address.phone", { default: "Phone" })}
+                      className="w-full border border-gray-300 px-3 py-1.5 rounded"
+                    />
+                  </div>
+                  {error && <p className="text-red-600 text-xs">{error}</p>}
+                  <div className="flex gap-2">
+                    <button
+                      className="px-3 py-1.5 rounded bg-gray-200 text-titles"
+                      onClick={() => {
+                        setIsEditingAddress(false);
+                        setAddressInput(user.address || { street: "", street2: "", city: "", state: "", zip: "", phone: "" });
+                      }}
+                    >
+                      {t("cancel", { default: "Cancel" })}
+                    </button>
+                    <button
+                      className="px-3 py-1.5 rounded bg-black text-white disabled:opacity-60"
+                      onClick={handleSave}
+                      disabled={!canSave || saving}
+                    >
+                      {saving ? t('saving', { default: 'Saving...' }) : t("save", { default: "Save" })}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="mt-2 sm:mt-0 sm:ml-4">
+                  {user.address ? (
+                    <button
+                      className="px-3 py-1.5 rounded bg-black text-white"
+                      onClick={() => setIsEditingAddress(true)}
+                    >
+                      {t("editAddress", { default: "Edit Address" })}
+                    </button>
+                  ) : (
+                    <button
+                      className="px-3 py-1.5 rounded bg-black text-white"
+                      onClick={() => setIsEditingAddress(true)}
+                    >
+                      {t("addAddress", { default: "Add Address" })}
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

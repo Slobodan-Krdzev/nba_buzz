@@ -52,9 +52,25 @@
     },
   "profile": {
     "title": "Your Profile",
+    "favoritesTitle": "Favorites",
     "ordersTitle": "Orders",
     "helpTitle": "Need assistance?",
     "helpText": "Contact the seller for help with your orders or account.",
+    "editAddress": "Edit Address",
+    "addAddress": "Add Address",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving...",
+    "noAddress": "No address on file",
+    "address": {
+      "street": "Street",
+      "street2": "Street 2 (optional)",
+      "city": "City",
+      "state": "State",
+      "zip": "ZIP",
+      "phone": "Phone"
+    },
+    "logout": "Log out",
     "orders": {
       "filters": "Filters",
       "status": { "all": "All", "open": "Open", "finished": "Finished" },
@@ -141,7 +157,8 @@
     "titles": {
       "hoodies": "Hoodies",
       "tshirts": "T-Shirts",
-      "jerseys": "Jerseys"
+      "jerseys": "Jerseys",
+      "featured": "Featured Products"
     }
   },
   "product": {
@@ -183,6 +200,52 @@
       "submit": "Send Message"
     }
   },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "selectAll": "Select All",
+    "price": "Price:",
+    "color": "Color:",
+    "size": "Size:",
+    "orderSummary": "Order Summary",
+    "couponPlaceholder": "Coupon code",
+    "apply": "Apply",
+    "cartItems": "Cart Items:",
+    "items": "Items",
+    "cartTotal": "Cart Total",
+    "shippingCharges": "Shipping Charges",
+    "free": "Free",
+    "total": "Total",
+    "shipping": "Shipping:",
+    "checkout": "Checkout"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "subtitle": "Clothing apparel for ballers",
+    "shippingInfoTitle": "Shipping Info",
+    "shippingInfoText": "Shipping is done in 2-3 days via local posts.",
+    "paymentInfoTitle": "Payment Info",
+    "paymentInfoText": "Payment is done on pickup. No online payment required.",
+    "shippingCostTitle": "Shipping Cost",
+    "shippingCostText": "Shipping is FREE for all orders!",
+    "returnPolicyTitle": "Return Policy",
+    "returnPolicyText": "If you are not satisfied with your order, you can return it within 14 days of delivery for a full refund. Items must be unworn and in original condition.",
+    "itemsInCart": "Items in Cart",
+    "total": "Total",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "county": "County",
+    "orderNow": "Order Now",
+    "confirmedTitle": "Order Confirmed!",
+    "confirmedText1": "Thank you for your order. We will contact you soon for delivery details.",
+    "confirmedText2": "We will send a confirmation email to you.",
+    "confirmedHelp": "For any help, feel free to call us at",
+    "close": "Close"
+  },
   "auth": {
     "login": {
       "title": "Login",
@@ -201,8 +264,13 @@
       "Password": "Password",
       "ConfirmPass": "Confirm Password",
       "submit": "Register",
+      "submitting": "Submitting...",
+      "success": "Registration successful!",
+      "validationRequired": "Please fill in all required fields.",
+      "validationPasswords": "Passwords do not match.",
       "help": "Help →",
-      "withGoogle": "Register With Google"
+      "withGoogle": "Register With Google",
+      "newsletterConsent": "I want to receive the NBABUZZ newsletter and promotions"
     }
   },
   "ourStory": {

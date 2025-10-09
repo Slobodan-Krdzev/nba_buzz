@@ -1,7 +1,9 @@
 import Image from "next/image";
 import CheckoutForm from "../../Components/Checkout/CheckoutForm";
+import { useTranslations } from "next-intl";
 
 const CheckoutPage = () => {
+  const t = useTranslations("checkout");
 
   return (
     <main className="min-h-screen bg-white flex flex-col lg:flex-row">
@@ -16,32 +18,24 @@ const CheckoutPage = () => {
         />
         <h2 className="text-3xl font-black text-accent mb-2 tracking-tighter">NBABUZZ.mk</h2>
         <p className="text-lg text-gray-700 mb-6 font-semibold tracking-tight text-center">
-          Clothing apparel for ballers
+          {t("subtitle")}
         </p>
         <div className="w-full max-w-md space-y-4">
           <div className="bg-[#faf1d3] rounded p-4 shadow">
-            <h3 className="font-bold mb-1 text-black">Shipping Info</h3>
-            <p className="text-sm text-gray-700">
-              Shipping is done in 2-3 days via local posts.
-            </p>
+            <h3 className="font-bold mb-1 text-black">{t("shippingInfoTitle")}</h3>
+            <p className="text-sm text-gray-700">{t("shippingInfoText")}</p>
           </div>
           <div className="bg-[#faf1d3] rounded p-4 shadow">
-            <h3 className="font-bold mb-1 text-black">Payment Info</h3>
-            <p className="text-sm text-gray-700">
-              Payment is done on pickup. No online payment required.
-            </p>
+            <h3 className="font-bold mb-1 text-black">{t("paymentInfoTitle")}</h3>
+            <p className="text-sm text-gray-700">{t("paymentInfoText")}</p>
           </div>
           <div className="bg-[#faf1d3] rounded p-4 shadow">
-            <h3 className="font-bold mb-1 text-black">Shipping Cost</h3>
-            <p className="text-sm text-green-700 font-semibold">
-              Shipping is <span className="font-bold">FREE</span> for all orders!
-            </p>
+            <h3 className="font-bold mb-1 text-black">{t("shippingCostTitle")}</h3>
+            <p className="text-sm text-green-700 font-semibold">{t("shippingCostText")}</p>
           </div>
           <div className="bg-[#faf1d3] rounded p-4 shadow">
-            <h3 className="font-bold mb-1 text-black">Return Policy</h3>
-            <p className="text-sm text-gray-700">
-              If you are not satisfied with your order, you can return it within 14 days of delivery for a full refund. Items must be unworn and in original condition.
-            </p>
+            <h3 className="font-bold mb-1 text-black">{t("returnPolicyTitle")}</h3>
+            <p className="text-sm text-gray-700">{t("returnPolicyText")}</p>
           </div>
         </div>
       </section>

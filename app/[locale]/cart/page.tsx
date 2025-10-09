@@ -12,10 +12,12 @@ import {
 } from "../../Redux/Slices/cartSlice";
 import { RootState } from "../../Redux/store";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
+  const t = useTranslations("cart");
 
   const checkedCount = cart.filter((item) => item.checked).length;
   const cartTotal = cart
@@ -41,7 +43,7 @@ const CartPage = () => {
         </div>
       )}
       <SectionTitle
-        title={cart.length === 0 ? "Your cart is empty" : "Shopping Cart"}
+        title={cart.length === 0 ? t("empty") : t("title")}
       />
 
       {cart.length > 0 && (
@@ -59,7 +61,7 @@ const CartPage = () => {
                     onChange={(e) => dispatch(selectAll(e.target.checked))}
                     className="mr-2"
                   />
-                  <label>Select All</label>
+                  <label>{t("selectAll")}</label>
                 </div>
                 <button
                   className="ml-4 text-red-400"
@@ -83,8 +85,8 @@ const CartPage = () => {
                         className="mr-2 md:mr-4"
                       />
                       <Image
-                        src={item.product.gallery.front}
-                        alt={item.product.name}
+                        src={item.product.galleryImages?.[0] ?? item.product.featuredImage ?? "/placeholder.jpg"}
+                        alt={item.product.title}
                         width={150}
                         height={100}
                         loading="lazy"
@@ -93,27 +95,24 @@ const CartPage = () => {
                     </div>
                     <div className="flex-1  flex flex-col basis-1/2 ">
                       <p className="text-xs text-gray-400">
-                        {item.product.type}
+                        {item.product.type?.name}
                       </p>
                       <p className="text-lg xl:text-3xl tracking-tighter font-bold">
-                        {item.product.name}
-                      </p>
-                      <p className="hidden md:block text-xs xl:text-md text-gray-500 ">
-                        {item.product.description.player}
+                        {item.product.title}
                       </p>
                       <p className="font-bold tracking-tighter text-sm mt-1 md:hidden ">
-                        Price: ${item.product.price}.00
+                        {t("price")} €{item.product.price}.00
                       </p>
                       <div className="flex justify-start items-center gap-2 mt-2 mb-4">
                         <p className="block md:hidden text-xs xl:text-sm tracking-tighter font-semibold">
                           Size: {item.size.toUpperCase()}
                         </p>
                         <div className="flex items-center md:hidden text-xs xl:text-sm tracking-tighter font-semibold gap-2">
-                          <p>Color: </p>{" "}
+                          <p>{t("color")} </p>{" "}
                           <div
                             className="h-[15px] w-[15px] rounded-full border-2 bg-cover"
                             style={{
-                              backgroundColor: item.product.colors.find(
+                              backgroundColor: item.product.colors?.find(
                                 (c) => c.name === item.color
                               )?.color,
                             }}
@@ -152,15 +151,15 @@ const CartPage = () => {
                           +
                         </button>
                         <p className="hidden md:block ml-4 text-xs xl:text-sm tracking-tighter font-semibold">
-                          Size: {item.size.toUpperCase()}
+                          {t("size")} {item.size.toUpperCase()}
                         </p>
 
                         <div className="ml-6 hidden md:flex items-center text-xs xl:text-sm tracking-tighter font-semibold gap-2">
-                          <p>Color: </p>{" "}
+                          <p>{t("color")} </p>{" "}
                           <div
                             className="h-[25px] w-[25px] rounded-full border-2 bg-cover"
                             style={{
-                              backgroundColor: item.product.colors.find(
+                              backgroundColor: item.product.colors?.find(
                                 (c) => c.name === item.color
                               )?.color,
                             }}
@@ -186,54 +185,54 @@ const CartPage = () => {
               className="hidden tracking-tighter lg:block w-full md:w-96 bg-[#faf1d3] rounded-lg p-6 mt-6 md:mt-8
     md:sticky md:top-[70px] h-fit self-start"
             >
-              <h3 className="text-lg font-semibold mb-4">Order Summary</h3>
+              <h3 className="text-lg font-semibold mb-4">{t("orderSummary")}</h3>
               <div className="flex mb-3">
                 <input
                   type="text"
-                  placeholder="Coupon code"
+                  placeholder={t("couponPlaceholder")}
                   className="border rounded px-3 py-2 flex-1"
                 />
                 <button className="ml-2 px-4 py-2 bg-black text-white rounded">
-                  Apply
+                  {t("apply")}
                 </button>
               </div>
               <div className="flex justify-between mb-2">
-                <span>Cart Items:</span>
-                <span>{cart.length} Items</span>
+                <span>{t("cartItems")}</span>
+                <span>{cart.length} {t("items")}</span>
               </div>
               <div className="flex justify-between mb-2">
-                <span>Cart Total</span>
+                <span>{t("cartTotal")}</span>
                 <span>${cartTotal}</span>
               </div>
               <div className="flex justify-between mb-2">
-                <span>Shipping Charges</span>
+                <span>{t("shippingCharges")}</span>
                 <span className="text-green-600 font-medium">
-                  Free <span className="line-through text-gray-400">$2</span>
+                  {t("free")} <span className="line-through text-gray-400">$2</span>
                 </span>
               </div>
               <hr className="my-2" />
               <div className="flex justify-between font-bold text-lg mb-4">
-                <span>Total</span>
+                <span>{t("total")}</span>
                 <span>${total}.00</span>
               </div>
               <Link href="/checkout" className="text-center  block mt-2 sm:mt-0  w-full  py-2 px-6 bg-black text-white rounded font-bold tracking-tighter gap-2">
-              Checkout
+              {t("checkout")}
             </Link >
             </div>
           </div>
           {/* MOBILE SUMMARY */}
           <div className="fixed shadow-glow-top bottom-0 left-0 w-full bg-[#faf1d3] border-t z-30 p-4 flex flex-col sm:flex-row items-center justify-between lg:hidden">
             <div className="flex justify-between  gap-2 w-full">
-              <p className="font-bold text-lg">Total: ${total}</p>
+              <p className="font-bold text-lg">{t("total")} ${total}</p>
               <div className="flex justify-between items-center mb-2 text-xs">
-                <span>Shipping: </span>
+                <span>{t("shipping")} </span>
                 <span className="text-green-600 font-medium ml-1">
-                  Free <span className="line-through text-gray-400">$2</span>
+                  {t("free")} <span className="line-through text-gray-400">$2</span>
                 </span>
               </div>
             </div>
             <Link href="/checkout" className="block mt-2 sm:mt-0 sm:ml-4 w-full sm:w-auto py-2 px-6 bg-black text-white rounded font-bold tracking-tighter gap-2">
-              Checkout
+              {t("checkout")}
             </Link >
           </div>
         </>

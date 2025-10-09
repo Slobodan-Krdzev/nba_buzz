@@ -7,12 +7,15 @@ import { usePathname } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 import LocaleSwitcher from "./LocalleSwitcher";
 import { useTranslations } from "next-intl";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/Redux/store";
 
 // Navigation items are built from translations to support localized headers
 
 const Navbar = () => {
   const t = useTranslations("navbar");
   const [isOpen, setIsOpen] = useState(false);
+  const isAuthenticated = useSelector((s: RootState) => s.user.isAuthenticated);
   // const pathname = usePathname();
 
   // const [showTitle, setShowTitle] = useState(pathname !== "/"); // 👈 show by default if not "/"
@@ -104,7 +107,7 @@ useEffect(() => {
               />
             </Link>
 
-            <Link href={"/login"}>
+            <Link href={isAuthenticated ? "/profile" : "/login"}>
               <User
                 className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75"
                 fill="white"
@@ -184,7 +187,7 @@ useEffect(() => {
                   <span className="text-gray-400">›</span>
                 </Link>
                 <Link
-                  href={"/login"}
+                  href={isAuthenticated ? "/profile" : "/login"}
                   className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition"
                   onClick={() => setIsOpen(false)}
                 >

@@ -1,9 +1,18 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import RegisterFrom from "../../Components/Forms/RegisterFrom";
 import { useTranslations } from "next-intl";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/Redux/store";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
   const t = useTranslations("auth.register");
+  const isAuthenticated = useSelector((s: RootState) => s.user.isAuthenticated);
+  const router = useRouter();
+  useEffect(() => {
+    if (isAuthenticated) router.replace('/profile');
+  }, [isAuthenticated, router]);
   return (
     <section className="h-[calc(100dvh-74px)] flex flex-col md:flex-row gap-5 justify-center items-center text-titles">
       <RegisterFrom tNs="auth.register" />
