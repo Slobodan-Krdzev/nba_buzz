@@ -274,6 +274,8 @@
     "close": "Close",
     "noItems": "No items",
     "qty": "Quantity",
+    "color": "Color",
+    "size": "Size",
     "validation": {
       "noItems": "Please select at least one item to order.",
       "required": "Please fill in all required fields.",
