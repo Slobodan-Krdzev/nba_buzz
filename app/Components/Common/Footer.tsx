@@ -28,7 +28,7 @@ const Footer = () => {
     {
       title: t("navbar.contact"),
       links: [
-        { title: `${t("contact.cards.email")} office@nbabuzzmk.com`, link: "/contact" },
+        { title: `${t("contact.cards.email")} office@trojka.mk`, link: "/contact" },
         { title: `${t("contact.cards.phone")} +389 77 551 012`, link: "/contact" },
       ],
     },
@@ -46,7 +46,7 @@ const Footer = () => {
         { title: t("auth.login.title"), link: "/login" },
         { title: t("footer.myAccount"), link: "/profile" },
         { title: t("profile.ordersTitle"), link: "/profile" },
-        { title: t("footer.wishlist"), link: "/account" },
+        { title: t("footer.wishlist"), link: "/profile" },
       ],
     },
   ];
@@ -60,15 +60,10 @@ const Footer = () => {
       >
         <div className="w-[90%] lg:w-[80%] m-auto py-[6vh]">
           <div className="mb-[8vh] flex items-center gap-4 ">
-            <Image
-              src={"/common/nbaBuzzLogo.png"}
-              alt="Logo"
-              width={120}
-              height={120}
-            />
+            <Image src={"/logo.png"} alt="Logo" width={120} height={120} />
             <div>
               <h4 className="text-3xl md:text-4xl font-black tracking-tighter">
-                NBABUZZMK
+                TROJKA.mk
               </h4>
               <p className="text-sm md:text-xl">
                 {t("footer.subtitle")} <br />
@@ -98,7 +93,7 @@ const Footer = () => {
 
       <div className="flex justify-between absolute py-4 bottom-0 left-0 right-0 w-[90%] lg:w-[80%] m-auto border-t-[0.5px] border-gray-400">
         <p className="text-xs md:text-sm">
-          © {new Date().getFullYear()} Copyright NBABUZZ.MK
+          © {new Date().getFullYear()} Copyright TROJKA.mk
         </p>
         <Link
           href={"https://zicgroupbpo.com/"}

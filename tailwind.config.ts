@@ -12,8 +12,8 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
 
-        accent: "#c39f3f",
-        accentLight: "#f0e7d6",
+        accent: "#EE7709",
+        accentLight: "#f29e54",
         dark: "#0b0d0c",
         titles: "#373737",
       },
@@ -24,6 +24,9 @@ export default {
       },
       backgroundSize: {
         '200%': '200% 200%',
+      },
+      backgroundImage: {
+        'brand-gradient': 'linear-gradient(to right, #ee7709, #2f2f2f)',
       },
       keyframes: {
         gradientMove: {

@@ -9,14 +9,8 @@ const CheckoutPage = () => {
     <main className="min-h-screen bg-white flex flex-col lg:flex-row">
       {/* RIGHT: Info/Branding */}
       <section className="w-full lg:w-1/2 flex flex-col justify-center items-center bg-white px-4 md:px-12 py-8 border-t md:border-t-0 md:border-l order-2 md:order-2">
-        <Image
-          src="/common/nbaBuzzLogo.png"
-          alt="NBABUZZ Logo"
-          width={120}
-          height={100}
-          className="mb-4"
-        />
-        <h2 className="text-3xl font-black text-accent mb-2 tracking-tighter">NBABUZZ.mk</h2>
+        <Image src="/logo.png" alt="TROJKA.mk Logo" width={120} height={100} className="mb-4" />
+        <h2 className="text-3xl font-black text-accent mb-2 tracking-tighter">TROJKA.mk</h2>
         <p className="text-lg text-gray-700 mb-6 font-semibold tracking-tight text-center">
           {t("subtitle")}
         </p>

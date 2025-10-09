@@ -10,7 +10,7 @@ type FromDirection = "left" | "right" | "top";
 export const slogans: { text: string; from: FromDirection }[] = [
   { text: "Basketball Apparell.", from: "left" },
   { text: "Unmatched Style.", from: "right" },
-  { text: "NBABUZZ.MK", from: "top" },
+  { text: "TROJKA.mk", from: "top" },
 ];
 
 const HeroSection = () => {
@@ -125,9 +125,7 @@ const HeroSection = () => {
         transition={{ duration: 1 }}
       >
         <div
-          className="h-[95dvh] bg-[linear-gradient(to_right,_#ffd452,_#544a7d)]
-             bg-[length:200%_200%]
-             animate-gradientMove flex items-center justify-center "
+          className="h-[95dvh] bg-brand-gradient bg-[length:200%_200%] animate-gradientMove flex items-center justify-center "
         >
           <ShopBy />
           <SocialLinks />

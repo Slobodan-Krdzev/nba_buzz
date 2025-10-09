@@ -8,7 +8,7 @@ const features = [
     icon: Shirt,
     title: "Premium & Recycled Materials",
     description:
-      "NBABuzz clothing is made from high-quality materials, combined with durable printing.",
+      "TROJKA.mk clothing is made from high-quality materials, combined with durable printing.",
 
   },
   {

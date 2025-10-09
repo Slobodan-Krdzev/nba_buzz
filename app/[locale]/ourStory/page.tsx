@@ -121,11 +121,8 @@ export default function OurStoryPage() {
           <div className="mt-6 text-titles">
             <p className="text-center">
               <span className="font-semibold">{t("contact.email")}</span>{" "}
-              <a
-                className="underline text-accent"
-                href="mailto:info@nbabuzz.mk"
-              >
-                info@nbabuzz.mk
+              <a className="underline text-accent" href="mailto:info@trojka.mk">
+                info@trojka.mk
               </a>
             </p>
             <p className="text-center">

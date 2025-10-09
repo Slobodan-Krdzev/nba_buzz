@@ -13,13 +13,7 @@ const ContactPage = () => {
     <main className="min-h-screen bg-white flex flex-col lg:flex-row items-center justify-between px-4 pt-2 py-10">
       {/* Logo, Title, Subtitle */}
       <div className="flex flex-col items-center mb-8 w-full lg:w-[60%]">
-        {/* <Image
-          src="/common/nbaBuzzLogo.png"
-          alt="NBABUZZ Logo"
-          width={120}
-          height={100}
-          className="mb-4"
-        /> */}
+        {/* <Image src="/logo.png" alt="TROJKA.mk Logo" width={120} height={100} className="mb-4" /> */}
         <h1 className="text-3xl md:text-5xl font-black text-accent mb-2 tracking-tighter text-center">{t("brand")}</h1>
         <p className="text-lg md:text-xl text-gray-700 font-semibold tracking-tight text-center mb-2">{t("subtitle")}</p>
         <p className="text-base text-gray-600 text-center max-w-xl">{t("description")}</p>
@@ -42,11 +36,8 @@ const ContactPage = () => {
             <h3 className="font-bold text-lg mb-2 text-black">{t("cards.contactTitle")}</h3>
             <p className="text-gray-700 text-center">
               <span className="font-semibold">{t("cards.email")}</span>{" "}
-              <a
-                href="mailto:info@nbabuzz.mk"
-                className="text-accent underline"
-              >
-                info@nbabuzz.mk
+              <a href="mailto:info@trojka.mk" className="text-accent underline">
+                info@trojka.mk
               </a>
               <br />
               <span className="font-semibold">{t("cards.phone")}</span>{" "}

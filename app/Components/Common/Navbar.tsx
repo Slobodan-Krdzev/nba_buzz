@@ -61,12 +61,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between relative">
         {/* Logo */}
         <Link href={"/"} className="flex items-center gap-2 basis-2/12">
-          <Image
-            src={"/common/nbaBuzzLogo.png"}
-            alt="Logo"
-            width={50}
-            height={120}
-          />
+          <Image src={"/logo.png"} alt="Logo" width={50} height={120} />
         </Link>
 
         {/* {showTitle && ( */}
@@ -80,7 +75,7 @@ const Navbar = () => {
               transition={{ duration: 0.8 }}
               className="text-2xl font-bold text-center text-accent"
             >
-              NBABUZZ.mk
+              TROJKA.mk
             </motion.p>
           </div>
         </AnimatePresence>
@@ -189,13 +184,8 @@ const Navbar = () => {
             >
               <div className="flex items-center justify-between mb-6">
                 <Link href={"/"} className="flex items-center gap-2">
-                  <Image
-                    src={"/common/nbaBuzzLogo.png"}
-                    alt="Logo"
-                    width={50}
-                    height={120}
-                  />
-                  <span className="font-bold">NBABUZZ.MK</span>
+                  <Image src={"/logo.png"} alt="Logo" width={50} height={120} />
+                  <span className="font-bold">TROJKA.mk</span>
                 </Link>
                 <div className="flex items-center gap-3">
                   <LocaleSwitcher />
@@ -279,7 +269,7 @@ const Navbar = () => {
                 )}
               </nav>
               <div className="mt-auto pt-6 text-xs text-gray-400">
-                © {new Date().getFullYear()} NBABUZZ.MK
+                © {new Date().getFullYear()} TROJKA.mk
               </div>
             </motion.div>
           </>

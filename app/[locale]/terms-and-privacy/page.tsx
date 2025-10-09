@@ -7,14 +7,9 @@ const TearmsAndPrivacy = () => {
   return (
     <section className="py-[8dvh] m-auto w-[90%] md:w-[60%] ">
       <div className="relative flex flex-col items-center gap-2 w-full">
-        {/* <Image
-          src={"/common/nbaBuzzLogo.png"}
-          alt="Logo"
-          width={120}
-          height={120}
-        /> */}
+        {/* <Image src={"/logo.png"} alt="Logo" width={120} height={120} /> */}
         <h1 className="text-4xl md:text-6xl font-bold text-center text-accent relative z-10 ">
-          NBABUZZ.MK
+          TROJKA.mk
         </h1>
         <h2 className="text-lg md:text-xl mb-[5vh] text-center tracking-tighter">
           {t("tagline")}
@@ -55,7 +50,7 @@ const TearmsAndPrivacy = () => {
       &bull; {t("rights.access")} <br /> &bull; {t("rights.delete")}
       <br /> &bull; {t("rights.unsubscribe")}
       <h2 className="text-2xl  tracking-tighter mb-[1vh] mt-[2vh]">
-        {t("contactTitle")} <b>support@nbabuzz.mk</b>
+        {t("contactTitle")} <b>support@trojka.mk</b>
       </h2>
     </section>
   );

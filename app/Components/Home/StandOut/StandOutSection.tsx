@@ -29,9 +29,7 @@ const StandOutSection = () => {
         <p className="text-sm lg:text-base text-gray-700 mb-6 max-w-lg mx-auto lg:mx-0">
           {t("description")}
         </p>
-        <button className="bg-[linear-gradient(to_right,_#ffd452,_#544a7d)]
-             bg-[length:200%_200%]
-             animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition">
+        <button className="bg-brand-gradient bg-[length:200%_200%] animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition">
           {t("button")}
         </button>
       </div>
