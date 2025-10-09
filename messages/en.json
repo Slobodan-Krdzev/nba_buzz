@@ -43,7 +43,10 @@
     "title": "JOIN OUR NEWSLETTER",
     "description": "Be first to see new arrivals, exclusive deals & discover our latest products by subscribing to our newsletter!",
     "inputPlaceholder": "Email...",
-    "btn": "Subscribe"
+    "btn": "Subscribe",
+    "success": "Subscribed! Please check your email.",
+    "error": "Subscription failed. Please try again.",
+    "validation": "Please enter your email to subscribe."
   },
   "filters": {
     "search": "Search",
@@ -285,6 +288,13 @@
     }
   },
   "auth": {
+    "errors": {
+      "general": "Something went wrong. Please try again.",
+      "emailExists": "That email is already registered. Try signing in instead.",
+      "invalidCredentials": "Email or password is incorrect.",
+      "network": "We couldn't reach the server. Check your connection and try again.",
+      "tooManyRequests": "Too many attempts. Please wait a moment and try again."
+    },
     "login": {
       "title": "Login",
       "email": "Email",

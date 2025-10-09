@@ -9,6 +9,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import FormInput from "./FormInput";
 
+const registerErrorMap: Record<string, string> = {
+  "email already registered": "emailExists",
+  "invalid credentials": "invalidCredentials",
+  "invalid credential": "invalidCredentials",
+  "credentials are invalid": "invalidCredentials",
+};
+
 interface Props { tNs?: string }
 type RegisterFormData = {
   Name: string;
@@ -19,6 +26,7 @@ type RegisterFormData = {
 }
 const RegisterFrom = ({ tNs = 'auth.register' }: Props) => {
   const t = useTranslations(tNs);
+  const tErrors = useTranslations('auth.errors');
   const [formData, setFormData] = useState<RegisterFormData>({
     Name: "",
     Lastname: "",
@@ -32,6 +40,33 @@ const RegisterFrom = ({ tNs = 'auth.register' }: Props) => {
   const [success, setSuccess] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+
+  const formatErrorMessage = (value?: string | null) => {
+    if (!value) return tErrors('general');
+    const trimmed = value.trim().replace(/^error:\s*/i, "");
+    if (!trimmed) return tErrors('general');
+    const lower = trimmed.toLowerCase();
+    const normalizedKey = lower.replace(/\.+$/, "");
+    if (registerErrorMap[normalizedKey]) return tErrors(registerErrorMap[normalizedKey]);
+    if (lower.includes("failed to fetch") || lower.includes("network")) return tErrors('network');
+    if (lower.includes("too many")) return tErrors('tooManyRequests');
+    return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+  };
+
+  const parseErrorResponse = async (res: Response) => {
+    const contentType = res.headers.get("content-type") || "";
+    try {
+      if (contentType.includes("application/json")) {
+        const data = await res.json();
+        if (typeof data?.error?.message === "string") return data.error.message;
+        if (typeof data?.message === "string") return data.message;
+      }
+      const text = await res.text();
+      return text;
+    } catch {
+      return "";
+    }
+  };
 
   const handleChange = (key: keyof RegisterFormData, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -103,8 +138,9 @@ const RegisterFrom = ({ tNs = 'auth.register' }: Props) => {
               }),
             });
             if (!res.ok) {
-              const msg = await res.text();
-              throw new Error(msg || 'Request failed');
+              const serverMessage = await parseErrorResponse(res);
+              setError(formatErrorMessage(serverMessage));
+              return;
             }
             const data = await res.json();
             if (data?.token) dispatch(setToken(data.token));
@@ -125,7 +161,8 @@ const RegisterFrom = ({ tNs = 'auth.register' }: Props) => {
             router.push('/profile');
           } catch (err) {
             const message = err instanceof Error ? err.message : 'Error';
-            setError(message);
+            console.error('Register error:', message);
+            setError(formatErrorMessage(message));
           } finally {
             setSubmitting(false);
           }

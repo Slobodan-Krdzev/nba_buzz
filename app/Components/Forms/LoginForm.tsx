@@ -9,15 +9,50 @@ import { AppDispatch } from '@/app/Redux/store';
 import { setUser, setToken } from '@/app/Redux/Slices/userSlice';
 import { useRouter } from 'next/navigation';
 
+const loginErrorMap: Record<string, string> = {
+  "invalid credentials": "invalidCredentials",
+  "invalid credential": "invalidCredentials",
+  "email already registered": "emailExists",
+};
+
 interface Props { tNs?: string }
 const LoginForm = ({ tNs = 'auth.login' }: Props) => {
   const t = useTranslations(tNs);
+  const tErrors = useTranslations('auth.errors');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+
+  const formatErrorMessage = (value?: string | null) => {
+    if (!value) return tErrors('general');
+    const trimmed = value.trim().replace(/^error:\s*/i, "");
+    if (!trimmed) return tErrors('general');
+    const lower = trimmed.toLowerCase();
+    const normalizedKey = lower.replace(/\.+$/, "");
+    if (loginErrorMap[normalizedKey]) return tErrors(loginErrorMap[normalizedKey]);
+    if (lower.includes("failed to fetch") || lower.includes("network")) return tErrors('network');
+    if (lower.includes("too many")) return tErrors('tooManyRequests');
+    if (lower.includes("invalid credential") || lower === "invalid credentials") return tErrors('invalidCredentials');
+    return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+  };
+
+  const parseErrorResponse = async (res: Response) => {
+    const contentType = res.headers.get("content-type") || "";
+    try {
+      if (contentType.includes("application/json")) {
+        const data = await res.json();
+        if (typeof data?.error?.message === "string") return data.error.message;
+        if (typeof data?.message === "string") return data.message;
+      }
+      const text = await res.text();
+      return text;
+    } catch {
+      return "";
+    }
+  };
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-titles w-[90%] md:w-full max-w-sm mx-auto p-6 shadow-xl border-[0.5px] border-[#d1d5db80] rounded-lg">
@@ -43,8 +78,9 @@ const LoginForm = ({ tNs = 'auth.login' }: Props) => {
               body: JSON.stringify({ email, password }),
             });
             if (!res.ok) {
-              const msg = await res.text();
-              throw new Error(msg || 'Request failed');
+              const serverMessage = await parseErrorResponse(res);
+              setError(formatErrorMessage(serverMessage));
+              return;
             }
             const data = await res.json();
             console.log(data);
@@ -81,7 +117,8 @@ const LoginForm = ({ tNs = 'auth.login' }: Props) => {
             router.push('/profile');
           } catch (e) {
             const msg = e instanceof Error ? e.message : 'Error';
-            setError(msg);
+            console.error('Login error:', msg);
+            setError(formatErrorMessage(msg));
           } finally {
             setSubmitting(false);
           }

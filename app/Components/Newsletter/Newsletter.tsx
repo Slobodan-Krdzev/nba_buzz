@@ -39,7 +39,10 @@ export default function NewsletterSection() {
         <form className="flex items-center justify-center " onSubmit={async (e) => {
           e.preventDefault();
           setMessage(null);
-          if (!email) return;
+          if (!email) {
+            setMessage(t("validation"));
+            return;
+          }
           try {
             setSubmitting(true);
             const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
@@ -49,10 +52,10 @@ export default function NewsletterSection() {
               body: JSON.stringify({ email }),
             });
             if (!res.ok) throw new Error('Subscribe failed');
-            setMessage('Subscribed! Please check your email.');
+            setMessage(t("success"));
             setEmail('');
           } catch {
-            setMessage('Subscription failed. Please try again.');
+            setMessage(t("error"));
           } finally {
             setSubmitting(false);
           }

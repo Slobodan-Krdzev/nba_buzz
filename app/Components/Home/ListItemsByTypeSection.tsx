@@ -10,10 +10,6 @@ const ListItemsByTypeSection = async ({ locale }: ListItemsByTypeSectionProps) =
 
   const res = await fetch(`https://adminbuzzmk.com/api/products?locale=${locale.toUpperCase()}`);
   const data: { products: Product[] } = await res.json();
-
-
-  console.log("DATA OD LISTER", data);
-
   const allHoodies = data.products.slice().filter((p) => p.type.name === "Hoodie");
   const allTshirts = data.products.slice().filter((p) => p.type.name === "T-shirt");
   const allJerseys = data.products.slice().filter((p) => p.type.name === "Jersey");

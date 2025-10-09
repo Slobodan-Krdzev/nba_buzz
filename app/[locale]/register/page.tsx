@@ -1,13 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
-import RegisterFrom from "../../Components/Forms/RegisterFrom";
-import { useTranslations } from "next-intl";
-import { useSelector } from "react-redux";
 import { RootState } from "@/app/Redux/store";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import RegisterFrom from "../../Components/Forms/RegisterFrom";
 
 const RegisterPage = () => {
-  const t = useTranslations("auth.register");
   const isAuthenticated = useSelector((s: RootState) => s.user.isAuthenticated);
   const router = useRouter();
   useEffect(() => {
