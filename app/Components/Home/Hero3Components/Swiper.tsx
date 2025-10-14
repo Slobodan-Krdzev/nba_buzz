@@ -43,29 +43,29 @@ const SLIDE_TRANSITION = 200; // ms
 
 const SwiperComp = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
+  const [activeProgress, setActiveProgress] = useState(0);
   const transitionTimeout = useRef<NodeJS.Timeout | null>(null);
   const slides = useSlides();
 
   const handleSlideChange = (swiper: SwiperClass) => {
     setActiveIndex(swiper.activeIndex);
-    setProgress(0); // Reset instantly on slide change
+    setActiveProgress(0); // Reset instantly on slide change
 
     // Ensure progress stays at 0 during transition
     if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
     transitionTimeout.current = setTimeout(() => {
-      setProgress(0);
+      setActiveProgress(0);
     }, SLIDE_TRANSITION);
   };
 
   return (
     <div className="relative w-full">
-      {/* Progress bar */}
-      <div className="absolute top-2 bottom-0 left-0 right-0 z-30 pointer-events-none ">
-        <div className="w-full h-.5 overflow-hidden bg-white/30/20">
+      {/* Single full-width progress bar under navbar (per slide) */}
+      <div className="absolute top-2 left-0 right-0 z-[99998] pointer-events-none">
+        <div className="w-full h-[5px] bg-white/30 overflow-hidden">
           <div
             className="h-full bg-[#EE7507] transition-[width] duration-100 ease-linear"
-            style={{ width: `${progress * 100}%` }}
+            style={{ width: `${Math.round(activeProgress * 100)}%` }}
           />
         </div>
       </div>
@@ -82,9 +82,8 @@ const SwiperComp = () => {
         className="mySwiper"
         onSlideChange={handleSlideChange}
         onAutoplayTimeLeft={(_, __, percentage) => {
-          // Swiper provides progress (0..1) as the third param
           const p = Math.min(1, Math.max(0, 1 - (percentage ?? 0)));
-          setProgress(p);
+          setActiveProgress(p);
         }}
       >
         {slides.map((s, idx) => (
