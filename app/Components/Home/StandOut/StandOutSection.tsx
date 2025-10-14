@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React from "react";      
 
@@ -29,9 +30,9 @@ const StandOutSection = () => {
         <p className="text-sm lg:text-base text-gray-700 mb-6 max-w-lg mx-auto lg:mx-0">
           {t("description")}
         </p>
-        <button className="bg-brand-gradient bg-[length:200%_200%] animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition">
+        <Link href="/products" className="bg-brand-gradient bg-[length:200%_200%] animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition">
           {t("button")}
-        </button>
+        </Link>
       </div>
     </section>
   );

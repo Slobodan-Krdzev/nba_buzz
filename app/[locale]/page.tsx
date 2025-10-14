@@ -7,6 +7,7 @@ import ListItemsByTypeSection from "../Components/Home/ListItemsByTypeSection";
 import PremiumQualitySection from "../Components/Home/PremiumQualitySection/PremiumQualitySection";
 import StandOutSection from "../Components/Home/StandOut/StandOutSection";
 import NewsletterSection from "../Components/Newsletter/Newsletter";
+import InViewSection from "../Components/Common/InViewSection";
 
 export default function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params);
@@ -16,11 +17,21 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
     <>
       {/* <HeroV2 /> */}
       <HeroV3/>
-      <ListItemsByTypeSection locale={locale}/>
-      <StandOutSection/>
-      <PremiumQualitySection/>
-      <NewsletterSection/>
-      <JoinUs />
+      <InViewSection>
+        <ListItemsByTypeSection locale={locale}/>
+      </InViewSection>
+      <InViewSection>
+        <StandOutSection/>
+      </InViewSection>
+      <InViewSection>
+        <PremiumQualitySection/>
+      </InViewSection>
+      <InViewSection>
+        <NewsletterSection/>
+      </InViewSection>
+      <InViewSection>
+        <JoinUs />
+      </InViewSection>
     </>
   );
 }

@@ -6,23 +6,24 @@ import { Link } from "@/i18n/navigation";
 import ContactForm from "../../Components/Contact/ContactForm";
 import NewsletterForm from "../../Components/Contact/NewsletterForm";
 import { useTranslations } from "next-intl";
+import InViewSection from "@/app/Components/Common/InViewSection";
 
 const ContactPage = () => {
   const t = useTranslations("contact");
   return (
     <main className="min-h-screen bg-white flex flex-col lg:flex-row items-center justify-between px-4 pt-2 py-10">
       {/* Logo, Title, Subtitle */}
-      <div className="flex flex-col items-center mb-8 w-full lg:w-[60%]">
+      <InViewSection className="flex flex-col items-center mb-8 w-full lg:w-[60%]">
         {/* <Image src="/logo.png" alt="TROJKA.mk Logo" width={120} height={100} className="mb-4" /> */}
         <h1 className="text-3xl md:text-5xl font-black text-accent mb-2 tracking-tighter text-center">{t("brand")}</h1>
         <p className="text-lg md:text-xl text-gray-700 font-semibold tracking-tight text-center mb-2">{t("subtitle")}</p>
         <p className="text-base text-gray-600 text-center max-w-xl">{t("description")}</p>
 
           <ContactForm />
-        </div>
+        </InViewSection>
 
       {/* Info Cards */}
-      <div className="w-full lg:w-1/2 flex flex-col items-center">
+      <InViewSection className="w-full lg:w-1/2 flex flex-col items-center" delay={0.1}>
         <div className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="bg-[#faf1d3] rounded-lg shadow p-6 flex flex-col items-center">
             <h3 className="font-bold text-lg mb-2 text-black">{t("cards.safeTitle")}</h3>
@@ -66,7 +67,7 @@ const ContactPage = () => {
 
         {/* Newsletter */}
         <NewsletterForm />
-      </div>
+      </InViewSection>
     </main>
   );
 };

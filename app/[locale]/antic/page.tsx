@@ -5,13 +5,14 @@ import AnimatedSlogans from "@/app/Components/Common/AnimatedSlogans";
 import BouncingBasketball from "@/app/Components/Common/BouncingBasketball";
 import { useTranslations } from "next-intl";
 import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
+import InViewSection from "@/app/Components/Common/InViewSection";
 
 const AnticPage = () => {
   const t = useTranslations("collections.antic");
   const slogans = [t("s1"), t("s2"), t("s3"), t("s4")];
   return (
     <>
-      <section
+      <InViewSection
         className="w-full flex flex-col justify-center items-center h-[calc(60dvh-70px)] md:h-[calc(60dvh-70px)] lg:h-[calc(100dvh-62.6px)] text-white relative bg-cover bg-center"
         style={{ backgroundImage: "url(/common/heroSection2.jpg)" }}
       >
@@ -20,15 +21,15 @@ const AnticPage = () => {
           <AnimatedSlogans items={slogans} />
         </div>
         <BouncingBasketball />
-      </section>
+      </InViewSection>
 
-      <section className="py-16 px-4 md:px-8 lg:px-16 ">
+      <InViewSection className="py-16 px-4 md:px-8 lg:px-16 ">
         <SectionTitle title={t("title")} />
 
         <p className="m-auto w-[90%] md:w-[70%] lg:w-[50%] text-center">{t("intro")}</p>
-      </section>
+      </InViewSection>
 
-      <section className="py-16 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center gap-6">
+      <InViewSection className="py-16 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center gap-6">
         <div className="basis-1 lg:basis-[45%]">
           <SectionTitle title={t("designTitle")} />
 
@@ -38,9 +39,9 @@ const AnticPage = () => {
         <div className="basis-1 lg:basis-[70%]">
           <Image src={'/common/productsHero.jpg'} alt="Antic collection" width={1920} height={100} className="shadow-xl" />
         </div>
-      </section>
+      </InViewSection>
 
-      <section className="py-16 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center gap-6">
+      <InViewSection className="py-16 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center gap-6">
         <div className="basis-1 lg:basis-[70%] order-2 lg-order-1">
           <Image src={'/poses/8.jpg'} alt="Pero walking over LeBron — inspired design" width={1920} height={100} className="shadow-xl" />
         </div>
@@ -49,9 +50,9 @@ const AnticPage = () => {
 
           <p className="lg:w-[80%] m-auto text-center">{t("whyText")}</p>
         </div>
-      </section>
+      </InViewSection>
 
-      <section className="py-16 px-4 md:px-8 lg:px-16 ">
+      <InViewSection className="py-16 px-4 md:px-8 lg:px-16 ">
         <SectionTitle title={t("materialsTitle")} />
 
         <ul className="pl-6 space-y-2 text-lg w-[90%] lg:w-[60%] m-auto">
@@ -60,7 +61,7 @@ const AnticPage = () => {
           <li className="text-center">{t("materials.prints")}</li>
           <li className="text-center">{t("materials.durable")}</li>
         </ul>
-      </section>
+      </InViewSection>
 
       <FeaturedProducts />
     </>

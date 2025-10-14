@@ -47,6 +47,8 @@ const Navbar = () => {
 
   //   "bg-white shadow-custom-green text-titles"
   const pathname = usePathname();
+  const cartItems = useSelector((s: RootState) => s.cart.items);
+  const totalCartQty = cartItems.reduce((sum, it) => sum + (it.qty || 0), 0);
 
   useEffect(() => {
     setIsOpen(false);
@@ -55,7 +57,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed z-[99999]  top-0 left-0 right-0  px-4 py-1.5 transition-colors text-titles bg-white shadow-custom-green
+      className={`fixed z-[99999]  top-0 left-0 right-0  px-4 py-0 transition-colors text-titles bg-white shadow-custom-green
       `}
     >
       <div className="flex items-center justify-between relative">
@@ -99,11 +101,16 @@ const Navbar = () => {
             </Link>
           ))}
           <div className="flex gap-4 items-center relative">
-            <Link href={"/cart"}>
+            <Link href={"/cart"} className="relative inline-block">
               <ShoppingCart
                 className="w-5 h-5 cursor-pointer hover:scale-105 transition-transform ease-in-out duration-75"
                 fill="white"
               />
+              {totalCartQty > 0 ? (
+                <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-red-600 text-white text-[10px] leading-[18px] text-center font-semibold">
+                  {totalCartQty}
+                </span>
+              ) : null}
             </Link>
 
             <button
@@ -219,8 +226,13 @@ const Navbar = () => {
                   className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition"
                   onClick={() => setIsOpen(false)}
                 >
-                  <span className="flex items-center gap-3 font-medium">
+                  <span className="flex items-center gap-3 font-medium relative">
                     <ShoppingCart className="w-5 h-5" /> {t("cart")}
+                    {totalCartQty > 0 ? (
+                      <span className="ml-2 min-w-[18px] h-[18px] px-1 rounded-full bg-red-600 text-white text-[10px] leading-[18px] text-center font-semibold">
+                        {totalCartQty}
+                      </span>
+                    ) : null}
                   </span>
                   <span className="text-gray-400">›</span>
                 </Link>

@@ -61,10 +61,10 @@ const SwiperComp = () => {
   return (
     <div className="relative w-full">
       {/* Progress bar */}
-      <div className="absolute top-0 left-0 right-0 z-10">
-        <div className="w-full h-1.5 overflow-hidden">
+      <div className="absolute top-2 bottom-0 left-0 right-0 z-30 pointer-events-none ">
+        <div className="w-full h-.5 overflow-hidden bg-white/30/20">
           <div
-            className="h-full bg-[#c39f3f] transition-[width] duration-75 ease-linear"
+            className="h-full bg-[#EE7507] transition-[width] duration-100 ease-linear"
             style={{ width: `${progress * 100}%` }}
           />
         </div>
@@ -81,18 +81,10 @@ const SwiperComp = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
         onSlideChange={handleSlideChange}
-        onAutoplayTimeLeft={(_, timeLeft) => {
-          // Only start progress after transition is done
-          if (timeLeft > AUTOPLAY_DELAY - SLIDE_TRANSITION) {
-            setProgress(0);
-            return;
-          }
-          const corrected =
-            Math.min(
-              1,
-              Math.max(0, 1 - (timeLeft - SLIDE_TRANSITION) / AUTOPLAY_DELAY)
-            );
-          setProgress(corrected);
+        onAutoplayTimeLeft={(_, __, percentage) => {
+          // Swiper provides progress (0..1) as the third param
+          const p = Math.min(1, Math.max(0, 1 - (percentage ?? 0)));
+          setProgress(p);
         }}
       >
         {slides.map((s, idx) => (

@@ -8,6 +8,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "../../i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import InitialLoader from "../Components/Common/InitialLoader";
 
 const jostSans = Jost({
   variable: "--font-jost-sans",
@@ -19,8 +20,21 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "3ka MK",
-  description: "Your best sports apparel.",
+  title: "TROJKA.mk",
+  description:
+    "TROJKA.mk — original basketball-inspired streetwear. Unique, in-house designs based on NBA icons like Nikola Jokić, Pero Antić, and Luka Dončić. Premium tees, hoodies, and jerseys for ballers.",
+  keywords: [
+    "TROJKA.mk", "basketball clothing", "NBA apparel", "original designs",
+    "streetwear", "hoodies", "t-shirts", "jerseys", "Nikola Jokic",
+    "Pero Antic", "Luka Doncic", "The Joker design", "Antic MVP",
+    "Luka goes to Hollywood",
+    "оригинална облека", "кошаркарска облека", "НБА", "стритвер",
+    "маици", "дуксери", "дизајни", "Никола Јокиќ", "Перо Антиќ",
+    "Лука Дончиќ", "бренд", "модерна облека",
+    "originalna odeća", "košarkaška odeća", "NBA", "streetwear",
+    "majice", "duksevi", "dizajn", "Nikola Jokić", "Pero Antić",
+    "Luka Dončić", "modni brend",
+  ],
 };
 
 export default async function RootLayout({
@@ -44,6 +58,20 @@ export default async function RootLayout({
       <body className={`${jostSans.className} antialiased`}>
         <NextIntlClientProvider locale={locale}>
           <ReduxProvider>
+            <InitialLoader />
+            {/* Subtle global watermark background */}
+            <div
+              aria-hidden
+              className="fixed inset-0 -z-10 pointer-events-none"
+              style={{
+                backgroundImage: "url(/logo.png)",
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'min(60vw, 600px)',
+                opacity: 0.04,
+                filter: 'grayscale(100%)',
+              }}
+            />
             <Navbar />
             {children}
             <Footer />

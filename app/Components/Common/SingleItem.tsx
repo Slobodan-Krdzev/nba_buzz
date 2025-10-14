@@ -36,19 +36,17 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
 
   const onFaveClick = () => {
 
-    console.log('Clicked', favouriteItems, isItemInFaves)
     if(isItemInFaves){
 
       dispatch(removeFaveItem(item))
-      console.log('Vleguva')
     }else {
-      console.log('Vleguva')
 
       dispatch(addFaveItem(item))
 
     }
   }
-
+  //  "text-white bg-gradient-to-l from-[#ffd452] to-[#544a7d] border-none shadow-[0_4px_20px_rgba(84,74,125,0.5),0_4px_20px_rgba(255,212,82,0.6)]"
+  // 
   return (
     <Link
       href={`/products/${item._id}`}
@@ -56,13 +54,13 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
       onMouseLeave={() => setIsHovered(false)}
       className={`block relative p-3 rounded-xl border shadow-lg transition-all duration-300
         ${item.isPromotion
-          ? "text-white bg-gradient-to-l from-[#ffd452] to-[#544a7d] border-none shadow-[0_4px_20px_rgba(84,74,125,0.5),0_4px_20px_rgba(255,212,82,0.6)]"
+          ? "text-white bg-gradient-to-l from-[#EE7507] to-[#ffcc66] border-none shadow-[0_4px_20px_rgba(238,117,7,0.45),0_4px_20px_rgba(255,204,102,0.5)]"
           : "bg-white"
         }`}
     >
       {/* Promo Label */}
       {item.isPromotion && (
-        <div className="z-20 absolute top-0 left-0 px-3 py-2 md:px-6 md:py-3 bg-[#544a7d] font-black rounded-br-md rounded-tl-md shadow text-sm md:text-base">
+        <div className="z-20 absolute top-0 left-0 px-3 py-2 md:px-6 md:py-3 bg-[#EE7507] font-black rounded-br-md rounded-tl-md shadow text-sm md:text-base">
           HOT!
         </div>
       )}
