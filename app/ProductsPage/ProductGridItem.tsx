@@ -8,12 +8,14 @@ import type { Swiper as SwiperType } from "swiper";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface ProductGridItem {
   product: Product;
 }
 
 const ProductGridItem = ({ product }: ProductGridItem) => {
+  const t = useTranslations("filters");
   const swiperRef = useRef<SwiperType | null>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -37,11 +39,18 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
 
   return (
     <div
-      className="border rounded-xl p-4 hover:shadow-lg transition"
+      className={`border rounded-xl p-4 hover:shadow-lg transition ${product.isPromotion ? "bg-gradient-to-l from-[#FBB951] to-[#ffcc66]" : "bg-white"}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative">
+        {/* HOT Badge for promotions */}
+        {product.isPromotion && (
+        <div className="z-20 absolute text-white top-3 left-3 px-3 py-2 md:px-6 md:py-3 bg-[#FBB951] font-black  rounded-md shadow text-sm md:text-base">
+          HOT!
+        </div>
+      )}
+        
         {images.length > 1 ? (
           <Swiper
             modules={[Autoplay, Pagination]}
@@ -72,7 +81,7 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
             className="rounded-md mb-3 md:mb-5 w-full h-[220px] sm:h-[280px] md:h-[320px] lg:h-[380px] object-cover"
           />
         )}
-        {product.type?.name && (
+        {product.type?.name && !product.isPromotion && (
           <span className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
             {product.type.name}
           </span>
@@ -82,10 +91,10 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
         </span>
       </div>
 
-      <h3 className="mt-3 text-sm font-medium">{product.title}</h3>
-      <p className="text-gray-700">$ {product.price}.00</p>
-      <Link href={`/products/${product._id}`} className="block text-center mt-2 w-full bg-accent text-white py-2 rounded hover:bg-[#d8b249]">
-        Buy Now 
+      <h3 className={`mt-3 text-sm font-medium ${product.isPromotion ? "text-white" : ""}`}>{product.title}</h3>
+      <p className={`${product.isPromotion ? "text-white" : "text-gray-700"}`}>€ {product.price}</p>
+      <Link href={`/products/${product._id}`} className="block text-center mt-2 w-full bg-accent text-white py-2 rounded hover:bg-[#e6ab62]">
+        {t("buyNow")}
       </Link>
     </div>
   );

@@ -60,7 +60,7 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
     >
       {/* Promo Label */}
       {item.isPromotion && (
-        <div className="z-20 absolute top-0 left-0 px-3 py-2 md:px-6 md:py-3 bg-[#EE7507] font-black rounded-br-md rounded-tl-md shadow text-sm md:text-base">
+        <div className="z-20 absolute top-5 left-5 px-3 py-2 md:px-6 md:py-3 bg-[#FBB951] font-black  rounded-md shadow text-sm md:text-base">
           HOT!
         </div>
       )}

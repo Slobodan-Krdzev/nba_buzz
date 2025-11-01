@@ -23,6 +23,8 @@ const CartPage = () => {
 
   const checkedCount = cart.filter((item) => item.checked).length;
   const [couponInput, setCouponInput] = useState("");
+  const [showCouponError, setShowCouponError] = useState(false);
+  const [shakeCoupon, setShakeCoupon] = useState(false);
   const cartTotal = cart
     .filter((item) => item.checked)
     .reduce((sum, item) => sum + item.product.price * item.qty, 0);
@@ -43,13 +45,33 @@ const CartPage = () => {
       const data = await res.json();
       dispatch(applyCoupon({ code: data.coupon.code, discountAmount: data.discount }));
     } catch {
-      alert('Invalid or ineligible coupon');
+      setShowCouponError(true);
+      setShakeCoupon(true);
+      setTimeout(() => setShakeCoupon(false), 500);
+      setTimeout(() => setShowCouponError(false), 2000);
     }
   };
 
   console.log("Cart Items:", cart);
 
   return (
+    <>
+      {/* Shake animation style */}
+      <style>
+        {`
+          @keyframes shake {
+            0% { transform: translateX(-50%) translateY(0); }
+            20% { transform: translateX(-50%) translateY(-2px) rotate(-5deg);}
+            40% { transform: translateX(-50%) translateY(2px) rotate(5deg);}
+            60% { transform: translateX(-50%) translateY(-2px) rotate(-5deg);}
+            80% { transform: translateX(-50%) translateY(2px) rotate(5deg);}
+            100% { transform: translateX(-50%) translateY(0); }
+          }
+          .animate-shake {
+            animation: shake 0.5s;
+          }
+        `}
+      </style>
     <div
       className={`min-h-screen bg-white font-sans  py-6 lg:py-12 ${cart.length === 0
         ? "min-h-[40vh] flex flex-col items-center justify-center"
@@ -202,8 +224,18 @@ const CartPage = () => {
             {/* Order Summary */}
             <div
               className="hidden tracking-tighter lg:block w-full md:w-96 bg-[#faf1d3] rounded-lg p-6 mt-6 md:mt-8
-    md:sticky md:top-[70px] h-fit self-start"
+    md:sticky md:top-[70px] h-fit self-start relative"
             >
+              {/* Coupon Error Popup */}
+              {showCouponError && (
+                <div
+                  className={`absolute left-1/2 -translate-x-1/2 top-16 bg-red-500 text-white px-4 py-2 rounded shadow-lg text-sm font-semibold z-50
+                    ${shakeCoupon ? "animate-shake" : ""}`}
+                >
+                  {t("invalidCoupon")}
+                </div>
+              )}
+              
               <h3 className="text-lg font-semibold mb-4">{t("orderSummary")}</h3>
               <div className="flex mb-3">
                 <input
@@ -265,6 +297,7 @@ const CartPage = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 

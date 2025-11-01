@@ -13,13 +13,21 @@ interface SwiperItemProps {
 const SwiperItem = ({ slide, isActive }: SwiperItemProps) => {
   const t = useTranslations("home.hero");
   return (
-    <section
-      style={{
-        backgroundImage: `url(${slide.img})`,
-      }}
-      className={`relative bg-cover bg-center w-full h-[calc(70dvh-70px)] md:h-[calc(60dvh-70px)] lg:h-[calc(100dvh-62.6px)]`}
-    >
-      <div className="w-full h-full bg-black/40 flex justify-center items-center">
+    <section className="relative w-full h-[calc(70dvh-70px)] md:h-[calc(60dvh-70px)] lg:h-[calc(100dvh-62.6px)] overflow-hidden">
+      {/* Animated background image with zoom effect */}
+      <motion.div
+        style={{
+          backgroundImage: `url(${slide.img})`,
+        }}
+        className="absolute inset-0 bg-cover bg-center"
+        animate={isActive ? { scale: 1.1 } : { scale: 1 }}
+        transition={{ 
+          duration: 8, 
+          ease: "easeOut",
+          delay: isActive ? 0.5 : 0
+        }}
+      />
+      <div className="relative z-10 w-full h-full bg-black/40 flex justify-center items-center">
         <div className="flex flex-col justify-center items-center w-[95%] md:w-[70%] xl:w-[50%]">
           <motion.h1
             initial={{ opacity: 0 }}
@@ -45,7 +53,7 @@ const SwiperItem = ({ slide, isActive }: SwiperItemProps) => {
             animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="rounded mt-3 lg:mt-6 block w-[40%] lg:w-[30%] text-center font-bold tracking-tighter bg-[linear-gradient(to_right,_#ee7709,_#2f2f2f)]
+            className="rounded mt-3 lg:mt-6 block w-[40%] lg:w-[30%] text-center font-bold tracking-tighter bg-gradient-to-l from-[#EE7507] to-[#ffcc66]
              bg-[length:200%_200%]
              animate-gradientMove text-white  py-3 px-6 hover:bg-accentLight transition text-sm lg:text-xl"
           >

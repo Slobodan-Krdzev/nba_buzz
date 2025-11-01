@@ -6,9 +6,9 @@ interface BouncingBasketballProps {
   size?: number; // px
 }
 
-export default function BouncingBasketball({ className = "", size = 28 }: BouncingBasketballProps) {
+export default function BouncingBasketball({ className = "", size = 36 }: BouncingBasketballProps) {
   return (
-    <div className={`pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 ${className}`}>
+    <div className={`pointer-events-none absolute z-20 bottom-6 left-1/2 -translate-x-1/2 ${className}`}>
       <motion.div
         initial={{ y: 0, scaleX: 1, scaleY: 1 }}
         animate={{ y: [0, -14, 0], scaleX: [1.06, 1, 1.06], scaleY: [0.9, 1, 0.9] }}

@@ -25,7 +25,7 @@ function useSlides(): HeroSlideItemType[] {
       id: 1,
       title: t("luka.title"),
       subtitle: t("luka.subtitle"),
-      img: "/common/heroSection.png",
+      img: "/luka1.jpg",
       link: "/luka",
     },
     {
@@ -61,10 +61,10 @@ const SwiperComp = () => {
   return (
     <div className="relative w-full">
       {/* Single full-width progress bar under navbar (per slide) */}
-      <div className="absolute top-2 left-0 right-0 z-[99998] pointer-events-none">
-        <div className="w-full h-[5px] bg-white/30 overflow-hidden">
+      <div className="absolute top-1.5 left-0 right-0 z-[99998] pointer-events-none">
+        <div className="w-full h-[6px] bg-white/30 overflow-hidden">
           <div
-            className="h-full bg-[#EE7507] transition-[width] duration-100 ease-linear"
+            className="h-full bg-[#EE7507] transition-[width] duration-100 ease-linear "
             style={{ width: `${Math.round(activeProgress * 100)}%` }}
           />
         </div>

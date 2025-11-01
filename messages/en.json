@@ -61,7 +61,8 @@
       "tshirt": "T-Shirt",
       "hoodie": "Hoodie",
       "jersey": "Jersey"
-    }
+    },
+    "buyNow": "Buy Now"
   },
   "joinUs": {
     "title": "WE’VE GOT YOUR BACK 24/7",
@@ -245,7 +246,8 @@
     "free": "Free",
     "total": "Total",
     "shipping": "Shipping:",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "invalidCoupon": "Invalid or ineligible coupon"
   },
   "checkout": {
     "title": "Checkout",
