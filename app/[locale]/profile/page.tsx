@@ -20,7 +20,7 @@ function getDummyUser(): UserProfile {
     id: "u_001",
     firstName: "Jordan",
     lastName: "Smith",
-    imageUrl: "/poses/3.jpg",
+    imageUrl: "/logo.png",
     address: {
       street: "123 Court Ave",
       street2: "",
@@ -75,7 +75,7 @@ export default function ProfilePage() {
           id: u.id || u._id || '',
           firstName: u.firstName || '',
           lastName: u.lastName || '',
-          imageUrl: u.imageUrl || '/poses/3.jpg',
+          imageUrl: u.imageUrl || '/logo.png',
           address: {
             street: addr.street1 || '',
             street2: addr.street2 || '',

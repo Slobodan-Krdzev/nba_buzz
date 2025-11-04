@@ -39,7 +39,7 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
 
   return (
     <div
-      className={`border rounded-xl p-4 hover:shadow-lg transition ${product.isPromotion ? "bg-gradient-to-l from-[#FBB951] to-[#ffcc66]" : "bg-white"}`}
+      className={`border rounded-xl p-2 sm:p-4 hover:shadow-lg transition ${product.isPromotion ? "bg-gradient-to-l from-[#FBB951] to-[#ffcc66]" : "bg-white"}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -58,7 +58,7 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
             loop
             pagination={true}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            className="rounded-md mb-3 md:mb-5 w-full h-[400px] sm:h-[390px] md:h-[390px] lg:h-[480px]"
+            className="rounded-md mb-2 sm:mb-3 md:mb-5 w-full h-[200px] sm:h-[280px] md:h-[350px] lg:h-[480px]"
           >
             {images.map((src, idx) => (
               <SwiperSlide key={idx} >
@@ -78,7 +78,7 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
             alt={product.title}
             width={400}
             height={500}
-            className="rounded-md mb-3 md:mb-5 w-full h-[220px] sm:h-[280px] md:h-[320px] lg:h-[380px] object-cover"
+            className="rounded-md mb-2 sm:mb-3 md:mb-5 w-full h-[200px] sm:h-[280px] md:h-[350px] lg:h-[420px] object-cover"
           />
         )}
         {product.type?.name && !product.isPromotion && (
@@ -91,9 +91,9 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
         </span>
       </div>
 
-      <h3 className={`mt-3 text-sm font-medium ${product.isPromotion ? "text-white" : ""}`}>{product.title}</h3>
+      <h3 className={`mt-1 sm:mt-3 text-sm font-medium ${product.isPromotion ? "text-white" : ""}`}>{product.title}</h3>
       <p className={`${product.isPromotion ? "text-white" : "text-gray-700"}`}>€ {product.price}</p>
-      <Link href={`/products/${product._id}`} className="block text-center mt-2 w-full bg-accent text-white py-2 rounded hover:bg-[#e6ab62]">
+      <Link href={`/products/${product._id}`} className="block text-center mt-1 sm:mt-2 w-full bg-accent text-white py-1.5 sm:py-2 rounded hover:bg-[#e6ab62]">
         {t("buyNow")}
       </Link>
     </div>

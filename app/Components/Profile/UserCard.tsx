@@ -107,7 +107,7 @@ export default function UserCard({ user }: UserCardProps) {
         <div className="relative inline-block">
           <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden ring-2 ring-accentLight">
             <Image
-              src={user.imageUrl}
+              src={user.imageUrl || '/logo.png'}
               alt={`${user.firstName} ${user.lastName}`}
               fill
               className="object-cover"
@@ -152,7 +152,7 @@ export default function UserCard({ user }: UserCardProps) {
                     id: u?.id || u?._id || user.id,
                     firstName: u?.firstName ?? user.firstName,
                     lastName: u?.lastName ?? user.lastName,
-                    imageUrl: u?.imageUrl || newUrl,
+                    imageUrl: u?.imageUrl || newUrl || '/logo.png',
                     address: user.address,
                     email: u?.email || user.email,
                     phone: u?.shippingAddress?.phone || user.address.phone,
@@ -266,7 +266,7 @@ export default function UserCard({ user }: UserCardProps) {
                             id: u?.id || u?._id || user.id,
                             firstName: u?.firstName ?? user.firstName,
                             lastName: u?.lastName ?? user.lastName,
-                            imageUrl: u?.imageUrl || user.imageUrl,
+                            imageUrl: u?.imageUrl || user.imageUrl || '/logo.png',
                             address: user.address,
                             email: u?.email || user.email,
                             phone: u?.shippingAddress?.phone || user.address.phone,

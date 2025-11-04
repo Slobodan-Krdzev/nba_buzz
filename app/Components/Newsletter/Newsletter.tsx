@@ -19,7 +19,7 @@ export default function NewsletterSection() {
   const [submitting, setSubmitting] = useState(false);
 
   return (
-    <section className="relative min-h-[800px] flex items-center justify-center bg-[url('/common/newsletter.jpg')] bg-cover lg:bg-center">
+    <section className="relative h-[50vh] lg:min-h-[800px] flex items-center justify-center bg-[url('/common/newsletter.jpg')] bg-cover bg-center">
       {/* Background image */}
 
 
