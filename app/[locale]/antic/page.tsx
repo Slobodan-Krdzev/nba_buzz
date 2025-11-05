@@ -6,9 +6,11 @@ import BouncingBasketball from "@/app/Components/Common/BouncingBasketball";
 import { useTranslations } from "next-intl";
 import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
 import InViewSection from "@/app/Components/Common/InViewSection";
+import { Link } from "@/i18n/navigation";
 
 const AnticPage = () => {
   const t = useTranslations("collections.antic");
+  const tCommon = useTranslations("collections");
   const slogans = [t("s1"), t("s2"), t("s3"), t("s4")];
   return (
     <>
@@ -34,6 +36,10 @@ const AnticPage = () => {
           <SectionTitle title={t("designTitle")} />
 
           <p className="lg:w-[80%] m-auto text-center">{t("designText")}</p>
+
+          <Link href={`/products?collection=AnticMVP`} className="block text-center w-[100%] md:w-[50%] m-auto mt-10 bg-gradient-to-l from-[#EE7507] to-[#ffcc66]
+             bg-[length:200%_200%]
+             animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition shadow-lg">{tCommon("viewProducts")}</Link>
         </div>
 
         <div className="basis-1 lg:basis-[70%]">
@@ -48,8 +54,13 @@ const AnticPage = () => {
         <div className="basis-1 lg:basis-[60%] order-1 lg:order-2">
           <SectionTitle title={t("whyTitle")} />
 
-          <p className="lg:w-[80%] m-auto text-center">{t("whyText")}</p>
+          <p className="lg:w-[80%] m-auto text-center">{t("whyText")} </p>
+          <Link href={`/products?collection=AnticMVP`} className="block text-center w-[100%] md:w-[50%] m-auto mt-10 bg-gradient-to-l from-[#EE7507] to-[#ffcc66]
+             bg-[length:200%_200%]
+             animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition shadow-lg">{tCommon("viewProducts")}</Link>
         </div>
+
+        
       </InViewSection>
 
       <InViewSection className="py-16 px-4 md:px-8 lg:px-16 ">

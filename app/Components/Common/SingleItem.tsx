@@ -10,12 +10,14 @@ import { useDispatch, useSelector } from "react-redux";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useTranslations } from "next-intl";
 
 interface SingleItemProps {
   item: Product;
 }
 
 const SingleItem = ({ item }: SingleItemProps) => {
+  const t = useTranslations("filters");
   const swiperRef = useRef<SwiperType | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -54,14 +56,14 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
       onMouseLeave={() => setIsHovered(false)}
       className={`block relative p-3 rounded-xl border shadow-lg transition-all duration-300
         ${item.isPromotion
-          ? "text-white bg-gradient-to-l from-[#EE7507] to-[#ffcc66] border-none shadow-[0_4px_20px_rgba(238,117,7,0.45),0_4px_20px_rgba(255,204,102,0.5)]"
+          ? "text-orange-900 bg-gradient-to-br from-[#FF6B35]/70 via-[#FFD89B]/80 to-[#FFCC80]/20 border-orange-200 shadow-[0_4px_20px_rgba(255,182,77,0.3),0_4px_20px_rgba(255,204,128,0.4)]"
           : "bg-white"
         }`}
     >
       {/* Promo Label */}
       {item.isPromotion && (
-        <div className="z-20 absolute top-5 left-5 px-3 py-2 md:px-6 md:py-3 bg-[#FBB951] font-black  rounded-md shadow text-sm md:text-base">
-          HOT!
+        <div className="z-20 absolute top-5 left-5 px-3 py-2 md:px-6 md:py-3 bg-gradient-to-br from-[#FF6B35]/70 via-[#FFD89B]/80 to-[#FFCC80]/60 text-white font-black rounded-md shadow-lg text-sm md:text-base">
+          {t("onSale")}
         </div>
       )}
 
@@ -106,13 +108,20 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
       </button>
 
       {/* Item Info */}
-      <p className={`${item.isPromotion ? "text-white" : "text-gray-500"} text-sm md:text-md`}>
+      <p className={`${item.isPromotion ? "text-orange-800" : "text-gray-500"} text-sm md:text-md`}>
         {item.type.name}
       </p>
-      <p className="font-semibold text-lg md:text-xl">{item.title}</p>
-      <p className={`absolute bottom-3 right-3 md:bottom-4 md:right-4 ${item.isPromotion ? "text-lg md:text-xl font-semibold tracking-tighter" : ""}`}>
-        € {item.price}
-      </p>
+      <p className={`font-semibold text-lg md:text-xl lg:text-2xl ${item.isPromotion ? "text-orange-900" : ""}`}>{item.title}</p>
+      <div className={`absolute bottom-3 right-3 md:bottom-4 md:right-4 flex items-center gap-2 ${item.isPromotion ? "text-lg md:text-xl lg:text-2xl font-semibold tracking-tighter" : "lg:text-xl"}`}>
+        {item.isPromotion && item.salePrice ? (
+          <>
+            <p className="text-[#FF6B35] font-bold">€ {item.salePrice}</p>
+            <p className="text-orange-700 line-through opacity-70 text-sm md:text-base lg:text-lg">€ {item.price}</p>
+          </>
+        ) : (
+          <p>€ {item.price}</p>
+        )}
+      </div>
     </Link>
   );
 };

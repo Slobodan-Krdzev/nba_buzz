@@ -6,9 +6,11 @@ import BouncingBasketball from "@/app/Components/Common/BouncingBasketball";
 import { useTranslations } from "next-intl";
 import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
 import InViewSection from "@/app/Components/Common/InViewSection";
+import { Link } from "@/i18n/navigation";
 
 const TheJokerPage = () => {
   const t = useTranslations("collections.joker");
+  const tCommon = useTranslations("collections");
   const slogans = [t("s1"), t("s2"), t("s3")];
   return (
     <>
@@ -34,6 +36,9 @@ const TheJokerPage = () => {
           <SectionTitle title={t("unleashTitle")} />
 
           <p className="lg:w-[80%] m-auto text-center">{t("unleashText")}</p>
+          <Link href={`/products?collection=TheJoker`} className="block text-center w-[100%] md:w-[50%] m-auto mt-10 bg-gradient-to-l from-[#EE7507] to-[#ffcc66]
+             bg-[length:200%_200%]
+             animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition shadow-lg">{tCommon("viewProducts")}</Link>
         </div>
 
         <div className="basis-1 lg:basis-[70%]">
@@ -49,6 +54,9 @@ const TheJokerPage = () => {
           <SectionTitle title={t("whyTitle")} />
 
           <p className="lg:w-[80%] m-auto text-center">{t("whyText")}</p>
+          <Link href={`/products?collection=TheJoker`} className="block text-center w-[100%] md:w-[50%] m-auto mt-10 bg-gradient-to-l from-[#EE7507] to-[#ffcc66]
+             bg-[length:200%_200%]
+             animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition shadow-lg">{tCommon("viewProducts")}</Link>
         </div>
       </InViewSection>
 
@@ -61,6 +69,9 @@ const TheJokerPage = () => {
           <li className="text-center">{t("materials.prints")}</li>
           <li className="text-center">{t("materials.durable")}</li>
         </ul>
+        <Link href={`/products?collection=TheJoker`} className="block text-center w-[100%] md:w-[50%] m-auto mt-10 bg-gradient-to-l from-[#EE7507] to-[#ffcc66]
+           bg-[length:200%_200%]
+           animate-gradientMove text-white hover:text-titles font-semibold py-2 px-6 hover:bg-accentLight transition shadow-lg">{t("viewProducts")}</Link>
       </InViewSection>
 
 

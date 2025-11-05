@@ -7,6 +7,7 @@ export interface Product {
   isPromotion: boolean
   sizes: Sizes
   price: number
+  salePrice?: number
   type: Type
   isFeatured: boolean
   materials: Material[]

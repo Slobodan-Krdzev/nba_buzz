@@ -28,7 +28,7 @@ export default async function UserPage({ params }: Props) {
   const data = await res.json();
   const productToRender = data?.product as Product | undefined;
 
-  if (!productToRender) {
+  if (!productToRender || !productToRender.isActive) {
     return <>{t('notFound')}</>;
   }
 
@@ -46,7 +46,7 @@ export default async function UserPage({ params }: Props) {
         </div>
 
         <div className="basis-[30%] h-full ">
-          <h1 className="text-5xl tracking-tighter mb-6 font-black capitalize">
+          <h1 className="text-5xl lg:text-6xl tracking-tighter mb-6 font-black capitalize">
             {productToRender.title}
           </h1>
 
@@ -74,9 +74,16 @@ export default async function UserPage({ params }: Props) {
             <li>{t('washing')} {productToRender.washing}</li>
           </ul>
 
-          <p className="text-5xl tracking-tighter mb-6 font-black capitalize text-accent">
-            € {productToRender.price}.00
-          </p>
+          <div className="text-5xl lg:text-6xl tracking-tighter mb-6 font-black capitalize">
+            {productToRender.isPromotion && productToRender.salePrice ? (
+              <div className="flex items-center gap-3">
+                <span className="text-[#FF6B35]">€ {productToRender.salePrice}.00</span>
+                <span className="text-accent line-through opacity-70 text-3xl lg:text-4xl">€ {productToRender.price}.00</span>
+              </div>
+            ) : (
+              <span className="text-accent">€ {productToRender.price}.00</span>
+            )}
+          </div>
 
           <DesktopSizesAndColors product={productToRender} />
 
@@ -125,9 +132,16 @@ export default async function UserPage({ params }: Props) {
           <li>{t('washing')} {productToRender.washing}</li>
         </ul>
 
-        <p className="text-5xl tracking-tighter mb-6 font-black capitalize text-accent">
-          € {productToRender.price}.00
-        </p>
+        <div className="text-5xl tracking-tighter mb-6 font-black capitalize">
+          {productToRender.isPromotion && productToRender.salePrice ? (
+            <div className="flex items-center gap-3">
+              <span className="text-[#FF6B35]">€ {productToRender.salePrice}.00</span>
+              <span className="text-accent line-through opacity-70 text-3xl">€ {productToRender.price}.00</span>
+            </div>
+          ) : (
+            <span className="text-accent">€ {productToRender.price}.00</span>
+          )}
+        </div>
 
         <div className="my-6">
           <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">

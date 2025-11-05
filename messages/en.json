@@ -62,7 +62,8 @@
       "hoodie": "Hoodie",
       "jersey": "Jersey"
     },
-    "buyNow": "Buy Now"
+    "buyNow": "Buy Now",
+    "onSale": "On Sale!"
   },
   "joinUs": {
     "title": "WE’VE GOT YOUR BACK 24/7",
@@ -343,6 +344,7 @@
     "newsletterTitle": "Stay in the game"
   },
   "collections": {
+    "viewProducts": "View Products",
     "joker": {
       "s1": "The Joker",
       "s2": "Is",

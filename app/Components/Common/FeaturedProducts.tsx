@@ -16,7 +16,7 @@ export default async function FeaturedProducts() {
     const res = await fetch('https://adminbuzzmk.com/api/products', { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
-      products = (data?.products ?? []) as Product[];
+      products = (data?.products ?? []).filter((p: Product) => p.isActive) as Product[];
     }
   } catch {
     products = [];

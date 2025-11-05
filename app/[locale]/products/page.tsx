@@ -5,6 +5,10 @@ import { Filter } from "../../ProductsPage/Filters";
 import { ProductGrid } from "../../ProductsPage/ProductGrid";
 import { Product } from "@/app/Types/Types";
 import { useLocale } from "next-intl";
+import { useSearchParams } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/app/Redux/store";
+import { setSelectedCollection } from "@/app/Redux/Slices/filtersSlice";
 const slogans: string[] = [
   "Jerseys",
   "T-Shirts",
@@ -16,11 +20,42 @@ const slogans: string[] = [
 const ProductsPage = () => {
 
   const locale = useLocale();
+  const searchParams = useSearchParams();
+  const dispatch = useDispatch<AppDispatch>();
   const [filters, setFilters] = useState<Record<string, string | number | boolean>>({});
   const [products, setProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]); // Store all products for collections
   const [total, setTotal] = useState(0);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Fetch all products once on mount to get all collections for filter UI
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      try {
+        const params = new URLSearchParams();
+        params.set("locale", locale);
+        const res = await fetch(`https://adminbuzzmk.com/api/products?${params.toString()}`, { cache: 'no-store' });
+        const data = await res.json();
+        const all: Product[] = (data.products ?? []).filter((p: Product) => p.isActive);
+        setAllProducts(all);
+      } catch {
+        setAllProducts([]);
+      }
+    };
+    fetchAllProducts();
+  }, [locale]);
+
+  // Read URL parameters on mount
+  useEffect(() => {
+    const collection = searchParams.get('collection');
+    if (collection) {
+      setFilters((prev) => ({ ...prev, collection }));
+      // Also update Redux state so the filter UI shows it as selected
+      dispatch(setSelectedCollection(collection));
+    }
+  }, [searchParams, dispatch]);
+
   const queryString = useMemo(() => {
     const params = new URLSearchParams();
     params.set("locale", locale);
@@ -39,8 +74,6 @@ const ProductsPage = () => {
 
 
   useEffect(() => {
-    console.log("Products fetch URL:", `https://adminbuzzmk.com/api/products?${queryString}`);
-
 
     const fetchProducts = async () => {
       setLoading(true);
@@ -49,6 +82,8 @@ const ProductsPage = () => {
         const data = await res.json();
         const raw: Product[] = data.products ?? [];
 
+        console.log(raw);
+
         // Apply front-end filters: collections/trending, category (type), sizes
         const selectedCollection = (filters.collection as string) || '';
         const isTrending = (filters.isFeatured as string) === 'true';
@@ -56,6 +91,9 @@ const ProductsPage = () => {
         const selectedSizes = (filters.sizes as string)?.split(',').filter(Boolean) || [];
 
         const filtered = raw.filter((p) => {
+          // Filter out inactive products
+          if (!p.isActive) return false;
+          
           // Collections / Trending
           if (isTrending) {
             if (!p.isFeatured) return false;
@@ -100,7 +138,7 @@ const ProductsPage = () => {
         <aside className="hidden lg:block w-full lg:w-56 border-r bg-white p-4 sticky top-20 self-start">
           <Filter
             onChange={(partial) => setFilters((prev) => ({ ...prev, ...partial }))}
-            collections={[...new Set(products.map(p => p.collection).filter(Boolean))]}
+            products={allProducts}
             categories={[...new Set(products.map(p => p.type?.name).filter(Boolean) as string[])]}
           />
         </aside>
@@ -126,7 +164,7 @@ const ProductsPage = () => {
               </div>
               <Filter
                 onChange={(partial) => setFilters((prev) => ({ ...prev, ...partial }))}
-                collections={[...new Set(products.map(p => p.collection).filter(Boolean))]}
+                products={allProducts}
                 categories={[...new Set(products.map(p => p.type?.name).filter(Boolean) as string[])]}
               />
             </div>

@@ -1,26 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedCategorie, setSelectedCollection, setPriceRange } from "../Redux/Slices/filtersSlice";
 import { AppDispatch, RootState } from "../Redux/store";
+import { Product } from "@/app/Types/Types";
 
 interface FilterProps {
   onChange?: (filters: Record<string, string>) => void;
-  collections?: string[];
+  products?: Product[];
   categories?: string[];
 }
 
-export function Filter({ onChange}: FilterProps) {
+export function Filter({ onChange, products = []}: FilterProps) {
   const filters = useSelector((state: RootState) => state.filters);
 
   const dispatch = useDispatch<AppDispatch>();
   const t = useTranslations('filters');
 
-  const collectionsSet = ['TheJoker','AnticMVP'];
+  // Extract unique collections from products
+  const collectionsSet = useMemo(() => {
+    const collections = products
+      .map((p) => p.collection)
+      .filter((c): c is string => Boolean(c));
+    return Array.from(new Set(collections)).sort();
+  }, [products]);
+  
   const [categoriesSet, setCategoriesSet] = useState<string[]>([]);
 
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);

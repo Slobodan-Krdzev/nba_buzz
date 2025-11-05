@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { clearCart } from '@/app/Redux/Slices/cartSlice';
 import Image from 'next/image';
 import { OrderPayload } from '@/app/Types/Types';
+import { getEffectivePrice } from '@/app/Constants/productUtils';
 
 const CheckoutForm = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
@@ -21,7 +22,7 @@ const CheckoutForm = () => {
 
   const selectedItems = useMemo(() => cart.filter((i) => i.checked), [cart]);
   const cartCount = selectedItems.reduce((sum, item) => sum + item.qty, 0);
-  const cartTotal = selectedItems.reduce((sum, item) => sum + item.product.price * item.qty, 0);
+  const cartTotal = selectedItems.reduce((sum, item) => sum + getEffectivePrice(item.product) * item.qty, 0);
   const [shippingClasses, setShippingClasses] = useState<Array<{ _id: string, country: string, name: string, price: number }>>([]);
   const [country, setCountry] = useState<string>('');
   const shippingPrice = useMemo(() => {
@@ -119,7 +120,7 @@ const CheckoutForm = () => {
         productId: ci.product._id,
         title: ci.product.title as unknown as string,
         quantity: ci.qty,
-        price: ci.product.price,
+        price: getEffectivePrice(ci.product),
         imageUrl: (ci.product as unknown as { featuredImage: string })?.featuredImage || '',
         size: ci.size,
         color: ci.color,
@@ -224,7 +225,16 @@ const CheckoutForm = () => {
                   <div className="text-xs text-gray-500">{t('size')}: {item.size?.toUpperCase() || '-'}</div>
                   <div className="text-xs text-gray-500">{t('color')}: {item.color || '-'}</div>
                 </div>
-                <div className="text-sm font-semibold">€{(item.product.price * item.qty).toFixed(2)}</div>
+                <div className="text-sm font-semibold">
+                  {item.product.isPromotion && item.product.salePrice ? (
+                    <div className="flex flex-col items-end">
+                      <span className="text-[#FF6B35]">€{(item.product.salePrice * item.qty).toFixed(2)}</span>
+                      <span className="text-gray-500 line-through text-xs">€{(item.product.price * item.qty).toFixed(2)}</span>
+                    </div>
+                  ) : (
+                    <span>€{(getEffectivePrice(item.product) * item.qty).toFixed(2)}</span>
+                  )}
+                </div>
               </div>
             ))}
           </div>

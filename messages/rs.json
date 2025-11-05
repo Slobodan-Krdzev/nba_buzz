@@ -113,7 +113,8 @@
       "hoodie": "Дукс",
       "jersey": "Дрес"
     },
-    "buyNow": "Купи сада"
+    "buyNow": "Купи сада",
+    "onSale": "На попусту!"
   },
   "home": {
     "hero": {
@@ -308,6 +309,7 @@
     "newsletterTitle": "Останите у игри"
   },
   "collections": {
+    "viewProducts": "Погледај Производе",
     "joker": {
       "s1": "Џокер",
       "s2": "је",

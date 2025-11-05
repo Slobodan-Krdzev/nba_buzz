@@ -15,6 +15,7 @@ import {
 import { RootState } from "../../Redux/store";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { getEffectivePrice } from "../../Constants/productUtils";
 
 const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
@@ -27,7 +28,7 @@ const CartPage = () => {
   const [shakeCoupon, setShakeCoupon] = useState(false);
   const cartTotal = cart
     .filter((item) => item.checked)
-    .reduce((sum, item) => sum + item.product.price * item.qty, 0);
+    .reduce((sum, item) => sum + getEffectivePrice(item.product) * item.qty, 0);
 
   const discount = (useSelector((state: RootState) => state.cart.discountAmount) || 0);
   const appliedCode = useSelector((state: RootState) => state.cart.couponCode);
@@ -141,9 +142,16 @@ const CartPage = () => {
                       <p className="text-lg xl:text-3xl tracking-tighter font-bold">
                         {item.product.title}
                       </p>
-                      <p className="font-bold tracking-tighter text-sm mt-1 md:hidden ">
-                        {t("price")} €{item.product.price}.00
-                      </p>
+                      <div className="font-bold tracking-tighter text-sm mt-1 md:hidden">
+                        {item.product.isPromotion && item.product.salePrice ? (
+                          <div className="flex items-center gap-2">
+                            <span className="text-[#FF6B35]">{t("price")} €{item.product.salePrice}.00</span>
+                            <span className="text-gray-500 line-through text-xs">€{item.product.price}.00</span>
+                          </div>
+                        ) : (
+                          <span>{t("price")} €{item.product.price}.00</span>
+                        )}
+                      </div>
                       <div className="flex justify-start items-center gap-2 mt-2 mb-4">
                         <p className="block md:hidden text-xs xl:text-sm tracking-tighter font-semibold">
                           Size: {item.size.toUpperCase()}
@@ -209,7 +217,14 @@ const CartPage = () => {
                       </div>
                     </div>
                     <div className="hidden md:block font-bold tracking-tighter text-xl mr-6 mt-2 md:mt-0 absolute top-5 right-0">
-                      ${item.product.price}.00
+                      {item.product.isPromotion && item.product.salePrice ? (
+                        <div className="flex flex-col items-end">
+                          <span className="text-[#FF6B35]">€{item.product.salePrice}.00</span>
+                          <span className="text-gray-500 line-through text-sm">€{item.product.price}.00</span>
+                        </div>
+                      ) : (
+                        <span>€{item.product.price}.00</span>
+                      )}
                     </div>
                     <button
                       className="text-red-500 mt-2 md:mt-0 absolute bottom-6 right-2 md:right-5"
@@ -259,7 +274,7 @@ const CartPage = () => {
               {appliedCode && (
                 <div className="flex justify-between mb-2 text-green-700">
                   <span>Coupon ({appliedCode})</span>
-                  <span>- ${discount}</span>
+                  <span>- €{discount}</span>
                 </div>
               )}
               <div className="flex justify-between mb-2">
@@ -268,7 +283,7 @@ const CartPage = () => {
               </div>
               <div className="flex justify-between mb-2">
                 <span>{t("cartTotal")}</span>
-                <span>${cartTotal}</span>
+                <span>€{cartTotal}</span>
               </div>
               <div className="flex justify-between mb-2 text-sm text-gray-600">
                 <span>{t("shippingCharges")}</span>
@@ -277,7 +292,7 @@ const CartPage = () => {
               <hr className="my-2" />
               <div className="flex justify-between font-bold text-lg mb-4">
                 <span>{t("total")}</span>
-                <span>${total}.00</span>
+                <span>€{total}.00</span>
               </div>
               <Link href="/checkout" className="text-center  block mt-2 sm:mt-0  w-full  py-2 px-6 bg-black text-white rounded font-bold tracking-tighter gap-2">
                 {t("checkout")}
@@ -287,7 +302,7 @@ const CartPage = () => {
           {/* MOBILE SUMMARY */}
           <div className="fixed shadow-glow-top bottom-0 left-0 w-full bg-[#faf1d3] border-t z-30 p-4 flex flex-col sm:flex-row items-center justify-between lg:hidden">
             <div className="flex justify-between  gap-2 w-full">
-              <p className="font-bold text-lg">{t("total")} ${total}</p>
+              <p className="font-bold text-lg">{t("total")} €{total}</p>
               <div className="flex justify-between items-center mb-2 text-xs text-gray-600">{t("shippingCharges")} · calculated at checkout</div>
             </div>
             <Link href="/checkout" className="block mt-2 sm:mt-0 sm:ml-4 w-full sm:w-auto py-2 px-6 bg-black text-white rounded font-bold tracking-tighter gap-2">

@@ -143,8 +143,15 @@ const MobileProductActions = ({ product }: MobileProductActionsProps) => {
       {/* Fixed bar */}
       <div className="fixed lg:hidden z-[9000] left-0 bottom-0 right-0 bg-white flex justify-between items-stretch shadow-glow-top">
         <Counter />
-        <div className="basis-[25%] text-lg tracking-tighter py-5 font-black capitalize text-white flex justify-center items-center bg-black">
-          €{product.price}.00
+        <div className="basis-[25%] text-lg tracking-tighter py-5 font-black capitalize text-white flex flex-col justify-center items-center bg-black">
+          {product.isPromotion && product.salePrice ? (
+            <>
+              <span className="text-[#FF6B35]">€{product.salePrice}.00</span>
+              <span className="text-xs line-through opacity-70">€{product.price}.00</span>
+            </>
+          ) : (
+            <span>€{product.price}.00</span>
+          )}
         </div>
         
         <button

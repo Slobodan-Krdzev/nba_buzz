@@ -37,7 +37,7 @@ export default function OurStoryPage() {
       <InViewSection className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-8">
         <div className="relative w-full h-[260px] sm:h-[340px] rounded-xl overflow-hidden shadow-xl">
           <Image
-            src="/poses/5.jpg"
+            src="/poses/holyWide.jpg"
             alt="Funky concepts"
             fill
             className="object-cover"
@@ -59,7 +59,7 @@ export default function OurStoryPage() {
           {t("craftText")}
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          <div className="relative h-36 rounded-xl overflow-hidden shadow-xl">
+          <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
               src="/poses/2.jpg"
               alt="Garment 1"
@@ -67,41 +67,41 @@ export default function OurStoryPage() {
               className="object-cover"
             />
           </div>
-          <div className="relative h-36 rounded-xl overflow-hidden shadow-xl">
+          <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/3.jpg"
+              src="/poses/holyClose.jpg"
               alt="Garment 2"
               fill
               className="object-cover"
             />
           </div>
-          <div className="relative h-36 rounded-xl overflow-hidden shadow-xl">
+          <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/4.jpg"
+              src="/poses/holyBasket.jpg"
               alt="Garment 3"
               fill
               className="object-cover"
             />
           </div>
-          <div className="relative h-36 rounded-xl overflow-hidden shadow-xl">
+          <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/6.jpg"
+              src="/poses/holyBlus.jpg"
               alt="Garment 4"
               fill
               className="object-cover"
             />
           </div>
-          <div className="relative h-36 rounded-xl overflow-hidden shadow-xl">
+          <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/7.jpg"
+              src="/poses/1.jpg"
               alt="Garment 5"
               fill
               className="object-cover"
             />
           </div>
-          <div className="relative h-36 rounded-xl overflow-hidden shadow-xl">
+          <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/8.jpg"
+              src="/poses/holyBack.jpg"
               alt="Garment 6"
               fill
               className="object-cover"
