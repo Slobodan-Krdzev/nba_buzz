@@ -39,17 +39,15 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
 
   return (
     <div
-      className={`border rounded-xl p-2 sm:p-4 hover:shadow-lg transition relative ${product.isPromotion ? "bg-gradient-to-br from-[#FFE5B4] via-[#FFD89B] to-[#FFCC80] border-orange-200" : "bg-white"}`}
+      className={`border rounded-xl p-2 sm:p-4 hover:shadow-lg transition relative ${product.isPromotion ? "bg-gradient-to-br from-[#FF6B35]/70 via-[#FFD89B]/80 to-[#FFCC80]/20 border-orange-200 shadow-[0_4px_20px_rgba(255,182,77,0.3),0_4px_20px_rgba(255,204,128,0.4)]" : "bg-white"}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {product.isPromotion && (
-        <div className="absolute bottom-8 h-[30%] w-[80%] left-1/2 -translate-x-1/2 bg-gradient-to-br from-[#DAE2F8] via-[#ce4949] to-[#DAE2F8] filter blur-xl z-10 rounded-[25px]"></div>
-      )}
+      
       <div className="relative">
         {/* HOT Badge for promotions */}
         {product.isPromotion && (
-        <div className="z-20 absolute text-white top-3 left-3 px-3 py-2 md:px-6 md:py-3 bg-gradient-to-r from-[#FF6B35] to-[#FF8C42] font-black rounded-md shadow-lg text-sm md:text-base">
+        <div className="z-20 absolute top-5 lg:top-2 left-5 lg:left-2 px-3 py-2 md:px-6 md:py-3 bg-gradient-to-br from-[#FF6B35]/70 via-[#FFD89B]/80 to-[#FFCC80]/60 text-white font-black rounded-md shadow-lg text-sm md:text-base">
           {t("onSale")}
         </div>
       )}
