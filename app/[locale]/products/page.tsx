@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { RotatingText } from "../../Components/Common/SlogansLister";
 import { Filter } from "../../ProductsPage/Filters";
 import { ProductGrid } from "../../ProductsPage/ProductGrid";
@@ -17,7 +17,7 @@ const slogans: string[] = [
   "Basketball!",
 ];
 
-const ProductsPage = () => {
+const ProductsPageInner = () => {
 
   const locale = useLocale();
   const searchParams = useSearchParams();
@@ -185,6 +185,14 @@ const ProductsPage = () => {
         </section>
       </section>
     </main>
+  );
+};
+
+const ProductsPage = () => {
+  return (
+    <Suspense fallback={null}>
+      <ProductsPageInner />
+    </Suspense>
   );
 };
 

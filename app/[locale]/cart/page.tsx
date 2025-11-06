@@ -81,7 +81,7 @@ const CartPage = () => {
     >
       {cart.length === 0 && (
         <div>
-          <img src="/Basketball.gif" alt="Funny gif" />
+          <Image src="/Basketball.gif" alt="Funny gif" width={200} height={200} unoptimized />
         </div>
       )}
       <SectionTitle
