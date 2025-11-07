@@ -16,7 +16,7 @@ const LukaPage = () => {
     <>
       <InViewSection
         className="w-full flex flex-col justify-center bg-top items-center h-[calc(60dvh-70px)] md:h-[calc(60dvh-70px)] lg:h-[calc(100dvh-62.6px)] text-white relative bg-cover "
-        style={{ backgroundImage: "url(/luka1.jpg)" }}
+        style={{ backgroundImage: "url(/lukaEdit.jpg)" }}
       >
         <div className="absolute inset-0 bg-black/40 z-0" />
         <div className="relative z-10 text-center">

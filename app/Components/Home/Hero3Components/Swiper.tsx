@@ -25,7 +25,7 @@ function useSlides(): HeroSlideItemType[] {
       id: 1,
       title: t("luka.title"),
       subtitle: t("luka.subtitle"),
-      img: "/luka1.jpg",
+      img: "/lukaSlider.jpg",
       link: "/luka",
     },
     {
