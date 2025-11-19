@@ -11,7 +11,7 @@ import { Link } from "@/i18n/navigation";
 const AnticPage = () => {
   const t = useTranslations("collections.antic");
   const tCommon = useTranslations("collections");
-  const slogans = [t("s1"), t("s2"), t("s3"), t("s4")];
+  const slogans = [t("s1"), t("s2")];
   return (
     <>
       <InViewSection

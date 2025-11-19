@@ -11,12 +11,12 @@ import { Link } from "@/i18n/navigation";
 const TheJokerPage = () => {
   const t = useTranslations("collections.joker");
   const tCommon = useTranslations("collections");
-  const slogans = [t("s1"), t("s2"), t("s3")];
+  const slogans = [t("s1"), t("s2")];
   return (
     <>
       <InViewSection
         className="w-full flex flex-col justify-center items-center text-white relative bg-cover bg-center h-[calc(60dvh-70px)] md:h-[calc(60dvh-70px)] lg:h-[calc(100dvh-62.6px)]"
-        style={{ backgroundImage: "url(/common/heroSection3.png)" }}
+        style={{ backgroundImage: "url(/common/jokerHeroNew.jpg)" }}
       >
         <div className="absolute inset-0 bg-black/40 z-0" />
         <div className="relative z-10 text-center">

@@ -11,7 +11,7 @@ import { Link } from "@/i18n/navigation";
 const LukaPage = () => {
   const t = useTranslations("collections.luka");
   const tCommon = useTranslations("collections");
-  const slogans = [t("s1"), t("s2"), t("s3")];
+  const slogans = [t("s1"), t("s2")];
   return (
     <>
       <InViewSection

@@ -347,8 +347,7 @@
     "viewProducts": "View Products",
     "joker": {
       "s1": "The Joker",
-      "s2": "Is",
-      "s3": "Here",
+      "s2": "Is Here",
       "title": "The Joker",
       "intro": "When Nikola Jokić steps on the court, you never know what’s coming — a no-look pass, a triple-double, or a game-winning smile. That same spirit lives in The Joker Collection, a line of tees and hoodies designed in-house to capture his playful energy and MVP legacy. This is not just fanwear — it’s a creative statement piece built for those who dare to stand out.",
       "unleashTitle": "Unleash Your Inner Joker",
@@ -364,10 +363,8 @@
       }
     },
     "antic": {
-      "s1": "The",
-      "s2": "Real Mvp",
-      "s3": "Has",
-      "s4": "Arrived",
+      "s1": "Pero Antic",
+      "s2": "The Real Mvp",
       "title": "Pero Antić",
       "intro": "From Skopje courts to NBA spotlights, Pero Antić brought toughness, personality, and a fearless shot. This drop leans into the moment — Pero striding forward while LeBron’s on the deck — not disrespect, just that playful, unstoppable swagger. In-house designs blend Macedonian heritage, bold typography, and a tongue-in-cheek walk-over silhouette. Built for those who carry pride — on and off the court.",
       "designTitle": "Design With Heart, Made For Hoops",
@@ -384,8 +381,7 @@
     },
     "luka": {
       "s1": "Luka",
-      "s2": "Goes To",
-      "s3": "Hollywood",
+      "s2": "Goes To Hollywood",
       "title": "Luka Dončić",
       "intro": "Lights, camera, step-back. Luka’s game has that blockbuster charm — a mix of craft, calm, and clutch that plays like a highlight reel. The Luka Goes to Hollywood collection blends European finesse with big-screen flair: think film-grain textures, marquee-inspired typography, and TROJKA.mk’s signature gold accents for that premiere-night glow.",
       "journeyTitle": "From Ljubljana to the Big Screen",
@@ -398,6 +394,17 @@
         "hoodies": "Premium Hoodies → Cozy structure with that red-carpet feel.",
         "prints": "Crisp, Fade-Resistant Prints → Colors that keep their edge, scene after scene.",
         "durable": "Designed to Last → Because classics don’t go out of style."
+      }
+    }
+  },
+  "products": {
+    "hero": {
+      "slogans": {
+        "jerseys": "Jerseys",
+        "tshirts": "T-Shirts",
+        "hoodies": "Hoodies",
+        "unisex": "Unisex",
+        "basketball": "Basketball!"
       }
     }
   }

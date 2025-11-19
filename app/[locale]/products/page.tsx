@@ -9,17 +9,12 @@ import { useSearchParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/app/Redux/store";
 import { setSelectedCollection } from "@/app/Redux/Slices/filtersSlice";
-const slogans: string[] = [
-  "Jerseys",
-  "T-Shirts",
-  "Hoodies",
-  "Unisex",
-  "Basketball!",
-];
+import { useTranslations } from "next-intl";
 
 const ProductsPageInner = () => {
 
   const locale = useLocale();
+  const t = useTranslations("products.hero.slogans");
   const searchParams = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
   const [filters, setFilters] = useState<Record<string, string | number | boolean>>({});
@@ -28,6 +23,16 @@ const ProductsPageInner = () => {
   const [total, setTotal] = useState(0);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const slogans = useMemo(
+    () => [
+      t("jerseys"),
+      t("tshirts"),
+      t("hoodies"),
+      t("unisex"),
+      t("basketball"),
+    ],
+    [t]
+  );
 
   // Fetch all products once on mount to get all collections for filter UI
   useEffect(() => {
