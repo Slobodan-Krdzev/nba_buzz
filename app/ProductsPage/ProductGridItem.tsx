@@ -47,7 +47,7 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
       <div className="relative">
         {/* HOT Badge for promotions */}
         {product.isPromotion && (
-        <div className="z-20 absolute top-5 lg:top-2 left-5 lg:left-2 px-3 py-2 md:px-6 md:py-3 bg-gradient-to-br from-[#FF6B35]/70 via-[#FFD89B]/80 to-[#FFCC80]/60 text-white font-black rounded-md shadow-lg text-sm md:text-base">
+        <div className="z-20 absolute top-2 left-2 px-3 py-2 md:px-6 md:py-3 bg-gradient-to-br from-[#FF6B35]/70 via-[#FFD89B]/80 to-[#FFCC80]/60 text-white font-black rounded-md shadow-lg text-sm md:text-base">
           {t("onSale")}
         </div>
       )}

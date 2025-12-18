@@ -24,9 +24,9 @@ export default function LocaleSwitcher() {
         value={locale}
         onChange={e => switchLocale(e.target.value)}
       >
-        <option value="en">EN 🇬🇧</option>
-        <option value="mk">MK 🇲🇰</option>
-        <option value="rs">RS 🇷🇸</option>
+        <option value="en">🇬🇧</option>
+        <option value="mk">🇲🇰</option>
+        <option value="rs">🇷🇸</option>
       </select>
       <ChevronDown className="pointer-events-none absolute right-2 h-4 w-4 text-gray-500" />
     </div>

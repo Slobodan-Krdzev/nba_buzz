@@ -106,6 +106,7 @@
     "validation": "Внеси е-пошта за да се претплатиш."
   },
   "filters": {
+    "title": "Филтри",
     "search": "Пребарување",
     "searchPlaceholder": "Пребарај производи...",
     "collections": "Колекции",
@@ -407,6 +408,10 @@
         "unisex": "Унисекс",
         "basketball": "Кошарка!"
       }
+    },
+    "list": {
+      "loading": "Се вчитува…",
+      "showing": "Прикажани {count} од {total}"
     }
   }
 }

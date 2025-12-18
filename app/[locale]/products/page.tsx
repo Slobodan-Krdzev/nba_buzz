@@ -15,6 +15,8 @@ const ProductsPageInner = () => {
 
   const locale = useLocale();
   const t = useTranslations("products.hero.slogans");
+  const tFilters = useTranslations("filters");
+  const tProducts = useTranslations("products.list");
   const searchParams = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
   const [filters, setFilters] = useState<Record<string, string | number | boolean>>({});
@@ -150,12 +152,12 @@ const ProductsPageInner = () => {
 
         {/* Mobile filter button */}
         <div className="lg:hidden p-4 flex justify-between items-center w-full border-t-[1px] border-black/20 sticky shadow-custom-green top-[61px] bg-white z-20">
-          <p className="text-gray-600 text-sm">{loading ? 'Loading…' : `Showing ${products.length} of ${total}`}</p>
+          <p className="text-gray-600 text-sm">{loading ? tProducts("loading") : tProducts("showing", { count: products.length, total })}</p>
           <button
             className="px-3 py-1 border rounded text-sm"
             onClick={() => setIsFilterOpen(true)}
           >
-            Filters ☰
+            {tFilters("title")} ☰
           </button>
         </div>
 
@@ -184,7 +186,7 @@ const ProductsPageInner = () => {
         <section className="flex-1 p-2 md:pt-6 md:px-1 w-full">
           {/* Desktop header */}
           <div className="hidden lg:flex justify-between items-center mb-6">
-            <p className="text-gray-600">{loading ? 'Loading…' : `Showing ${products.length} of ${total}`}</p>
+            <p className="text-gray-600">{loading ? tProducts("loading") : tProducts("showing", { count: products.length, total })}</p>
           </div>
           <ProductGrid products={products} />
         </section>

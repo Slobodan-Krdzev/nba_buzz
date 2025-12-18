@@ -49,6 +49,7 @@
     "validation": "Please enter your email to subscribe."
   },
   "filters": {
+    "title": "Filters",
     "search": "Search",
     "searchPlaceholder": "Search products...",
     "collections": "Collections",
@@ -406,6 +407,10 @@
         "unisex": "Unisex",
         "basketball": "Basketball!"
       }
+    },
+    "list": {
+      "loading": "Loading…",
+      "showing": "Showing {count} of {total}"
     }
   }
 }

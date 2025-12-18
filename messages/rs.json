@@ -100,6 +100,7 @@
     "btn": "Претплати се"
   },
   "filters": {
+    "title": "Филтери",
     "search": "Претрага",
     "searchPlaceholder": "Претражи производе...",
     "collections": "Колекције",
@@ -378,6 +379,10 @@
         "unisex": "Унисекс",
         "basketball": "Кошарка!"
       }
+    },
+    "list": {
+      "loading": "Учитавање…",
+      "showing": "Приказано {count} од {total}"
     }
   }
 }
