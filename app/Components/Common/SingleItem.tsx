@@ -25,15 +25,18 @@ const favouriteItems = useSelector((state: RootState) => state.counter.favourite
 
 const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
   
+  // Build slides with featured image first, avoid duplicates
+  const slides: string[] = [item.featuredImage, ...item.galleryImages.filter((src) => src !== item.featuredImage)];
+
   useEffect(() => {
-    if (!swiperRef.current || item.galleryImages.length < 2) return;
+    if (!swiperRef.current || slides.length < 2) return;
     if (isHovered) {
       swiperRef.current.autoplay.start();
     } else {
       swiperRef.current.autoplay.stop();
       swiperRef.current.slideTo(0); // reset to first image
     }
-  }, [isHovered, item.galleryImages.length]);
+  }, [isHovered, slides.length]);
 
 
   const onFaveClick = () => {
@@ -68,7 +71,7 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
       )}
 
       {/* Image Swiper */}
-      {item.galleryImages.length > 1 ? (
+      {slides.length > 1 ? (
         <Swiper
           modules={[Autoplay]}
           autoplay={{ delay: 1500, disableOnInteraction: false }}
@@ -76,7 +79,7 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           className="rounded-md mb-3 md:mb-5 w-full h-[400px] sm:h-[390px] md:h-[390px] lg:h-[480px]"
         >
-          {item.galleryImages.map((src, idx) => (
+          {slides.map((src, idx) => (
             <SwiperSlide key={idx}>
               <Image
                 src={src}
@@ -90,7 +93,7 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
         </Swiper>
       ) : (
         <Image
-          src={item.galleryImages[0] ?? "/placeholder.jpg"}
+          src={slides[0] ?? "/placeholder.jpg"}
           alt={item.title}
           width={400}
           height={500}

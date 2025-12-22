@@ -20,11 +20,11 @@ const ProductGridItem = ({ product }: ProductGridItem) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const images = useMemo(() => {
-    if (product.galleryImages && product.galleryImages.length > 0) {
-      return product.galleryImages;
-    }
-    if (product.featuredImage) return [product.featuredImage];
-    return [] as string[];
+    const gallery = Array.isArray(product.galleryImages) ? product.galleryImages : [];
+    const featured = product.featuredImage ? [product.featuredImage] : [];
+    // Put featured first and remove duplicates
+    const deduped = [...new Set([...featured, ...gallery])];
+    return deduped;
   }, [product.galleryImages, product.featuredImage]);
 
   useEffect(() => {
