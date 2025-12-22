@@ -1,6 +1,5 @@
 "use client";
 import { Suspense, useEffect, useMemo, useState } from "react";
-import { RotatingText } from "../../Components/Common/SlogansLister";
 import { Filter } from "../../ProductsPage/Filters";
 import { ProductGrid } from "../../ProductsPage/ProductGrid";
 import { Product } from "@/app/Types/Types";
@@ -14,7 +13,7 @@ import { useTranslations } from "next-intl";
 const ProductsPageInner = () => {
 
   const locale = useLocale();
-  const t = useTranslations("products.hero.slogans");
+  // const t = useTranslations("products.hero.slogans");
   const tFilters = useTranslations("filters");
   const tProducts = useTranslations("products.list");
   const searchParams = useSearchParams();
@@ -25,16 +24,16 @@ const ProductsPageInner = () => {
   const [total, setTotal] = useState(0);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const slogans = useMemo(
-    () => [
-      t("jerseys"),
-      t("tshirts"),
-      t("hoodies"),
-      t("unisex"),
-      t("basketball"),
-    ],
-    [t]
-  );
+  // const slogans = useMemo(
+  //   () => [
+  //     t("jerseys"),
+  //     t("tshirts"),
+  //     t("hoodies"),
+  //     t("unisex"),
+  //     t("basketball"),
+  //   ],
+  //   [t]
+  // );
 
   // Fetch all products once on mount to get all collections for filter UI
   useEffect(() => {
@@ -133,11 +132,11 @@ const ProductsPageInner = () => {
   return (
     <main>
       {/* Hero Section */}
-      <section className='bg-[url("/common/productsHero.jpg")] bg-cover bg-bottom bg-no-repeat min-h-[40vh] md:min-h-[70dvh]'>
+      {/* <section className='bg-[url("/common/productsHero.jpg")] bg-cover bg-bottom bg-no-repeat min-h-[40vh] md:min-h-[70dvh]'>
         <div className="min-h-[40vh] md:min-h-[70dvh] w-full bg-black/50 flex flex-col justify-center items-center">
           <RotatingText texts={slogans} />
         </div>
-      </section>
+      </section> */}
 
       {/* Main Content */}
       <section className="py-8 md:py-12 w-full md:w-[95%] m-auto flex flex-col lg:flex-row gap-0 md:gap-4">

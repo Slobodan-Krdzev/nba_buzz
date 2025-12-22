@@ -15,6 +15,7 @@ const ListItemsByTypeSection = async ({ locale }: ListItemsByTypeSectionProps) =
   const allTshirts = activeProducts.slice().filter((p) => p.type.name === "T-shirt");
   const allJerseys = activeProducts.slice().filter((p) => p.type.name === "Jersey");
 
+  console.log(allHoodies);
   return (
     <div>
       {Boolean(allHoodies.length) && (

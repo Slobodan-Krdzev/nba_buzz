@@ -68,8 +68,8 @@ export default async function RootLayout({
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 backgroundSize: 'min(60vw, 600px)',
-                opacity: 0.04,
-                filter: 'grayscale(100%)',
+                opacity: 0.20,
+                // filter: 'grayscale(100%)',
               }}
             />
             <Navbar />
