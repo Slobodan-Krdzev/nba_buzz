@@ -45,7 +45,7 @@ function useSlides(): HeroSlideItemType[] {
   ];
 }
 
-const AUTOPLAY_DELAY = 2000; // ms
+const AUTOPLAY_DELAY = 3000; // ms
 const SLIDE_TRANSITION = 200; // ms
 
 const SwiperComp = () => {
