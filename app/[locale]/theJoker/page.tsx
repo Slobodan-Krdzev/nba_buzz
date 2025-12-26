@@ -48,7 +48,7 @@ const TheJokerPage = () => {
 
       <InViewSection className="py-16 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center gap-6">
         <div className="basis-1 lg:basis-[70%] order-2 lg-order-1">
-          <Image src={'/poses/9.jpg'} alt="Image" width={1920} height={100} className="shadow-xl" />
+          <Image src={'/trojkaJoker.JPG'} alt="Image" width={1920} height={100} className="shadow-xl" />
         </div>
         <div className="basis-1 lg:basis-[60%] order-1 lg:order-2">
           <SectionTitle title={t("whyTitle")} />

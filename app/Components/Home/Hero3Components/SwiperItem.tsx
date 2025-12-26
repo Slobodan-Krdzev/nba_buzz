@@ -48,17 +48,13 @@ const SwiperItem = ({ slide, isActive }: SwiperItemProps) => {
             {slide.subtitle}
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="rounded mt-3 lg:mt-6 block w-[40%] lg:w-[30%] text-center font-bold tracking-tighter bg-gradient-to-l from-[#EE7507] to-[#ffcc66]
-             bg-[length:200%_200%]
-             animate-gradientMove text-white  py-3 px-6 hover:bg-accentLight transition text-sm lg:text-xl"
-          >
-            <Link href={slide.link}>{t("details")}</Link>
-          </motion.div>
+          <Link href={slide.link}  className="rounded mt-3 lg:mt-6 block w-[40%] lg:w-[30%] text-center font-bold tracking-tighter bg-gradient-to-l from-[#EE7507] to-[#ffcc66]
+               bg-[length:200%_200%]
+               animate-gradientMove text-white  py-3 px-6 hover:bg-accentLight transition text-sm lg:text-xl"
+            >
+            
+              {t("details")}
+          </Link>
         </div>
       </div>
       <BouncingBasketball />
