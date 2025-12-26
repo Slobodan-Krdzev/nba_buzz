@@ -1,7 +1,5 @@
 "use client";
-import Facebook from "@/app/Icons/Facebook";
 import Instagram from "@/app/Icons/Instagram";
-import Youtube from "@/app/Icons/Youtube";
 import { Link } from "@/i18n/navigation";
 import ContactForm from "../../Components/Contact/ContactForm";
 import NewsletterForm from "../../Components/Contact/NewsletterForm";
@@ -37,13 +35,13 @@ const ContactPage = () => {
             <h3 className="font-bold text-lg mb-2 text-black">{t("cards.contactTitle")}</h3>
             <p className="text-gray-700 text-center">
               <span className="font-semibold">{t("cards.email")}</span>{" "}
-              <a href="mailto:info@trojka.mk" className="text-accent underline">
-                info@trojka.mk
+              <a href="mailto:trojka3mk@gmail.com" className="text-accent underline">
+                trojka3mk@gmail.com
               </a>
               <br />
               <span className="font-semibold">{t("cards.phone")}</span>{" "}
-              <a href="tel:+38977123123" className="text-accent underline">
-                +389 77 123 123
+              <a href="tel:+38978411208" className="text-accent underline">
+                +389 78 411 208
               </a>
             </p>
           </div>
@@ -51,17 +49,8 @@ const ContactPage = () => {
 
         {/* Social Links */}
         <div className="flex items-center gap-6 mb-8">
-          <Link href={""} target="_blank">
-            {" "}
-            <Instagram />{" "}
-          </Link>
-          <Link href={""} target="_blank">
-            {" "}
-            <Facebook />{" "}
-          </Link>
-          <Link href={""} target="_blank">
-            {" "}
-            <Youtube />{" "}
+          <Link href={"https://www.instagram.com/trojkamk/"} target="_blank">
+            <Instagram />
           </Link>
         </div>
 

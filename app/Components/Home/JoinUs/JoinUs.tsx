@@ -1,8 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import SectionTitle from "../../Common/SectionTitle";
 import Instagram from "@/app/Icons/Instagram";
-import Facebook from "@/app/Icons/Facebook";
-import Youtube from "@/app/Icons/Youtube";
 import { useTranslations } from "next-intl";
 
 const JoinUs = () => {
@@ -18,17 +16,9 @@ const JoinUs = () => {
           <p className="text-center">{t("followUs")} </p>
 
         <div className="w-[40%] m-auto flex justify-center items-center gap-4 py-[1vh]">
-          <Link href={""} target="_blank">
+          <Link href={"https://www.instagram.com/trojkamk/"} target="_blank">
             {" "}
             <Instagram />{" "}
-          </Link>
-          <Link href={""} target="_blank">
-            {" "}
-            <Facebook />{" "}
-          </Link>
-          <Link href={""} target="_blank">
-            {" "}
-            <Youtube />{" "}
           </Link>
         </div>
       </div>

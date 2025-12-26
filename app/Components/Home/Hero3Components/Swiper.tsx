@@ -32,7 +32,7 @@ function useSlides(): HeroSlideItemType[] {
       id: 2,
       title: t("antic.title"),
       subtitle: t("antic.subtitle"),
-      img: "/common/heroSection2.jpg",
+      img: "/anticeHeroFinal.JPG",
       link: "/antic",
     },
     {

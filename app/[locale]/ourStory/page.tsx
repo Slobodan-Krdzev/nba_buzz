@@ -1,8 +1,6 @@
 import SectionTitle from "@/app/Components/Common/SectionTitle";
 import NewsletterForm from "@/app/Components/Contact/NewsletterForm";
-import Facebook from "@/app/Icons/Facebook";
 import Instagram from "@/app/Icons/Instagram";
-import Youtube from "@/app/Icons/Youtube";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -26,7 +24,7 @@ export default function OurStoryPage() {
         </div>
         <div className="relative w-full h-[260px] sm:h-[340px] rounded-xl overflow-hidden shadow-xl text-center">
           <Image
-            src="/poses/1.jpg"
+            src="/common/heroSection2.jpg"
             alt="Studio work"
             fill
             className="object-cover"
@@ -37,7 +35,7 @@ export default function OurStoryPage() {
       <InViewSection className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-8">
         <div className="relative w-full h-[260px] sm:h-[340px] rounded-xl overflow-hidden shadow-xl">
           <Image
-            src="/poses/holyWide.jpg"
+            src="/lukaEdit.jpg"
             alt="Funky concepts"
             fill
             className="object-cover"
@@ -61,23 +59,16 @@ export default function OurStoryPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/2.jpg"
+              src="/meHim.jpg"
               alt="Garment 1"
               fill
               className="object-cover"
             />
           </div>
+          
           <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/holyClose.jpg"
-              alt="Garment 2"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
-            <Image
-              src="/poses/holyBasket.jpg"
+              src="/blusHolywood.jpg"
               alt="Garment 3"
               fill
               className="object-cover"
@@ -85,24 +76,34 @@ export default function OurStoryPage() {
           </div>
           <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/holyBlus.jpg"
+              src="/trojka.jpg"
+              alt="Garment 2"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
+            <Image
+              src="/common/newsletter.jpg"
               alt="Garment 4"
               fill
               className="object-cover"
             />
           </div>
+          
           <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/1.jpg"
-              alt="Garment 5"
+              src="/luka1.jpg"
+              alt="Garment 6"
               fill
               className="object-cover"
             />
           </div>
+
           <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/poses/holyBack.jpg"
-              alt="Garment 6"
+              src="/common/standOut1.jpg"
+              alt="Garment 5"
               fill
               className="object-cover"
             />
@@ -121,31 +122,22 @@ export default function OurStoryPage() {
           <div className="mt-6 text-titles">
             <p className="text-center">
               <span className="font-semibold">{t("contact.email")}</span>{" "}
-              <a className="underline text-accent" href="mailto:info@trojka.mk">
-                info@trojka.mk
+              <a className="underline text-accent" href="mailto:trojka3mk@gmail.com">
+                trojka3mk@gmail.com
               </a>
             </p>
             <p className="text-center">
               <span className="font-semibold">{t("contact.phone")}</span>{" "}
-              <a className="underline text-accent" href="tel:+38977123123">
-                +389 77 123 123
+              <a className="underline text-accent" href="tel:+38978411208">
+                +389 78 411 208
               </a>
             </p>
             <p className="mt-2 text-sm text-titles/70 text-center mb-3    ">
               {t("contact.support")}
             </p>
             <div className="w-[40%] m-auto flex justify-center items-center gap-4 py-[1vh]">
-              <Link href={""} target="_blank">
-                {" "}
-                <Instagram />{" "}
-              </Link>
-              <Link href={""} target="_blank">
-                {" "}
-                <Facebook />{" "}
-              </Link>
-              <Link href={""} target="_blank">
-                {" "}
-                <Youtube />{" "}
+              <Link href={"https://www.instagram.com/trojkamk/"} target="_blank">
+                <Instagram />
               </Link>
             </div>
           </div>

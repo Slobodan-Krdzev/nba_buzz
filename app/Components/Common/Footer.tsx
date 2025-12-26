@@ -28,8 +28,8 @@ const Footer = () => {
     {
       title: t("navbar.contact"),
       links: [
-        { title: `${t("contact.cards.email")} office@trojka.mk`, link: "/contact" },
-        { title: `${t("contact.cards.phone")} +389 77 551 012`, link: "/contact" },
+        { title: `${t("contact.cards.email")} trojka3mk@gmail.com`, link: "/contact" },
+        { title: `${t("contact.cards.phone")} +389 78 411 208`, link: "/contact" },
       ],
     },
     {
