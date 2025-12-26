@@ -35,6 +35,13 @@ function useSlides(): HeroSlideItemType[] {
       img: "/common/heroSection2.jpg",
       link: "/antic",
     },
+    {
+      id: 3,
+      title: t("meHim.title"),
+      subtitle: t("meHim.subtitle"),
+      img: "/meHim.jpg",
+      link: "/meHim",
+    },
   ];
 }
 

@@ -20,6 +20,7 @@ const staticPaths: string[] = [
   '/products',
   '/antic',
   '/luka',
+  '/meHim',
   '/theJoker',
   '/ourStory',
   '/contact',

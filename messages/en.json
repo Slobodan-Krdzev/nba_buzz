@@ -182,6 +182,10 @@
         "title": "Antic — The Real MVP",
         "subtitle": "Celebrate Pero Antić with in-house designs blending Macedonian heritage and bold hoops style."
       },
+      "meHim": {
+        "title": "Me Him — Built Different",
+        "subtitle": "A statement for hoopers who lead: sharp, confident, and reliable. Basketball DNA, made wearable."
+      },
       "details": "Details"
     },
     "titles": {
@@ -395,6 +399,24 @@
         "hoodies": "Premium Hoodies → Cozy structure with that red-carpet feel.",
         "prints": "Crisp, Fade-Resistant Prints → Colors that keep their edge, scene after scene.",
         "durable": "Designed to Last → Because classics don’t go out of style."
+      }
+    },
+    "meHim": {
+      "s1": "Me - Him",
+      "s2": "You - Him",
+      "s3": "Sharp - Confident - Leader",
+      "title": "Me Him — Built Different",
+      "intro": "Me Him is a statement for hoopers who carry the weight and deliver. It’s that inner voice that says: I’m the one you rely on. Not flashy for the sake of it, but sharp, confident, and designed to lead. Basketball DNA, made wearable.",
+      "designTitle": "Design That Speaks Confidence",
+      "designText": "Bold typography, clean lines, and in-house graphics that capture the mindset: built different. Think crisp placements, powerful spacing, and silhouettes that sit right on court or off. Crafted to stand out without shouting.",
+      "whyTitle": "The One You Rely On",
+      "whyText": "This drop is about accountability and edge — the player who wants the ball when it matters. Premium fabrics, assertive details, and a feel that makes you walk taller. Me Him isn’t just a graphic, it’s a standard.",
+      "materialsTitle": "Premium Materials, Game-Ready Feel",
+      "materials": {
+        "soft": "Heavyweight Cotton → Soft hand, durable build for daily wear.",
+        "hoodies": "Structured Hoodies → Warm, comfortable, made to move.",
+        "prints": "Sharp, Fade-Resistant Prints → Built to look crisp after every wash.",
+        "durable": "Made to Last → Because leaders don’t fade."
       }
     }
   },
