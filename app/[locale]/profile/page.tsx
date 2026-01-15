@@ -67,7 +67,6 @@ export default function ProfilePage() {
         });
         if (!res.ok) return;
         const data = await res.json();
-        console.log(data);
         const u = data?.user;
         if (!u) return;
         const addr = u.shippingAddress || {};

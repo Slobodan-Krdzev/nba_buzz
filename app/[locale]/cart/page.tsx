@@ -53,8 +53,6 @@ const CartPage = () => {
     }
   };
 
-  console.log("Cart Items:", cart);
-
   return (
     <>
       {/* Shake animation style */}

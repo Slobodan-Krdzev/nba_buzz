@@ -62,7 +62,6 @@ export default function UserCard({ user }: UserCardProps) {
           },
         }),
       });
-      console.log(res);
       if (!res.ok) {
         const msg = await res.text();
         throw new Error(msg || 'Failed to update address');

@@ -1,7 +1,7 @@
 // import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
 import FeaturedProducts from "@/app/Components/Common/FeaturedProducts";
 import MobileProductGalery from "@/app/Components/Common/MobileProductGalery";
-import DimensionsTable, { sizes } from "@/app/Components/Common/SizingTable";
+import DimensionsTable from "@/app/Components/Common/SizingTable";
 import DesktopSizesAndColors from "@/app/Components/ProductPage/DesktopSizesAndColors";
 import MobileProductActions from "@/app/Components/ProductPage/MobileProductActions";
 import JerseyGallery from "@/app/Components/ProductPage/ProductGallery";
@@ -93,7 +93,7 @@ export default async function UserPage({ params }: Props) {
             <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
               {t('dimensions')}
             </h2>
-            <DimensionsTable sizes={sizes} />
+            <DimensionsTable productType={productToRender.type} productTitle={productToRender.title} />
           </div>
         </div>
       </main>
@@ -147,7 +147,7 @@ export default async function UserPage({ params }: Props) {
           <h2 className="text-2xl tracking-tighter mb-2 font-black capitalize">
             {t('dimensions')}
           </h2>
-          <DimensionsTable sizes={sizes} />
+          <DimensionsTable productType={productToRender.type} productTitle={productToRender.title} />
         </div>
       </main>
 

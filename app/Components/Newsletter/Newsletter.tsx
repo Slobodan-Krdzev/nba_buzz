@@ -12,8 +12,6 @@ export default function NewsletterSection() {
 
   const cart = useSelector((state: RootState) => state.cart.items);
 
-
-  console.log(cart)
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);

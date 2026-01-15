@@ -83,7 +83,6 @@ const LoginForm = ({ tNs = 'auth.login' }: Props) => {
               return;
             }
             const data = await res.json();
-            console.log(data);
             if (data?.token) dispatch(setToken(data.token));
             else {
               // Fallback: fetch token endpoint (reads from httpOnly cookie server-side)

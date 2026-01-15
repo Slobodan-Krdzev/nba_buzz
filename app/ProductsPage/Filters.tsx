@@ -62,13 +62,7 @@ export function Filter({ onChange, products = []}: FilterProps) {
   };
 
   // const onPriceRangeChange = (value) => {
-
-  //   console.log(value)
   // }
-
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
 
   useEffect(() => {
     let mounted = true;
@@ -215,7 +209,7 @@ export function Filter({ onChange, products = []}: FilterProps) {
       <div>
         <h3 className="font-semibold mb-2">{t('size')}</h3>
         <div className="flex flex-wrap gap-2">
-          {["xs", "s", "m", "l", "xl", "xxl"].map((size) => (
+          {["s", "m", "l", "xl", "xxl"].map((size) => (
             <button
               key={size}
               onClick={() => {

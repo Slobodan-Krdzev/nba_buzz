@@ -105,7 +105,6 @@ const isItemInFaves = favouriteItems.some((i) => i._id === item._id);
       <button className="z-20 absolute rounded-full p-2 bg-white top-5 right-5  shadow-md" onClick={(e) => {
         e.stopPropagation()
          e.preventDefault();
-        console.log('Clicked')
         onFaveClick()}}>
         <Heart className="w-4 h-4 md:w-5 md:h-5 cursor-pointer" fill={isItemInFaves ? "#da5252": "white"} color={isItemInFaves ? "#da5252": "#9ca3af"} />
       </button>

@@ -88,8 +88,6 @@ const ProductsPageInner = () => {
         const data = await res.json();
         const raw: Product[] = data.products ?? [];
 
-        console.log(raw);
-
         // Apply front-end filters: collections/trending, category (type), sizes
         const selectedCollection = (filters.collection as string) || '';
         const isTrending = (filters.isFeatured as string) === 'true';

@@ -22,6 +22,7 @@ const DesktopSizesAndColors = ({ product }: DesktopSizesAndColorsProps) => {
       </h2>
       <div className="flex justify-start items-center gap-1">
         {Object.entries(product.sizes)
+          .filter(([name]) => name.toLowerCase() !== "xs")
           .map(([name, quantity]) => ({ name, quantity }))
           .map((s) => (
             <button
