@@ -1,8 +1,6 @@
 'use client'
 
-import { RootState } from "@/app/Redux/store";
 import { useTranslations } from "next-intl";
-import { useSelector } from "react-redux";
 import { useState } from "react";
 
 
@@ -10,8 +8,7 @@ export default function NewsletterSection() {
 
   const t = useTranslations("newsletter");
 
-  const cart = useSelector((state: RootState) => state.cart.items);
-
+  
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
