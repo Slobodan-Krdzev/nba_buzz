@@ -50,7 +50,7 @@ const TearmsAndPrivacy = () => {
       &bull; {t("rights.access")} <br /> &bull; {t("rights.delete")}
       <br /> &bull; {t("rights.unsubscribe")}
       <h2 className="text-2xl  tracking-tighter mb-[1vh] mt-[2vh]">
-        {t("contactTitle")} <b>support@trojka.mk</b>
+        {t("contactTitle")} <b>trojka3mk@gmail.com</b>
       </h2>
     </section>
   );

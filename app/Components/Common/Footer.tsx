@@ -20,9 +20,7 @@ const Footer = () => {
     {
       title: t("navbar.shop"),
       links: [
-        { title: t("home.hero.joker.title"), link: "/theJoker" },
-        { title: t("home.hero.luka.title"), link: "/luka" },
-        { title: t("home.hero.antic.title"), link: "/antic" },
+        { title: t("shop.title"), link: "/products" },
       ],
     },
     {

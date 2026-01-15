@@ -9,8 +9,11 @@
     "login": "Log In",
     "logout": "Log Out"
   },
+  "shop": {
+    "title": "All Products"
+  },
   "footer": {
-    "subtitle": "NBA based apperral brand. ",
+    "subtitle": "Clothing apparel inspired by the love for basketball. ",
     "subtitle2": "Top notch quality & prints - unique ideas -in-house design.",
     "info": "Info",
     "faq": "FAQ",
@@ -136,7 +139,7 @@
       },
       "5": {
         "q": "How do I contact support?",
-        "a": "You can reach us via email at info@trojka.mk or use the contact form on our Contact page. Our team is available 24/7."
+        "a": "You can reach us via email at trojka3mk@gmail.com or use the contact form on our Contact page. Our team is available 24/7."
       }
     }
   },
