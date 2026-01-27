@@ -348,7 +348,7 @@ const CheckoutForm = () => {
               {t('confirmedText2')}
             </p>
             <p className="text-gray-700 mb-4 text-center">
-              {t('confirmedHelp')} <br /> <span className="font-semibold text-accent">+389 77 123 123</span>
+              {t('confirmedHelp')} <br /> <span className="font-semibold text-accent">+389 78 411 208</span>
             </p>
             <button
               className="mt-2 px-6 py-2 bg-accent text-white rounded font-bold hover:scale-105 transition-transform"
